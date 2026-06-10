@@ -16,8 +16,8 @@
 .hero-media {
   position: absolute; inset: 0; z-index: -2;
   background:
-    radial-gradient(80% 55% at 74% 20%, rgba(224,162,59,.55), transparent 55%),
-    linear-gradient(178deg, #6c7c8c 0%, #93917f 38%, #c2a578 56%, #b1936a 74%, #897457 100%);
+    radial-gradient(80% 55% at 74% 20%, rgba(224,162,59,.35), transparent 55%),
+    url('uploads/Roofing-hero-mobile.png') center top / cover no-repeat;
 }
 .hero-media-tag {
   position: absolute; top: 14px; left: 16px; z-index: 1;
