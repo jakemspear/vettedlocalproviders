@@ -1,7 +1,7 @@
 /* homepage.jsx — brand homepage app. Loads after ui.jsx + strings. */
 const { useState: useStateH, useEffect: useEffectH } = React;
 
-const FUNNEL_URL = "Vetted Home Professionals.html";
+const FUNNEL_URL = "roofing-inspection.html";
 const CITY_PAGES = { Mesa: "Roofing in Mesa.html", Gilbert: "Roofing in Gilbert.html", Chandler: "Roofing in Chandler.html" };
 
 function scrollToId(id) {
