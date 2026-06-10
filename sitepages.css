@@ -87,7 +87,7 @@
 /* ---------- pros intake form ---------- */
 .intake { background: var(--white); border: 1px solid var(--line-soft); border-radius: var(--r-xl); padding: 26px 22px; box-shadow: var(--shadow-md); max-width: 640px; margin-inline: auto; }
 .intake-grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
-.intake .field-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; align-items: end; }
+.intake .field-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; align-items: start; }
 .intake .field { display: flex; flex-direction: column; }
 .intake .field label { font-weight: 700; font-size: 13.5px; color: var(--ink-soft); margin-bottom: 6px; display: block; }
 .intake .input, .intake select.input { width: 100%; min-height: 54px; }
