@@ -4,9 +4,8 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <meta name="theme-color" content="#163A34" />
-<title>Vetted Local Providers · Arizona's vetted home pros</title>
-<meta name="description" content="Arizona's vetted home-service concierge. We match you with screened local pros and the exclusive deals our network gets first. No auctioning your info. No spam. Ever." />
-
+<title>For Arizona Pros · Join the Vetted Network | Vetted Local Providers</title>
+<meta name="description" content="Get matched to vetted Arizona homeowners who asked for your service. No bidding wars, no auctioned leads. Apply to join the vetted pro network." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@500;600;700;800&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -14,35 +13,36 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/bold/style.css" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/fill/style.css" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/duotone/style.css" />
-
 <link rel="stylesheet" href="styles.css" />
 <link rel="stylesheet" href="screens.css" />
 <link rel="stylesheet" href="homepage.css" />
+<link rel="stylesheet" href="sitepages.css" />
 <style> body { background: var(--bone); } </style>
+<script type="application/ld+json">
+{ "@context": "https://schema.org", "@type": "WebPage", "name": "For Arizona Pros · Join the Vetted Network",
+  "description": "Get matched to vetted Arizona homeowners who asked for your service.",
+  "publisher": { "@type": "Organization", "name": "Vetted Local Providers", "areaServed": "Greater Phoenix Valley, Arizona" } }
+</script>
 </head>
 <body>
 <div id="root"></div>
 
 <template id="__bundler_thumbnail" data-bg-color="#1F4D45">
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-    <rect width="100" height="100" fill="#1F4D45" />
-    <rect x="26" y="46" width="48" height="30" rx="4" fill="#F2EDE4" />
-    <path d="M22 48 L50 28 L78 48 Z" fill="#E0A23B" />
-  </svg>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="#1F4D45" /><circle cx="50" cy="40" r="15" fill="none" stroke="#E0A23B" stroke-width="5" /><path d="M30 74 q20 -18 40 0" fill="none" stroke="#E0A23B" stroke-width="5" /></svg>
 </template>
 
 <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
-
 <script src="image-slot.js"></script>
-
 <script type="text/babel" src="i18n.jsx"></script>
 <script type="text/babel" src="strings-en.jsx"></script>
 <script type="text/babel" src="strings-es.jsx"></script>
 <script type="text/babel" src="strings-home-en.jsx"></script>
 <script type="text/babel" src="strings-home-es.jsx"></script>
+<script type="text/babel" src="strings-pros.jsx"></script>
 <script type="text/babel" src="ui.jsx"></script>
-<script type="text/babel" src="homepage.jsx"></script>
+<script type="text/babel" src="site-chrome.jsx"></script>
+<script type="text/babel" src="page-pros.jsx"></script>
 </body>
 </html>

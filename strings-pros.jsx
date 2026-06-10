@@ -1,0 +1,96 @@
+/* strings-pros.jsx — For Pros / Become a Vetted Pro page copy (EN + ES). */
+window.STRINGS = window.STRINGS || {};
+window.STRINGS.en = window.STRINGS.en || {};
+window.STRINGS.es = window.STRINGS.es || {};
+
+window.STRINGS.en.pros = {
+  meta: { title: "For Arizona Pros · Join the Vetted Network | Vetted Local Providers",
+    desc: "Get matched to vetted Arizona homeowners who asked for your service. No bidding wars, no auctioned leads. Apply to join the vetted pro network." },
+  crumbs: [{ label: "Home", href: "Homepage.html" }, { label: "For pros" }],
+  hero: { eyebrow: "For Arizona pros", h: "Get matched to homeowners who actually show up.",
+    sub: "We send you vetted homeowners who asked for your service. No bidding wars, no auctioned leads, no tire-kickers.", cta: "Apply to join", secondary: "See our standards" },
+  why: { eyebrow: "Why join", h: "Built to respect your time.", items: [
+    { icon: "ph-user-check", h: "Vetted homeowners", b: "We screen the customer side too. Fewer no-shows, fewer dead ends, more real projects." },
+    { icon: "ph-target", h: "Matched, not auctioned", b: "You are hand-matched to homeowners who want your trade. You are not one of twenty companies fighting over a lead." },
+    { icon: "ph-lock-key", h: "An exclusive local network", b: "We keep the network small and local on purpose. Your area, your specialty, fewer competitors." },
+    { icon: "ph-star", h: "You keep your reputation", b: "Verified reviews follow you. Do good work and the network sends you more of the right homeowners." },
+  ] },
+  rubric: { eyebrow: "Our standards", h: "What it takes to join.", sub: "We publish our standards because vetting only means something if it is real. Every pro in the network clears all of these.", items: [
+    { icon: "ph-identification-badge", h: "License + ROC verification", b: "We confirm your Arizona ROC license is current and in good standing before you take a single match." },
+    { icon: "ph-shield-check", h: "Current insurance", b: "Active general liability and any trade-required coverage, verified and kept on file." },
+    { icon: "ph-user-focus", h: "Background check", b: "Ownership and key personnel are screened. We want homeowners safe letting you on the property." },
+    { icon: "ph-star-half", h: "Verified reviews", b: "Real, verifiable reviews from real customers. No purchased ratings, no fakes." },
+    { icon: "ph-medal", h: "Track record", b: "Demonstrated history in your trade, with references we actually call." },
+    { icon: "ph-handshake", h: "Reciprocity", b: "You treat our homeowners right, we keep sending you ones who keep their appointments. Both sides earn their spot." },
+  ] },
+  how: { eyebrow: "How it works for pros", h: "Three steps to your first match.", steps: [
+    { icon: "ph-paper-plane-tilt", head: "Apply", body: "Tell us about your company, trades, and the cities you serve. Takes a few minutes." },
+    { icon: "ph-magnifying-glass", head: "We verify", body: "We check your license, insurance, and references. This is a reviewed application, not instant approval." },
+    { icon: "ph-link", head: "Get matched", body: "Once approved, you get matched to homeowners who specifically requested your service in your area." },
+  ] },
+  form: { eyebrow: "Apply to join", h: "Start your application.", sub: "Reviewed by a real person. We will follow up after we verify your details.",
+    company: "Company name", contactName: "Contact name", email: "Email", phone: "Phone", roc: "ROC license number",
+    licenseNum: "License number (if applicable)", licenseType: "License type", licenseTypePlaceholder: "Select one",
+    licenseTypeOpts: ["ROC — Contractor", "OPM — Pest Management", "Other", "Not required for my trade"],
+    licenseHelp: "ROC required for most contractor trades in AZ. Pest control requires an OPM license. Cleaning and maintenance services may not require a state license.",
+    trades: "Trades / services offered", cities: "Cities served", insurance: "Insurance status", years: "Years in business", website: "Website",
+    insuranceOpts: ["Active general liability", "GL + trade coverage", "Working on it"],
+    tradesPlaceholder: "Roofing, solar, HVAC...", citiesPlaceholder: "Mesa, Gilbert, Chandler...", optional: "(optional)",
+    consent: "I confirm the information above is accurate and authorize Vetted Local Providers to verify my license, insurance, and references. I agree to be contacted about my application.",
+    submit: "Submit application", hint: "Complete the required fields to submit.",
+    doneH: "Application received.", doneB: "Thanks. A real person will verify your details and follow up. We do not publicly display the license number you submitted." },
+  faq: { eyebrow: "Pro FAQ", h: "Questions from pros.", items: [
+    { q: "How does matching work?", a: "Homeowners come to us by service and area and tell us what they need. We hand-match each one to the right vetted pro. You are not bidding against a crowd." },
+    { q: "What does it cost to join?", a: "Fee structure is set per partnership. [Placeholder: the client will define the fee/lead model here before launch.] We will walk you through it during onboarding." },
+    { q: "Is the network exclusive?", a: "We keep it intentionally small per trade and area, so you are not competing against twenty other companies for the same homeowner." },
+    { q: "How does payment work?", a: "[Placeholder: payment and billing terms to be defined by the client.] You will get the full terms in writing before any match." },
+    { q: "Do you sell my information?", a: "No. We are not a lead farm. Homeowner and pro details stay inside the network and are handled per our privacy policy." },
+  ] },
+  cta: { h: "Ready to grow with a network that respects your time?", sub: "Apply now. We will verify your details and follow up.", cta: "Apply to join" },
+};
+
+window.STRINGS.es.pros = {
+  meta: { title: "Para profesionales de Arizona · Únase a la red verificada | Vetted Local Providers",
+    desc: "Conéctese con propietarios verificados de Arizona que pidieron su servicio. Sin guerras de ofertas ni contactos subastados. Solicite unirse a la red." },
+  crumbs: [{ label: "Inicio", href: "Homepage.html" }, { label: "Para profesionales" }],
+  hero: { eyebrow: "Para profesionales de Arizona", h: "Conéctese con clientes que de verdad están listos.",
+    sub: "Le enviamos propietarios verificados que pidieron su servicio. Sin guerras de ofertas, sin contactos subastados, sin curiosos.", cta: "Solicitar unirse", secondary: "Ver nuestros estándares" },
+  why: { eyebrow: "Por qué unirse", h: "Hecho para respetar su tiempo.", items: [
+    { icon: "ph-user-check", h: "Propietarios verificados", b: "También verificamos al cliente. Menos citas perdidas, menos callejones sin salida, más proyectos reales." },
+    { icon: "ph-target", h: "Asignado, no subastado", b: "Lo conectamos a mano con propietarios que quieren su oficio. No es uno de veinte peleando por un contacto." },
+    { icon: "ph-lock-key", h: "Una red local exclusiva", b: "Mantenemos la red pequeña y local a propósito. Su área, su especialidad, menos competidores." },
+    { icon: "ph-star", h: "Conserva su reputación", b: "Las reseñas verificadas lo siguen. Haga buen trabajo y la red le envía más de los clientes correctos." },
+  ] },
+  rubric: { eyebrow: "Nuestros estándares", h: "Lo que se necesita para unirse.", sub: "Publicamos nuestros estándares porque verificar solo significa algo si es real. Cada profesional de la red cumple todos estos.", items: [
+    { icon: "ph-identification-badge", h: "Licencia + verificación ROC", b: "Confirmamos que su licencia ROC de Arizona esté vigente y en regla antes de su primera asignación." },
+    { icon: "ph-shield-check", h: "Seguro vigente", b: "Responsabilidad civil activa y la cobertura que requiera su oficio, verificada y en archivo." },
+    { icon: "ph-user-focus", h: "Verificación de antecedentes", b: "Se revisa a los dueños y al personal clave. Queremos que los propietarios estén seguros." },
+    { icon: "ph-star-half", h: "Reseñas verificadas", b: "Reseñas reales y verificables de clientes reales. Sin calificaciones compradas ni falsas." },
+    { icon: "ph-medal", h: "Trayectoria", b: "Historial demostrado en su oficio, con referencias que de verdad llamamos." },
+    { icon: "ph-handshake", h: "Reciprocidad", b: "Usted trata bien a nuestros propietarios y nosotros le seguimos enviando los que cumplen sus citas. Ambos lados se ganan su lugar." },
+  ] },
+  how: { eyebrow: "Cómo funciona para profesionales", h: "Tres pasos a su primera asignación.", steps: [
+    { icon: "ph-paper-plane-tilt", head: "Solicite", body: "Cuéntenos sobre su empresa, oficios y las ciudades que atiende. Toma unos minutos." },
+    { icon: "ph-magnifying-glass", head: "Verificamos", body: "Revisamos su licencia, seguro y referencias. Es una solicitud revisada, no aprobación instantánea." },
+    { icon: "ph-link", head: "Reciba asignaciones", body: "Una vez aprobado, lo conectamos con propietarios que pidieron su servicio en su área." },
+  ] },
+  form: { eyebrow: "Solicitar unirse", h: "Comience su solicitud.", sub: "Revisada por una persona real. Le daremos seguimiento tras verificar sus datos.",
+    company: "Nombre de la empresa", contactName: "Nombre de contacto", email: "Correo electrónico", phone: "Teléfono", roc: "Número de licencia ROC",
+    licenseNum: "Número de licencia (si aplica)", licenseType: "Tipo de licencia", licenseTypePlaceholder: "Seleccione una",
+    licenseTypeOpts: ["ROC — Contratista", "OPM — Control de plagas", "Otro", "No requerida para mi oficio"],
+    licenseHelp: "Se requiere ROC para la mayoría de los oficios de contratista en AZ. El control de plagas requiere licencia OPM. Los servicios de limpieza y mantenimiento pueden no requerir licencia estatal.",
+    trades: "Oficios / servicios ofrecidos", cities: "Ciudades que atiende", insurance: "Estado del seguro", years: "Años en el negocio", website: "Sitio web",
+    insuranceOpts: ["Responsabilidad civil activa", "RC + cobertura del oficio", "En proceso"],
+    tradesPlaceholder: "Techos, solar, aire acondicionado...", citiesPlaceholder: "Mesa, Gilbert, Chandler...", optional: "(opcional)",
+    consent: "Confirmo que la información es correcta y autorizo a Vetted Local Providers a verificar mi licencia, seguro y referencias. Acepto ser contactado sobre mi solicitud.",
+    submit: "Enviar solicitud", hint: "Complete los campos requeridos para enviar.",
+    doneH: "Solicitud recibida.", doneB: "Gracias. Una persona real verificará sus datos y le dará seguimiento. No mostramos públicamente el número de licencia que envió." },
+  faq: { eyebrow: "Preguntas de profesionales", h: "Preguntas de profesionales.", items: [
+    { q: "¿Cómo funciona la asignación?", a: "Los propietarios vienen a nosotros por servicio y área y nos dicen qué necesitan. Conectamos a cada uno a mano con el profesional verificado correcto. No está pujando contra una multitud." },
+    { q: "¿Cuánto cuesta unirse?", a: "La estructura de tarifas se define por alianza. [Marcador: el cliente definirá el modelo de tarifa/contacto antes del lanzamiento.] Se lo explicamos durante la incorporación." },
+    { q: "¿La red es exclusiva?", a: "La mantenemos pequeña a propósito por oficio y área, para que no compita contra veinte empresas por el mismo propietario." },
+    { q: "¿Cómo funciona el pago?", a: "[Marcador: términos de pago y facturación a definir por el cliente.] Recibirá los términos completos por escrito antes de cualquier asignación." },
+    { q: "¿Venden mi información?", a: "No. No somos una granja de contactos. Los datos de propietarios y profesionales se quedan dentro de la red y se manejan según nuestra política de privacidad." },
+  ] },
+  cta: { h: "¿Listo para crecer con una red que respeta su tiempo?", sub: "Solicite ahora. Verificamos sus datos y le damos seguimiento.", cta: "Solicitar unirse" },
+};

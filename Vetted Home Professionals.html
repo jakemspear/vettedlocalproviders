@@ -4,8 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <meta name="theme-color" content="#163A34" />
-<title>Vetted Local Providers · Arizona's vetted home pros</title>
-<meta name="description" content="Arizona's vetted home-service concierge. We match you with screened local pros and the exclusive deals our network gets first. No auctioning your info. No spam. Ever." />
+<title>Vetted Local Providers · Free AZ Roof Quote</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -17,32 +16,40 @@
 
 <link rel="stylesheet" href="styles.css" />
 <link rel="stylesheet" href="screens.css" />
-<link rel="stylesheet" href="homepage.css" />
-<style> body { background: var(--bone); } </style>
+<link rel="stylesheet" href="desktop.css" />
 </head>
 <body>
-<div id="root"></div>
+<div class="stage">
+  <div class="app">
+    <div id="root"></div>
+  </div>
+</div>
 
 <template id="__bundler_thumbnail" data-bg-color="#1F4D45">
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
     <rect width="100" height="100" fill="#1F4D45" />
-    <rect x="26" y="46" width="48" height="30" rx="4" fill="#F2EDE4" />
-    <path d="M22 48 L50 28 L78 48 Z" fill="#E0A23B" />
+    <circle cx="50" cy="42" r="22" fill="none" stroke="#E0A23B" stroke-width="6" stroke-linecap="round" stroke-dasharray="104 138" transform="rotate(-90 50 42)" />
+    <rect x="34" y="68" width="32" height="8" rx="4" fill="#E0A23B" />
   </svg>
 </template>
 
+<!-- React + Babel (pinned) -->
 <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
 
+<!-- web components -->
 <script src="image-slot.js"></script>
 
+<!-- app (order matters: helpers export to window before app mounts) -->
+<script type="text/babel" src="tweaks-panel.jsx"></script>
 <script type="text/babel" src="i18n.jsx"></script>
 <script type="text/babel" src="strings-en.jsx"></script>
 <script type="text/babel" src="strings-es.jsx"></script>
-<script type="text/babel" src="strings-home-en.jsx"></script>
-<script type="text/babel" src="strings-home-es.jsx"></script>
 <script type="text/babel" src="ui.jsx"></script>
-<script type="text/babel" src="homepage.jsx"></script>
+<script type="text/babel" src="landing.jsx"></script>
+<script type="text/babel" src="form.jsx"></script>
+<script type="text/babel" src="thankyou.jsx"></script>
+<script type="text/babel" src="app.jsx"></script>
 </body>
 </html>

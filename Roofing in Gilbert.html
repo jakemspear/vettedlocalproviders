@@ -4,9 +4,8 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <meta name="theme-color" content="#163A34" />
-<title>Vetted Local Providers · Arizona's vetted home pros</title>
-<meta name="description" content="Arizona's vetted home-service concierge. We match you with screened local pros and the exclusive deals our network gets first. No auctioning your info. No spam. Ever." />
-
+<title>Roofing in Gilbert, AZ · Vetted Local Roofers | Vetted Local Providers</title>
+<meta name="description" content="Tile and shingle roofing in Gilbert, AZ. Matched with a vetted local roofer who knows Gilbert's HOA rules and master-planned communities." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@500;600;700;800&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -14,35 +13,37 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/bold/style.css" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/fill/style.css" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/duotone/style.css" />
-
 <link rel="stylesheet" href="styles.css" />
 <link rel="stylesheet" href="screens.css" />
 <link rel="stylesheet" href="homepage.css" />
+<link rel="stylesheet" href="sitepages.css" />
 <style> body { background: var(--bone); } </style>
+<script type="application/ld+json">
+{ "@context": "https://schema.org", "@type": "LocalBusiness", "name": "Vetted Local Providers",
+  "areaServed": { "@type": "City", "name": "Gilbert, AZ" },
+  "makesOffer": { "@type": "Offer", "itemOffered": { "@type": "Service", "serviceType": "Roofing" } },
+  "description": "Tile and shingle roofing in Gilbert, AZ. Matched with a vetted local roofer who knows Gilbert's HOA rules and master-planned communities." }
+</script>
 </head>
 <body>
 <div id="root"></div>
-
 <template id="__bundler_thumbnail" data-bg-color="#1F4D45">
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-    <rect width="100" height="100" fill="#1F4D45" />
-    <rect x="26" y="46" width="48" height="30" rx="4" fill="#F2EDE4" />
-    <path d="M22 48 L50 28 L78 48 Z" fill="#E0A23B" />
-  </svg>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="#1F4D45" /><rect x="28" y="48" width="44" height="28" rx="3" fill="#F2EDE4" /><path d="M24 50 L50 30 L76 50 Z" fill="#E0A23B" /><circle cx="50" cy="62" r="5" fill="#1F4D45" /></svg>
 </template>
-
 <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
-
 <script src="image-slot.js"></script>
-
+<script> window.VERTICAL = "roofing"; window.CITY = "gilbert"; </script>
 <script type="text/babel" src="i18n.jsx"></script>
 <script type="text/babel" src="strings-en.jsx"></script>
 <script type="text/babel" src="strings-es.jsx"></script>
 <script type="text/babel" src="strings-home-en.jsx"></script>
 <script type="text/babel" src="strings-home-es.jsx"></script>
+<script type="text/babel" src="strings-services.jsx"></script>
+<script type="text/babel" src="strings-cities.jsx"></script>
 <script type="text/babel" src="ui.jsx"></script>
-<script type="text/babel" src="homepage.jsx"></script>
+<script type="text/babel" src="site-chrome.jsx"></script>
+<script type="text/babel" src="page-city.jsx"></script>
 </body>
 </html>

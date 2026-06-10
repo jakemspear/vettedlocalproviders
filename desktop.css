@@ -1,0 +1,82 @@
+/* ============================================================
+   desktop.css — distinct desktop layout.
+   Driven by html.is-desktop (set by JS from real viewport width OR the
+   View tweak), so the layout can be force-previewed in any viewport.
+   When forced desktop in a narrow viewport, html.ds-scaled zoom-fits it.
+   ============================================================ */
+
+html.is-desktop .stage { padding: 0; background: var(--bone); align-items: flex-start; }
+html.is-desktop .app {
+  max-width: none; margin: 0; width: 100%;
+  min-height: 100vh; border-radius: 0; overflow: visible; box-shadow: none;
+}
+
+/* zoom-fit when forcing desktop into a too-narrow viewport (preview only) */
+html.ds-scaled .stage { padding: 0; min-height: auto; }
+html.ds-scaled .app { width: 1280px; max-width: 1280px; zoom: var(--ds-zoom, 1); }
+
+/* ---------- hero: full-bleed overlay, content in the shared 1200 container ---------- */
+html.is-desktop .landing .hero { min-height: 620px; }
+html.is-desktop .landing .hero-content {
+  max-width: none; margin: 0; width: 100%; gap: 18px;
+  padding-block: 150px 64px;
+  padding-inline: max(64px, calc((100% - 1200px) / 2));
+}
+html.is-desktop .landing .hero-h1 { font-size: 54px; line-height: 1.04; max-width: 18ch; }
+html.is-desktop .landing .hero-sub { font-size: 19px; max-width: 46ch; }
+html.is-desktop .landing .hero-content .btn { width: auto; align-self: flex-start; min-width: 300px; }
+
+/* ---------- trust bar: horizontal, same 1200 gutter ---------- */
+html.is-desktop .trustbar { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px 44px; padding-block: 22px; padding-inline: max(64px, calc((100% - 1200px) / 2)); }
+html.is-desktop .trustbar .chip { font-size: 14px; background: none; border: none; padding: 0; }
+html.is-desktop .trustbar .lbl-full { display: inline; }
+html.is-desktop .trustbar .lbl-short { display: none; }
+
+/* sections: width + gutters come from the shared .section container (styles.css) */
+html.is-desktop .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; }
+html.is-desktop .steps .step-row { display: flex; flex-direction: column; align-items: flex-start; gap: 14px; padding: 26px 24px; background: var(--white); border: 1px solid var(--line-soft); border-radius: var(--r-lg); box-shadow: var(--shadow-sm); }
+html.is-desktop .steps .step-line { display: none; }
+html.is-desktop .steps .step-body { padding: 0; }
+html.is-desktop .steps.stagger:not(.in) .step-row { opacity: 0; }
+
+html.is-desktop .proof-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+html.is-desktop .stats { max-width: 760px; margin: 0 0 28px; }
+html.is-desktop .vetted-cols { grid-template-columns: 1fr 1fr; gap: 40px; }
+html.is-desktop .deals-grid { grid-template-columns: 1.15fr .85fr; gap: 48px; align-items: start; }
+html.is-desktop .concierge-grid { grid-template-columns: 1.1fr .9fr; gap: 48px; align-items: start; }
+html.is-desktop .concierge-body { max-width: 56ch; margin-bottom: 0; }
+html.is-desktop .deals-main .deals-body { max-width: 52ch; }
+html.is-desktop .footer { padding-inline: max(64px, calc((100% - 1200px) / 2)); padding-bottom: 40px; }
+
+/* hide the mobile floating CTA on desktop */
+html.is-desktop .landing .sticky-cta { display: none; }
+
+/* ---------- form: centered card ---------- */
+html.is-desktop .form-wrap {
+  max-width: 620px; margin: 44px auto; min-height: auto;
+  background: var(--white); border: 1px solid var(--line-soft);
+  border-radius: 24px; box-shadow: var(--shadow-md); overflow: hidden;
+}
+html.is-desktop .form-top { padding: 22px 40px 6px; }
+html.is-desktop .form-body { padding: 18px 40px 34px; }
+html.is-desktop .form-q-text { font-size: 30px; }
+html.is-desktop .form-foot { background: var(--bone); }
+
+/* ---------- processing ---------- */
+html.is-desktop .processing { min-height: 80vh; }
+
+/* ---------- thank you ---------- */
+html.is-desktop .ty-hero { padding: 48px 24px 52px; }
+html.is-desktop .ty-narr, html.is-desktop .ty-wall-sec { max-width: 900px; margin-inline: auto; }
+html.is-desktop .ty-narr { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 32px; align-items: start; }
+html.is-desktop .ty-narr .eyebrow { grid-column: 1 / -1; }
+html.is-desktop .wall { grid-template-columns: repeat(2, 1fr); }
+html.is-desktop .wall.tile { grid-template-columns: repeat(3, 1fr); }
+html.is-desktop .wall.list { grid-template-columns: 1fr; }
+html.is-desktop .ty-addbar-inner { max-width: 780px; }
+html.is-desktop .ty-confirm { min-height: 80vh; }
+
+/* wider real desktop: hero type a touch larger */
+@media (min-width: 1120px) {
+  html.is-desktop .landing .hero-h1 { font-size: 56px; }
+}
