@@ -18,9 +18,12 @@ html.ds-scaled .app { width: 1280px; max-width: 1280px; zoom: var(--ds-zoom, 1);
 /* ---------- hero: full-bleed overlay, content in the shared 1200 container ---------- */
 html.is-desktop .landing .hero { min-height: 620px; }
 html.is-desktop .landing .hero-media {
-  background:
+  background-image:
     radial-gradient(80% 55% at 74% 20%, rgba(224,162,59,.35), transparent 55%),
-    url('uploads/Roofing-hero.png?v=1') center 65% / cover no-repeat;
+    url('uploads/Roofing-hero.png?v=2');
+  background-position: center, center 65%;
+  background-size: auto, cover;
+  background-repeat: no-repeat, no-repeat;
 }
 html.is-desktop .landing .hero-content {
   max-width: none; margin: 0; width: 100%; gap: 18px;

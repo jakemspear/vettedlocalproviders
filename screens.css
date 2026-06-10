@@ -15,9 +15,12 @@
 }
 .hero-media {
   position: absolute; inset: 0; z-index: -2;
-  background:
+  background-image:
     radial-gradient(80% 55% at 74% 20%, rgba(224,162,59,.35), transparent 55%),
-    url('uploads/Roofing-hero-mobile.png?v=1') center top / cover no-repeat;
+    url('uploads/Roofing-hero-mobile.png?v=2');
+  background-position: center, center top;
+  background-size: auto, cover;
+  background-repeat: no-repeat, no-repeat;
 }
 .hero-media-tag {
   position: absolute; top: 14px; left: 16px; z-index: 1;
