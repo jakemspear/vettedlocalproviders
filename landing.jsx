@@ -227,8 +227,10 @@ function Landing({ offer, onStart }) {
 
   return (
     <div className="screen-enter landing">
-      <Hero offer={offer} onStart={onStart} />
-      <TrustBar />
+      <div className="above-fold">
+        <Hero offer={offer} onStart={onStart} />
+        <TrustBar />
+      </div>
       <div className="desk-wrap">
         <HowItWorks />
         <Exclusivity />

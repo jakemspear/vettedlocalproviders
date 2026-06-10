@@ -340,8 +340,10 @@ function Home() {
     <LangCtx.Provider value={{ lang, t: T, setLang }}>
       <MotionCtx.Provider value={true}>
         <Header scrolled={scrolled} />
-        <Hero />
-        <TrustBar />
+        <div className="above-fold">
+          <Hero />
+          <TrustBar />
+        </div>
         <Services />
         <VettedBothWays />
         <HowItWorks />

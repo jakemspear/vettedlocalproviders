@@ -58,6 +58,27 @@
 .trustbar .lbl-full { display: none; }
 .trustbar .lbl-short { display: inline; }
 
+/* === ABOVE-FOLD: hero + trust bar fill the full viewport on mobile ===
+   Wrap <Hero> + <TrustBar> (or <sp-hero> + <SiteTrustBar>) in .above-fold.
+   The hero flexes to fill remaining space; trustbar pins to the bottom.
+   Reset to normal block layout at tablet/desktop breakpoints. */
+.above-fold {
+  display: flex;
+  flex-direction: column;
+  min-height: 100svh;  /* svh = small viewport height — respects mobile browser chrome */
+}
+.above-fold .hero,
+.above-fold .hp-hero,
+.above-fold .sp-hero {
+  flex: 1;  /* hero grows; trustbar stays at natural height */
+}
+/* Desktop via media query (homepage, SEO pages) */
+@media (min-width: 900px) {
+  .above-fold { display: block; min-height: 0; }
+}
+/* Desktop via JS class (roofing funnel + forced-desktop preview) */
+html.is-desktop .above-fold { display: block; min-height: 0; }
+
 /* exclusivity: full-bleed bands, content in the shared container */
 .deals-band .deals-ico { font-size: 38px; color: var(--sage); }
 .deals-band .sec-h2 { color: #fff; margin: 14px 0 10px; }

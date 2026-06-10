@@ -116,23 +116,41 @@ function Crumbs({ items }) {
   );
 }
 
+function SiteTrustBar() {
+  const T = useT();
+  return (
+    <div className="trustbar">
+      {META.trust.map((it) => (
+        <span className={`chip${it.spam ? " spam" : ""}`} key={it.id}>
+          <Ico name={it.icon} weight={it.spam ? "fill" : undefined} />
+          <span className="lbl-full">{T.trust[it.id]}</span>
+          <span className="lbl-short">{T.trust[it.id + "Short"]}</span>
+        </span>
+      ))}
+    </div>
+  );
+}
+
 function PageHero({ eyebrow, h, sub, ctaLabel, ctaHref, secondaryLabel, secondaryHref, crumbs }) {
   const motion = useMotion();
   const T = useT();
   return (
-    <header className="sp-hero">
-      <div className="hero-media"><span className="hero-media-tag">{T.hero.photoTag}</span><div className="hero-scrim" /></div>
-      <div className={`sp-hero-content${motion ? " anim" : ""}`}>
-        {crumbs && <Crumbs items={crumbs} />}
-        <div className="eyebrow on-dark">{eyebrow}</div>
-        <h1 className="display sp-hero-h">{h}</h1>
-        <p className="sp-hero-sub">{sub}</p>
-        <div className="sp-hero-cta">
-          <a className="btn btn-gold cta" href={ctaHref || FUNNEL}>{ctaLabel} <Ico name="ph-arrow-right" weight="bold" className="cta-arrow" /></a>
-          {secondaryLabel && <a className="btn btn-ghost-light" href={secondaryHref || "#body"}>{secondaryLabel}</a>}
+    <div className="above-fold">
+      <header className="sp-hero">
+        <div className="hero-media"><span className="hero-media-tag">{T.hero.photoTag}</span><div className="hero-scrim" /></div>
+        <div className={`sp-hero-content${motion ? " anim" : ""}`}>
+          {crumbs && <Crumbs items={crumbs} />}
+          <div className="eyebrow on-dark">{eyebrow}</div>
+          <h1 className="display sp-hero-h">{h}</h1>
+          <p className="sp-hero-sub">{sub}</p>
+          <div className="sp-hero-cta">
+            <a className="btn btn-gold cta" href={ctaHref || FUNNEL}>{ctaLabel} <Ico name="ph-arrow-right" weight="bold" className="cta-arrow" /></a>
+            {secondaryLabel && <a className="btn btn-ghost-light" href={secondaryHref || "#body"}>{secondaryLabel}</a>}
+          </div>
         </div>
-      </div>
-    </header>
+      </header>
+      <SiteTrustBar />
+    </div>
   );
 }
 
