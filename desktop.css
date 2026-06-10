@@ -40,7 +40,7 @@ html.is-desktop .steps .step-body { padding: 0; }
 html.is-desktop .steps.stagger:not(.in) .step-row { opacity: 0; }
 
 html.is-desktop .proof-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
-html.is-desktop .stats { max-width: 760px; margin: 0 0 28px; }
+html.is-desktop .stats { margin: 0 0 28px; }
 html.is-desktop .vetted-cols { grid-template-columns: 1fr 1fr; gap: 40px; }
 html.is-desktop .deals-grid { grid-template-columns: 1.15fr .85fr; gap: 48px; align-items: start; }
 html.is-desktop .concierge-grid { grid-template-columns: 1.1fr .9fr; gap: 48px; align-items: start; }
