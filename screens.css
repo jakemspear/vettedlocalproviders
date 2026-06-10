@@ -109,7 +109,7 @@
 .step-sub { font-size: 14px; color: var(--ink-mute); line-height: 1.45; margin-top: 2px; }
 
 /* stats strip (inside pine proof) */
-.stats { display: flex; gap: 10px; margin-bottom: 22px; }
+.stats { display: flex; gap: 10px; margin-bottom: 22px; width: 100%; }
 .stat { flex: 1; text-align: center; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.13); border-radius: var(--r-md); padding: 16px 6px; }
 .stat-n { font-family: var(--display); font-weight: 800; font-size: 25px; color: #fff; letter-spacing: -.02em; }
 .stat-l { font-size: 11px; color: rgba(255,255,255,.64); margin-top: 5px; line-height: 1.3; }

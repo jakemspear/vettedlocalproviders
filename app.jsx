@@ -3,7 +3,7 @@ const { useState: useStateA, useEffect: useEffectA } = React;
 
 const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
   "view": "auto",
-  "offer": "free_quote",
+  "offer": "free_inspection",
   "monsoon": false,
   "motion": true,
   "offers": "cards",
