@@ -77,9 +77,10 @@ html.is-desktop .processing { min-height: 80vh; }
 html.is-desktop .ty-hero { padding: 48px 24px 52px; }
 html.is-desktop .ty-narr,
 html.is-desktop .ty-wall-sec {
-  width: min(100%, 900px);
-  max-width: 900px;
-  margin-inline: auto;
+  width: auto;
+  max-width: none;
+  margin-inline: 0;
+  padding-inline: max(64px, calc((100% - 900px) / 2));
 }
 html.is-desktop .ty-narr { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 32px; align-items: start; }
 html.is-desktop .ty-narr .eyebrow { grid-column: 1 / -1; }
@@ -88,6 +89,11 @@ html.is-desktop .wall.tile { grid-template-columns: repeat(3, 1fr); }
 html.is-desktop .wall.list { grid-template-columns: 1fr; }
 html.is-desktop .ty-addbar-inner { max-width: 780px; }
 html.is-desktop .ty-confirm { min-height: 80vh; }
+html.is-desktop .confirmed-body-sec {
+  width: auto;
+  max-width: none;
+  padding-inline: max(64px, calc((100% - 608px) / 2));
+}
 
 /* wider real desktop: hero type a touch larger */
 @media (min-width: 1120px) {
