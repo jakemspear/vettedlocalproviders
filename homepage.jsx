@@ -3,12 +3,22 @@ const { useState: useStateH, useEffect: useEffectH } = React;
 
 const FUNNEL_URL = "roofing-inspection.html";
 const CITY_PAGES = { Mesa: "Roofing in Mesa.html", Gilbert: "Roofing in Gilbert.html", Chandler: "Roofing in Chandler.html" };
+const WAITLIST_PAGE = "join-the-waitlist.html";
 
 function scrollToId(id) {
   const el = document.getElementById(id);
   if (!el) return;
   const y = el.getBoundingClientRect().top + window.scrollY - 64;
   window.scrollTo(0, y);
+}
+
+function homepageServiceHref(service, lang) {
+  if (!service) return "#";
+  if (service.id === "roofing") return service.page || "#";
+  const href = new URL(WAITLIST_PAGE, window.location.href);
+  href.searchParams.set("service", service.id);
+  href.searchParams.set("lang", lang || "en");
+  return `${href.pathname}${href.search}`;
 }
 
 function saveVCardHome() {
@@ -95,7 +105,9 @@ function TrustBar() {
 
 function ServiceCard({ s }) {
   const T = useT(); const H = T.home;
-  const act = () => { window.location.href = s.page; };
+  const [lang] = useLang();
+  const href = homepageServiceHref(s, lang);
+  const act = () => { window.location.href = href; };
   const onKey = (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); act(); } };
   return (
     <div className="svc-card" role="button" tabIndex={0} onClick={act} onKeyDown={onKey}>
@@ -112,6 +124,7 @@ function ServiceCard({ s }) {
 
 function MoreServices() {
   const T = useT(); const H = T.home;
+  const [lang] = useLang();
   const [open, setOpen] = useStateH(false);
   const all = H.moreServices || [];
   const initial = all.slice(0, 8);
@@ -121,7 +134,7 @@ function MoreServices() {
       <div className="hp-more-head">{H.moreH}</div>
       <div className="hp-chips">
         {initial.map((m) => (
-          <a key={m.id} className="hp-chip" href={m.page}><Ico name={m.icon} weight="bold" /> <span>{m.name}</span></a>
+          <a key={m.id} className="hp-chip" href={homepageServiceHref(m, lang)}><Ico name={m.icon} weight="bold" /> <span>{m.name}</span></a>
         ))}
       </div>
       {extra.length > 0 && (
@@ -130,7 +143,7 @@ function MoreServices() {
             <div className="hp-chips-clip">
               <div className="hp-chips-pad">
                 {extra.map((m) => (
-                  <a key={m.id} className="hp-chip" href={m.page} tabIndex={open ? 0 : -1}><Ico name={m.icon} weight="bold" /> <span>{m.name}</span></a>
+                  <a key={m.id} className="hp-chip" href={homepageServiceHref(m, lang)} tabIndex={open ? 0 : -1}><Ico name={m.icon} weight="bold" /> <span>{m.name}</span></a>
                 ))}
               </div>
             </div>
@@ -260,23 +273,6 @@ function Deals() {
   );
 }
 
-function About() {
-  const T = useT(); const H = T.home;
-  return (
-    <section className="section hp-about" id="about">
-      <div className="hp-about-grid">
-        <div className="hp-about-photo"><image-slot id="hp-founder" shape="rounded" radius="20" placeholder="Founder photo" style={{ width: "100%", height: "300px" }}></image-slot></div>
-        <div className="hp-about-body">
-          <div className="eyebrow">{H.about.eyebrow}</div>
-          <h2 className="display sec-h2">{H.about.h}</h2>
-          <p className="hp-about-text">{H.about.body}</p>
-          <button className="btn btn-ghost" onClick={() => {}} style={{ maxWidth: 220 }}>{H.about.cta} <Ico name="ph-arrow-right" weight="bold" /></button>
-        </div>
-      </div>
-    </section>
-  );
-}
-
 function FAQ() {
   const T = useT(); const H = T.home;
   const [open, setOpen] = useStateH(0);
@@ -299,6 +295,7 @@ function FAQ() {
 
 function Footer() {
   const T = useT(); const H = T.home; const f = H.footer; const L = f.links;
+  const [lang] = useLang();
   return (
     <footer className="hp-footer">
       <div className="hp-footer-in">
@@ -309,8 +306,8 @@ function Footer() {
           <div className="hp-footer-roc"><Ico name="ph-seal-check" weight="fill" /> {f.roc}</div>
         </div>
         <div className="hp-footer-cols">
-          <div className="hp-footer-col"><div className="hp-footer-h">{f.company}</div><a href="#about">{L.about}</a><a href="#vetted">{L.howWeVet}</a><a href={`mailto:${EMAIL}`}>{L.contact}</a><a href="#proof">{L.reviews}</a></div>
-          <div className="hp-footer-col"><div className="hp-footer-h">{f.servicesCol}</div>{H.services.slice(0, 6).map((s) => <a key={s.id} href={s.page || "#"} onClick={s.page ? undefined : (e) => e.preventDefault()}>{s.name}</a>)}</div>
+          <div className="hp-footer-col"><div className="hp-footer-h">{f.company}</div><a href="#vetted">{L.howWeVet}</a><a href={`mailto:${EMAIL}`}>{L.contact}</a><a href="#proof">{L.reviews}</a></div>
+          <div className="hp-footer-col"><div className="hp-footer-h">{f.servicesCol}</div>{H.services.slice(0, 6).map((s) => <a key={s.id} href={homepageServiceHref(s, lang)}>{s.name}</a>)}</div>
           <div className="hp-footer-col"><div className="hp-footer-h">{f.areasCol}</div>{H.areas.cities.slice(0, 6).map((c) => <a key={c} href={CITY_PAGES[c] || "#"} onClick={CITY_PAGES[c] ? undefined : (e) => e.preventDefault()}>{c}</a>)}</div>
           <div className="hp-footer-col"><div className="hp-footer-h">{f.legal}</div><a href={PRIVACY_PAGE}>{L.privacy}</a><a href={TERMS_PAGE}>{L.terms}</a><a href={`${TERMS_PAGE}#sms-messaging`}>{L.tcpa}</a><a href={`${PRIVACY_PAGE}#cookies`}>{L.cookies}</a><a href={`${TERMS_PAGE}#accessibility`}>{L.accessibility}</a><a href={`${TERMS_PAGE}#service-disclaimer`}>{L.guarantee}</a></div>
         </div>
@@ -349,7 +346,6 @@ function Home() {
         <Proof />
         <ServiceAreas />
         <Deals />
-        <About />
         <FAQ />
         <Footer />
       </MotionCtx.Provider>
