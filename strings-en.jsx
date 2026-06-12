@@ -4,7 +4,7 @@ window.STRINGS.en = {
   langName: "English", otherLang: "Español",
   presets: {
     insurance_storm: { eyebrow: "Monsoon & storm damage", headline: "Storm or monsoon damage? You may qualify for a new roof through your insurance.", subhead: "Our vetted Arizona pros handle the inspection and the claim paperwork with you. See if your roof qualifies in about 2 minutes.", cta: "See if my roof qualifies" },
-    free_inspection: { eyebrow: "Arizona Homeowners", headline: "Get a Free Roof Inspection", subhead: "Let a vetted local roofer inspect your roof top to bottom, then tells you straight: repair, replace, or leave it. No pressure, no spam, no obligation.", cta: "Book my free inspection" },
+    free_inspection: { eyebrow: "Arizona Homeowners", headline: "Get a Free Roof Inspection", subhead: "Let a vetted local roofer inspect your roof top to bottom, then tells you straight: repair, replace, or leave it. No pressure, no spam, no obligation.", cta: "Get my free inspection" },
     qualify_quiz: { eyebrow: "Does your roof qualify?", headline: "Is your Arizona roof due for replacement? Find out in 2 minutes.", subhead: "Answer a few quick questions. We match you with the right vetted specialist for your roof: tile, foam, or shingle.", cta: "Check if my roof qualifies" },
     zero_down: { eyebrow: "Arizona roofing, $0 down", headline: "A new Arizona roof for $0 down. Pay monthly, beat the next monsoon.", subhead: "Get matched with a vetted local pro and a payment that fits. Free quote, no pressure, no spam.", cta: "Get my $0-down quote" },
     free_quote: { eyebrow: "Arizona roofing, handled", headline: "Your free Arizona roof quote, fast.", subhead: "Tell us about your roof and we will match you with a vetted local pro. Free quote, no pressure, no spam.", cta: "Get my free roof quote" },
@@ -66,8 +66,8 @@ window.STRINGS.en = {
     },
     renter: { strong: "Heads up, roof quotes are for homeowners.", body: "No problem if you rent. Keep going and we will line up services you can use, like pest control and alarms." },
     antispam: { lead: "Most sites sell your info to spammers.", emphasis: "We don't.", tail: "You talk to us, and only the pros you ask for." },
-    tcpa: "By checking this box and clicking \"{cta}\", I agree to receive calls and text messages from Vetted Local Providers, operated by Scaling Adventures, LLC, at the number I provided about my quote request, appointment scheduling, follow-up, requested provider coordination, and the related services I ask about, including messages sent with automated technology.",
-    tcpaMeta: "Message frequency varies. Message and data rates may apply. Text STOP to cancel or HELP for help. Consent is not a condition of purchase. SMS opt-in is optional and is not required to submit your request.",
+    tcpa: "By checking this box and clicking \"{cta}\", I agree to receive calls and text messages from Vetted Local Providers, operated by Scaling Adventures, LLC, at the number I provided about my quote request, appointment scheduling, service updates, requested provider coordination, and related services I ask about, including conversational, transactional, and promotional messages sent with automated technology.",
+    tcpaMeta: "Message frequency varies. Message and data rates may apply. Reply STOP to opt out or HELP for help. Consent is not a condition of purchase. Checking this box is optional and not required to submit your request.",
   },
   processing: { title: "Setting up your callback", items: { match: "Matching you with a vetted Arizona specialist", confirm: "Confirming a pro covers {city}", reserve: "Reserving your 2-minute callback" }, foot: "Finding pros near you in the Valley" },
   ty: {
