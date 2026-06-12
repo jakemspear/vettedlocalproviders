@@ -12,13 +12,12 @@ function scrollToId(id) {
 }
 
 function saveVCardHome() {
-  const v = ["BEGIN:VCARD", "VERSION:3.0", "N:;Home Concierge;;;", "FN:Home Concierge",
-    "ORG:Vetted Local Providers", `TEL;TYPE=CELL,VOICE:${PHONE_TEL}`, `EMAIL;TYPE=INTERNET:${EMAIL}`,
-    `ADR;TYPE=WORK:;;${ADDRESS_VCARD}`, "URL:https://vettedlocalproviders.com",
-    "NOTE:Your Arizona home-service concierge. Reply STOP to cancel text messages or HELP for help.", "END:VCARD"].join("\r\n");
-  const url = URL.createObjectURL(new Blob([v], { type: "text/vcard;charset=utf-8" }));
-  const a = document.createElement("a"); a.href = url; a.download = "vetted-local-providers.vcf";
-  document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(url), 1500);
+  const a = document.createElement("a");
+  a.href = "vetted-local-providers.vcf";
+  a.download = "vetted-local-providers.vcf";
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
 }
 
 function Header({ scrolled }) {
