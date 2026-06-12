@@ -269,7 +269,7 @@ function ContactStep({ data, set, onSubmit }) {
   const [focusPhone, setFocusPhone] = useStateF(false);
   const [submitting, setSubmitting] = useStateF(false);
   const digits = (data.phone || "").replace(/\D/g, "");
-  const ok = digits.length >= 10 && data.consent;
+  const ok = digits.length >= 10;
   const go = () => { if (!ok || submitting) return; setSubmitting(true); buzz(14); setTimeout(onSubmit, 360); };
   return (
     <div>
@@ -291,6 +291,7 @@ function ContactStep({ data, set, onSubmit }) {
         <input type="checkbox" checked={!!data.consent} onChange={(e) => set("consent", e.target.checked)} />
         <span className="consent-box"><Ico name="ph-check" weight="bold" /></span>
         <span className="consent-text">
+          <strong>{T.form.smsOptInLabel}</strong>
           <span>{T.form.tcpa}</span>
           <span className="consent-meta">{T.form.tcpaMeta}</span>
           <span className="consent-links">

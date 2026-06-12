@@ -18,6 +18,19 @@
 <link rel="stylesheet" href="styles.css?v=20260612b" />
 <link rel="stylesheet" href="screens.css?v=20260612b" />
 <link rel="stylesheet" href="desktop.css?v=20260612b" />
+<style>
+  .compliance-fallback { max-width: 880px; margin: 32px auto; padding: 24px; background: #fff; border: 1px solid #d8dfd8; border-radius: 18px; box-shadow: 0 10px 30px rgba(18,31,28,.08); font: 16px/1.55 "Public Sans", sans-serif; color: #24323a; }
+  .compliance-fallback h1, .compliance-fallback h2 { font-family: "Hanken Grotesk", sans-serif; color: #163A34; margin: 0 0 12px; }
+  .compliance-fallback h1 { font-size: 30px; }
+  .compliance-fallback h2 { font-size: 20px; margin-top: 26px; }
+  .compliance-fallback p, .compliance-fallback li { margin: 0 0 12px; }
+  .compliance-fallback ul { margin: 0 0 14px 20px; padding: 0; }
+  .compliance-fallback label { display: flex; gap: 12px; align-items: flex-start; margin: 18px 0 12px; }
+  .compliance-fallback input[type="checkbox"] { width: 20px; height: 20px; margin-top: 3px; flex: none; }
+  .compliance-fallback .links { display: flex; flex-wrap: wrap; gap: 10px 16px; margin-top: 14px; }
+  .compliance-fallback a { color: #1F4D45; font-weight: 700; text-decoration: underline; }
+  .compliance-fallback .note { font-size: 14px; color: #516068; }
+</style>
 </head>
 <body>
 <div class="stage">
@@ -25,6 +38,30 @@
     <div id="root"></div>
   </div>
 </div>
+
+<section class="compliance-fallback" aria-label="SMS consent fallback content">
+  <h1>Vetted Local Providers SMS consent</h1>
+  <p>This page contains the SMS opt-in language, disclosure text, and legal links used for quote requests submitted to Vetted Local Providers, operated by Scaling Adventures, LLC.</p>
+
+  <h2>Optional SMS opt-in checkbox</h2>
+  <label>
+    <input type="checkbox" />
+    <span>
+      By checking this optional box and pressing Submit, I agree to receive calls and text messages from Vetted Local Providers, operated by Scaling Adventures, LLC, at the number I provided about my quote request, appointment scheduling, service follow-up, requested provider coordination, and related services I ask about, including conversational, transactional, and promotional messages sent with automated technology.
+      <br /><br />
+      Message frequency may vary. Message and data rates may apply. To stop receiving messages, reply STOP to any text message. Reply HELP for assistance. Consent is not a condition of purchase. SMS consent is optional and is not required to submit the form.
+    </span>
+  </label>
+  <p>This checkbox is not pre-checked. The checkbox is optional and explicit SMS consent is not required to submit the form.</p>
+
+  <h2>Support and legal links</h2>
+  <p>Customer support: <a href="mailto:hello@vettedlocalproviders.com">hello@vettedlocalproviders.com</a> or <a href="tel:+15202772778">(520) 277-2778</a>.</p>
+  <div class="links">
+    <a href="privacy-policy.html">Privacy Policy</a>
+    <a href="terms-of-service.html">Terms of Service</a>
+  </div>
+  <p class="note">This static fallback is provided so compliance reviewers and browsers without JavaScript can still see the full SMS opt-in disclosure, unchecked checkbox, opt-out instructions, message frequency disclosure, message type disclosure, and message/data-rates disclosure.</p>
+</section>
 
 <script>
   /* Set a referrer-restricted browser key here or before this page loads:

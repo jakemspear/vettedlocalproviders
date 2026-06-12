@@ -17,10 +17,47 @@
 <link rel="stylesheet" href="screens.css?v=20260612b" />
 <link rel="stylesheet" href="homepage.css?v=20260612b" />
 <link rel="stylesheet" href="sitepages.css?v=20260612b" />
-<style> body { background: var(--bone); } </style>
+<style>
+  body { background: var(--bone); }
+  .terms-fallback { max-width: 920px; margin: 32px auto; padding: 28px 24px; background: #fff; border: 1px solid #d8dfd8; border-radius: 18px; box-shadow: 0 10px 30px rgba(18,31,28,.08); font: 16px/1.6 "Public Sans", sans-serif; color: #24323a; }
+  .terms-fallback h1, .terms-fallback h2 { font-family: "Hanken Grotesk", sans-serif; color: #163A34; margin: 0 0 12px; }
+  .terms-fallback h1 { font-size: 30px; }
+  .terms-fallback h2 { font-size: 21px; margin-top: 26px; }
+  .terms-fallback p, .terms-fallback li { margin: 0 0 12px; }
+  .terms-fallback ul { margin: 0 0 14px 20px; padding: 0; }
+  .terms-fallback a { color: #1F4D45; font-weight: 700; text-decoration: underline; }
+</style>
 </head>
 <body>
 <div id="root"></div>
+<article class="terms-fallback" aria-label="Terms of Service fallback content">
+  <h1>Terms of Service</h1>
+  <p>These Terms of Service govern use of Vetted Local Providers, operated by Scaling Adventures, LLC, including our website, referral service, and SMS messaging program.</p>
+
+  <h2>Description of SMS program and message types</h2>
+  <p>If you opt in, you may receive conversational, transactional, and promotional SMS messages related to your quote request, appointment scheduling, service follow-up, requested provider coordination, and related services you ask about.</p>
+
+  <h2>Opt-out instructions</h2>
+  <p>To stop receiving messages, reply STOP to any text message.</p>
+
+  <h2>Support contact information</h2>
+  <p>Reply HELP for assistance, email <a href="mailto:hello@vettedlocalproviders.com">hello@vettedlocalproviders.com</a>, or call <a href="tel:+15202772778">(520) 277-2778</a>.</p>
+
+  <h2>Message and data rates</h2>
+  <p>Message and data rates may apply. Message frequency may vary.</p>
+
+  <h2>Carrier liability disclaimer</h2>
+  <p>Carriers are not liable for delayed or undelivered messages.</p>
+
+  <h2>Age requirement</h2>
+  <p>You must be 18 years of age or older to use this SMS service.</p>
+
+  <h2>Optional consent</h2>
+  <p>SMS consent is optional and is not required as a condition of purchase or to submit a service request.</p>
+
+  <h2>Privacy Policy reference</h2>
+  <p>Review our <a href="privacy-policy.html">Privacy Policy</a> for details about what information we collect, how it is used, user rights, cookies and tracking technologies, security practices, SMS opt-in records, and our statement that mobile opt-in data is not shared with third parties for their own marketing.</p>
+</article>
 <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" crossorigin="anonymous"></script>

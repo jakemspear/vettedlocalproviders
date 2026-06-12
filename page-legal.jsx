@@ -45,15 +45,15 @@ const LEGAL_COPY = {
           h: "How we share information",
           body: [
             "We share your information only as needed to operate the service. This may include the independent providers you ask us to connect you with, companies that help us host or operate the website, communications providers, analytics vendors, and legal or regulatory authorities when required.",
-            "We do not sell your personal information to third parties for their own marketing. We do not share SMS opt-in data or phone numbers with third parties or affiliates for their own marketing purposes."
+            "We do not sell your personal information to third parties for their own marketing. We do not share mobile information, phone numbers, SMS opt-in consent, or related messaging records with third parties or affiliates for their own marketing or promotional purposes."
           ]
         },
         {
           id: "sms-consent",
           h: "Text messaging and consent records",
           body: [
-            "When you check an SMS consent box on our website, we store the form submission details, timestamp, page URL, and the consent language presented at the time of submission so we can document your opt-in.",
-            "Message frequency varies. Message and data rates may apply. You can reply STOP to cancel and HELP for help."
+            "When you optionally check an SMS consent box on our website or otherwise opt in through an approved lead form, we store the form submission details, timestamp, page URL or source, and the consent language presented at the time of submission so we can document your opt-in.",
+            "If you opt in, we may send conversational, transactional, and promotional text messages about quote requests, appointment scheduling, service follow-up, requested provider coordination, and closely related service updates. Message frequency may vary. Message and data rates may apply. To stop receiving messages, reply STOP to any text message. Reply HELP for assistance."
           ]
         },
         {
@@ -77,7 +77,7 @@ const LEGAL_COPY = {
           h: "Your choices",
           body: [
             "You may contact us to request access to, correction of, or deletion of your personal information where applicable. You may unsubscribe from marketing emails using the unsubscribe link in the message.",
-            "For text messages, reply STOP to opt out or HELP for help."
+            "For text messages, reply STOP to opt out or HELP for assistance. SMS consent is optional and is not a condition of purchase."
           ]
         },
         {
@@ -129,8 +129,16 @@ const LEGAL_COPY = {
           id: "sms-messaging",
           h: "SMS messaging terms",
           body: [
-            "If you opt in to receive text messages from us, you agree to receive messages related to your quote request, appointment scheduling, service follow-up, requested provider coordination, and closely related updates.",
-            "Message frequency varies. Message and data rates may apply. Reply STOP to cancel and HELP for help. Consent is not a condition of purchase."
+            "Vetted Local Providers, operated by Scaling Adventures, LLC, offers an SMS program for homeowners and leads who choose to opt in. If you opt in to receive text messages from us, you agree to receive conversational, transactional, and promotional messages related to your quote request, appointment scheduling, service follow-up, requested provider coordination, and closely related updates.",
+            "Message frequency may vary. Message and data rates may apply. To stop receiving messages, reply STOP to any text message. Reply HELP for assistance. Consent is not a condition of purchase. Carriers are not liable for delayed or undelivered messages."
+          ]
+        },
+        {
+          id: "sms-program-rules",
+          h: "SMS program eligibility and support",
+          body: [
+            `Our SMS program is intended for U.S. users who are 18 years of age or older and who provide their own mobile number or are authorized to provide it. SMS consent is optional and is not required to use our website or submit a service request.`,
+            `For SMS support, contact ${EMAIL} or call ${PHONE}. Our Privacy Policy explains what information we collect, how it is used, how to opt out, and that mobile information, SMS opt-in consent, and phone numbers collected for SMS are not shared with third parties or affiliates for their own marketing or promotional purposes.`
           ]
         },
         {
@@ -222,15 +230,15 @@ const LEGAL_COPY = {
           h: "Como compartimos la informacion",
           body: [
             "Compartimos su informacion solo cuando es necesario para operar el servicio. Esto puede incluir a los proveedores independientes que usted nos pide contactar, empresas que nos ayudan a alojar u operar el sitio, proveedores de comunicaciones, servicios de analisis y autoridades legales o regulatorias cuando sea necesario.",
-            "No vendemos su informacion personal a terceros para su propio marketing. No compartimos datos de opt-in por SMS ni numeros de telefono con terceros o afiliados para sus propios fines de marketing."
+            "No vendemos su informacion personal a terceros para su propio marketing. No compartimos informacion movil, numeros de telefono, consentimiento SMS ni registros relacionados con terceros o afiliados para sus propios fines de marketing o promocion."
           ]
         },
         {
           id: "sms-consent",
           h: "Mensajes de texto y registros de consentimiento",
           body: [
-            "Cuando marca una casilla de consentimiento por SMS en nuestro sitio, guardamos los detalles del formulario, la fecha y hora, la URL de la pagina y el texto de consentimiento presentado en ese momento para documentar su opt-in.",
-            "La frecuencia de mensajes varia. Pueden aplicarse tarifas de mensajes y datos. Puede responder STOP para cancelar y HELP para obtener ayuda."
+            "Cuando marca una casilla opcional de consentimiento por SMS en nuestro sitio o da su consentimiento por otro formulario aprobado, guardamos los detalles del formulario, la fecha y hora, la URL o fuente y el texto de consentimiento presentado en ese momento para documentar su opt-in.",
+            "Si da su consentimiento, podemos enviar mensajes conversacionales, transaccionales y promocionales sobre solicitudes de cotizacion, programacion de citas, seguimiento del servicio, coordinacion con proveedores solicitados y actualizaciones estrechamente relacionadas. La frecuencia de mensajes puede variar. Pueden aplicarse tarifas de mensajes y datos. Para dejar de recibir mensajes, responda STOP a cualquier mensaje de texto. Responda HELP para obtener ayuda."
           ]
         },
         {
@@ -254,7 +262,7 @@ const LEGAL_COPY = {
           h: "Sus opciones",
           body: [
             "Puede contactarnos para solicitar acceso, correccion o eliminacion de su informacion personal cuando corresponda. Puede darse de baja de correos de marketing mediante el enlace de cancelacion dentro del mensaje.",
-            "Para mensajes de texto, responda STOP para salir o HELP para obtener ayuda."
+            "Para mensajes de texto, responda STOP para salir o HELP para obtener ayuda. El consentimiento SMS es opcional y no es una condicion de compra."
           ]
         },
         {
@@ -306,8 +314,16 @@ const LEGAL_COPY = {
           id: "sms-messaging",
           h: "Terminos de mensajeria SMS",
           body: [
-            "Si da su consentimiento para recibir mensajes de texto, acepta recibir mensajes relacionados con su solicitud de cotizacion, programacion de citas, seguimiento del servicio, coordinacion con proveedores solicitados y actualizaciones estrechamente relacionadas.",
-            "La frecuencia de mensajes varia. Pueden aplicarse tarifas de mensajes y datos. Responda STOP para cancelar y HELP para obtener ayuda. El consentimiento no es condicion de compra."
+            "Vetted Local Providers, operado por Scaling Adventures, LLC, ofrece un programa de SMS para propietarios y prospectos que decidan dar su consentimiento. Si da su consentimiento para recibir mensajes de texto, acepta recibir mensajes conversacionales, transaccionales y promocionales relacionados con su solicitud de cotizacion, programacion de citas, seguimiento del servicio, coordinacion con proveedores solicitados y actualizaciones estrechamente relacionadas.",
+            "La frecuencia de mensajes puede variar. Pueden aplicarse tarifas de mensajes y datos. Para dejar de recibir mensajes, responda STOP a cualquier mensaje de texto. Responda HELP para obtener ayuda. El consentimiento no es condicion de compra. Los operadores no son responsables por mensajes demorados o no entregados."
+          ]
+        },
+        {
+          id: "sms-program-rules",
+          h: "Elegibilidad y soporte del programa SMS",
+          body: [
+            "Nuestro programa SMS esta destinado a usuarios de Estados Unidos de 18 anos o mas que proporcionen su propio numero movil o esten autorizados para proporcionarlo. El consentimiento SMS es opcional y no es necesario para usar el sitio ni enviar una solicitud de servicio.",
+            `Para soporte de SMS, escriba a ${EMAIL} o llame al ${PHONE}. Nuestra Politica de Privacidad explica que informacion recopilamos, como se usa, como cancelar la suscripcion y que la informacion movil, el consentimiento SMS y los numeros de telefono recopilados para SMS no se comparten con terceros ni afiliados para su propio marketing o promocion.`
           ]
         },
         {
@@ -388,6 +404,27 @@ function LegalSections({ sections }) {
   );
 }
 
+function LegalComplianceLinks() {
+  const [lang] = useLang();
+  const isEs = lang === "es";
+  return (
+    <div className="legal-links-card">
+      <div className="legal-links-h">{isEs ? "Enlaces de cumplimiento SMS" : "SMS compliance links"}</div>
+      <p className="sp-prose-p legal-links-copy">
+        {isEs
+          ? "Revise estos enlaces para conocer los terminos de mensajeria SMS, el uso de datos, las opciones de baja, el soporte y nuestro aviso de no compartir datos de opt-in por SMS con terceros para su propio marketing."
+          : "Review these links for SMS messaging terms, data use, opt-out options, support contact information, and our statement that SMS opt-in data is not shared with third parties for their own marketing."}
+      </p>
+      <div className="legal-links-row">
+        <a href={PRIVACY_PAGE}>{isEs ? "Politica de Privacidad" : "Privacy Policy"}</a>
+        <a href={TERMS_PAGE}>{isEs ? "Terminos de Servicio" : "Terms of Service"}</a>
+        <a href={`mailto:${EMAIL}`}>{EMAIL}</a>
+        <a href={`tel:${PHONE_TEL}`}>{PHONE}</a>
+      </div>
+    </div>
+  );
+}
+
 function LegalPage() {
   const [lang] = useLang();
   const locale = LEGAL_COPY[lang] || LEGAL_COPY.en;
@@ -411,7 +448,10 @@ function LegalPage() {
       />
       <section className="section" id="body">
         <div className="legal-grid">
-          <LegalSections sections={page.sections} />
+          <div>
+            <LegalSections sections={page.sections} />
+            <LegalComplianceLinks />
+          </div>
           <LegalSummary title={page.summaryTitle} items={page.summaryItems} />
         </div>
         <p className="legal-last-updated">
