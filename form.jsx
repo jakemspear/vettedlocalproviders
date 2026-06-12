@@ -263,13 +263,15 @@ function NameStep({ data, set, onNext }) {
   );
 }
 
-function ContactStep({ data, set, onSubmit }) {
+function ContactStep({ data, set, onSubmit, offer }) {
   const T = useT();
   const s = T.form.steps.contact;
   const [focusPhone, setFocusPhone] = useStateF(false);
   const [submitting, setSubmitting] = useStateF(false);
   const digits = (data.phone || "").replace(/\D/g, "");
   const ok = digits.length >= 10;
+  const submitLabel = offer?.cta || s.submit;
+  const consentText = (T.form.tcpa || "").replace("{cta}", submitLabel);
   const go = () => { if (!ok || submitting) return; setSubmitting(true); buzz(14); setTimeout(onSubmit, 360); };
   return (
     <div>
@@ -291,8 +293,8 @@ function ContactStep({ data, set, onSubmit }) {
         <input type="checkbox" checked={!!data.consent} onChange={(e) => set("consent", e.target.checked)} />
         <span className="consent-box"><Ico name="ph-check" weight="bold" /></span>
         <span className="consent-text">
-          <strong>{T.form.smsOptInLabel}</strong>
-          <span>{T.form.tcpa}</span>
+          <strong>{T.form.smsOptInLabel}</strong>{" "}
+          <span>{consentText}</span>
           <span className="consent-meta">{T.form.tcpaMeta}</span>
           <span className="consent-links">
             <a href={PRIVACY_PAGE} target="_blank" rel="noreferrer">Privacy Policy</a>
@@ -302,7 +304,7 @@ function ContactStep({ data, set, onSubmit }) {
         </span>
       </label>
       <button className={`btn btn-gold submit${submitting ? " loading" : ""}`} disabled={!ok || submitting} onClick={go} style={{ marginTop: 4 }}>
-        {submitting ? <span className="spin" /> : <>{s.submit} <Ico name="ph-arrow-right" weight="bold" /></>}
+        {submitting ? <span className="spin" /> : <>{submitLabel} <Ico name="ph-arrow-right" weight="bold" /></>}
       </button>
       {!ok && <p className="submit-hint">{s.hint}</p>}
     </div>
@@ -325,7 +327,7 @@ function fmtPhone(v) {
   return `(${d.slice(0, 3)}) ${d.slice(3, 6)}-${d.slice(6)}`;
 }
 
-function Form({ onComplete, onBackToStart }) {
+function Form({ offer, onComplete, onBackToStart }) {
   const motion = useMotion();
   const T = useT();
   const [i, setI] = useStateF(0);
@@ -361,7 +363,7 @@ function Form({ onComplete, onBackToStart }) {
         {meta.kind === "choice" && <ChoiceStep meta={meta} value={data[meta.id]} onPick={onPick} />}
         {meta.kind === "address" && <AddressStep data={data} set={set} onNext={advance} />}
         {meta.kind === "name" && <NameStep data={data} set={set} onNext={advance} />}
-        {meta.kind === "contact" && <ContactStep data={data} set={set} onSubmit={submit} />}
+        {meta.kind === "contact" && <ContactStep data={data} set={set} onSubmit={submit} offer={offer} />}
 
         {meta.id === "owner" && data.owner === "rent" && (
           <button className="btn btn-pine" onClick={advance} style={{ marginTop: 16 }}>

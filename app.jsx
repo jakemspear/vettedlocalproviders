@@ -123,7 +123,7 @@ function App() {
       <MotionCtx.Provider value={!!t.motion}>
         {route === "landing" && <Landing offer={offer} onStart={() => go("form")} />}
         {route === "form" && (
-          <Form onBackToStart={() => go("landing")} onComplete={handleInitialComplete} />
+          <Form offer={offer} onBackToStart={() => go("landing")} onComplete={handleInitialComplete} />
         )}
         {route === "email" && <EmailStep onDone={handleEmailDone} />}
         {route === "processing" && <Processing answers={answers} onDone={() => go("offerwall")} />}

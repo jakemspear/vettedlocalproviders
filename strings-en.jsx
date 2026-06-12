@@ -54,7 +54,7 @@ window.STRINGS.en = {
   form: {
     back: "Go back", continue: "Continue", continueAnyway: "Continue anyway",
     foot: "Secure and private · We never sell your info",
-    smsOptInLabel: "Optional SMS consent",
+    smsOptInLabel: "Consent to Contact",
     steps: {
       need: { q: "What does your roof need?", why: "So we match you with a pro who does exactly this kind of work.", options: { replace: "Replace my roof", repair: "Repair a problem", inspect: "Free inspection", explore: "Just exploring" } },
       material: { q: "What kind of roof do you have?", why: "Arizona roofs are specialized, so this gets you the right specialist, not a generalist.", options: { tile: "Tile", shingle: "Shingle", foam: "Foam / Flat", metal: "Metal", unsure: "Not sure" } },
@@ -62,11 +62,11 @@ window.STRINGS.en = {
       owner: { q: "Do you own the home?", why: "We only quote homeowners, so your spot stays reserved for real projects.", options: { own: "Yes, I own it", rent: "I rent" } },
       address: { q: "Where is the home?", why: "So your pro can pull HOA and permit details and quote accurately, not guess.", label: "Home address", placeholder: "Start typing your address", found: "We found your home.", loading: "Looking up addresses...", fallback: "Live lookup is unavailable right now, so showing backup suggestions instead." },
       name: { q: "Who should our specialist ask for?", why: "So we know who we are calling. It stays with us, never a call center.", first: "First name", last: "Last name" },
-      contact: { q: "Best number for your 2-minute callback?", phoneLabel: "Mobile number", phonePlaceholder: "(480) 555-0123", submit: "Get my free quote", hint: "Add your number to continue. SMS consent is optional." },
+      contact: { q: "Best number for your 2-minute callback?", phoneLabel: "Mobile number", phonePlaceholder: "(480) 555-0123", submit: "Get my free quote", hint: "Add your number to continue. SMS consent is not required." },
     },
     renter: { strong: "Heads up, roof quotes are for homeowners.", body: "No problem if you rent. Keep going and we will line up services you can use, like pest control and alarms." },
     antispam: { lead: "Most sites sell your info to spammers.", emphasis: "We don't.", tail: "You talk to us, and only the pros you ask for." },
-    tcpa: "By checking this optional box and pressing Submit, I agree to receive calls and text messages from Vetted Local Providers, operated by Scaling Adventures, LLC, at the number I provided about my quote request, appointment scheduling, follow-up, requested provider coordination, and the related services I ask about, including messages sent with automated technology.",
+    tcpa: "By checking this box and clicking \"{cta}\", I agree to receive calls and text messages from Vetted Local Providers, operated by Scaling Adventures, LLC, at the number I provided about my quote request, appointment scheduling, follow-up, requested provider coordination, and the related services I ask about, including messages sent with automated technology.",
     tcpaMeta: "Message frequency varies. Message and data rates may apply. Text STOP to cancel or HELP for help. Consent is not a condition of purchase. SMS opt-in is optional and is not required to submit your request.",
   },
   processing: { title: "Setting up your callback", items: { match: "Matching you with a vetted Arizona specialist", confirm: "Confirming a pro covers {city}", reserve: "Reserving your 2-minute callback" }, foot: "Finding pros near you in the Valley" },
