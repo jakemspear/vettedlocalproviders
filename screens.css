@@ -283,7 +283,10 @@ html.is-desktop .above-fold { display: block; min-height: 0; }
 .proc-foot .ph { color: var(--sage); }
 
 /* ================= THANK YOU ================= */
-.ty { padding-bottom: calc(110px + env(safe-area-inset-bottom)); }
+.ty {
+  width: 100%;
+  padding-bottom: calc(110px + env(safe-area-inset-bottom));
+}
 .ty-hero {
   background: radial-gradient(120% 90% at 50% 0%, #245a50 0%, var(--pine) 48%, var(--pine-deep) 100%);
   color: #fff; text-align: center; padding: 34px 24px 40px;
@@ -306,7 +309,11 @@ html.is-desktop .above-fold { display: block; min-height: 0; }
 .ty-callfrom .ph { color: var(--gold); font-size: 18px; }
 .ty-callfrom strong { color: #fff; }
 
-.ty-narr { padding-top: 30px; padding-bottom: 6px; }
+.ty-narr {
+  width: 100%;
+  padding-top: 30px;
+  padding-bottom: 6px;
+}
 .ty-narr-body { font-size: 16px; line-height: 1.58; color: var(--ink-soft); margin: 12px 0 0; }
 .ty-narr-body:first-of-type { margin-top: 14px; }
 .ty-narr-body strong { color: var(--ink); }
@@ -402,23 +409,62 @@ html.is-desktop .above-fold { display: block; min-height: 0; }
 .email-step-skip:hover { color: var(--pine); }
 
 /* enriched confirmation */
-.confirmation { padding-bottom: 40px; }
-.confirmed-body-sec { text-align: center; max-width: 480px; margin: 0 auto; }
+.confirmation {
+  width: 100%;
+  padding-bottom: 40px;
+}
+.confirmed-body-sec {
+  width: min(100%, 608px);
+  text-align: center;
+  max-width: 608px;
+  margin: 0 auto;
+}
 .confirmed { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 40px 24px; }
 .confirmed-inner { width: 100%; max-width: 460px; text-align: center; }
 .confirmed-h { font-size: 29px; margin: 14px 0 10px; color: var(--ink); }
 .confirmed-body { font-size: 15.5px; line-height: 1.55; color: var(--ink-soft); margin: 0 auto; max-width: 32ch; }
 .confirmed-body strong { color: var(--ink); }
-.next-card { text-align: left; background: var(--white); border: 1px solid var(--line-soft); border-radius: var(--r-lg); padding: 20px 18px; box-shadow: var(--shadow-sm); margin-top: 26px; }
+.next-card {
+  width: 100%;
+  text-align: left;
+  background: var(--white);
+  border: 1px solid var(--line-soft);
+  border-radius: var(--r-lg);
+  padding: 20px 18px;
+  box-shadow: var(--shadow-sm);
+  margin-top: 26px;
+}
 .next-h { font-family: var(--body); font-weight: 700; font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--pine); margin-bottom: 14px; }
 .next-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 14px; }
 .next-list li { display: grid; grid-template-columns: auto auto 1fr; align-items: center; gap: 12px; }
 .next-num { width: 24px; height: 24px; border-radius: 50%; background: var(--pine); color: #fff; display: grid; place-items: center; font-family: var(--display); font-weight: 800; font-size: 13px; }
 .next-ico { width: 34px; height: 34px; border-radius: 9px; background: var(--pine-tint); color: var(--pine); display: grid; place-items: center; font-size: 19px; }
 .next-label { font-size: 14.5px; font-weight: 600; color: var(--ink-soft); line-height: 1.35; }
-.confirmed-tst { margin: 22px 0 0; background: var(--sage-tint); border: 1px solid #d8e0d2; border-radius: var(--r-lg); padding: 18px; text-align: left; position: relative; }
+.confirmed-tst {
+  width: 100%;
+  margin: 22px 0 0;
+  background: var(--sage-tint);
+  border: 1px solid #d8e0d2;
+  border-radius: var(--r-lg);
+  padding: 18px;
+  text-align: left;
+  position: relative;
+}
 .confirmed-tst-mark { position: absolute; top: 12px; right: 14px; font-size: 26px; color: rgba(31,77,69,.16); }
-.save-card { margin: 22px 0 0; background: var(--white); border: 1px solid var(--line-soft); border-radius: var(--r-lg); padding: 20px 18px; box-shadow: var(--shadow-sm); text-align: center; display: flex; flex-direction: column; align-items: center; gap: 4px; }
+.save-card {
+  width: 100%;
+  margin: 22px 0 0;
+  background: var(--white);
+  border: 1px solid var(--line-soft);
+  border-radius: var(--r-lg);
+  padding: 20px 18px;
+  box-shadow: var(--shadow-sm);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
 .save-ico { width: 46px; height: 46px; border-radius: 12px; background: var(--pine-tint); color: var(--pine); display: grid; place-items: center; font-size: 25px; margin-bottom: 8px; }
 .save-h { font-family: var(--display); font-weight: 800; font-size: 17px; letter-spacing: -.02em; color: var(--ink); line-height: 1.2; }
 .save-sub { font-size: 13.5px; line-height: 1.45; color: var(--ink-mute); margin: 6px 0 14px; }

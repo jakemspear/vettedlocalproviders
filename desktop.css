@@ -75,7 +75,12 @@ html.is-desktop .processing { min-height: 80vh; }
 
 /* ---------- thank you ---------- */
 html.is-desktop .ty-hero { padding: 48px 24px 52px; }
-html.is-desktop .ty-narr, html.is-desktop .ty-wall-sec { max-width: 900px; margin-inline: auto; }
+html.is-desktop .ty-narr,
+html.is-desktop .ty-wall-sec {
+  width: min(100%, 900px);
+  max-width: 900px;
+  margin-inline: auto;
+}
 html.is-desktop .ty-narr { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 32px; align-items: start; }
 html.is-desktop .ty-narr .eyebrow { grid-column: 1 / -1; }
 html.is-desktop .wall { grid-template-columns: repeat(2, 1fr); }
