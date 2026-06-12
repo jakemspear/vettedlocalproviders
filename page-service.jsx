@@ -66,7 +66,7 @@ function ServicePage() {
     label: `${serviceName} ${inWord} ${c}`,
     href: `${capFile(id)} in ${c}.html`,
   }));
-  const ctaHref = s.live ? s.funnel : "Homepage.html#deals";
+  const ctaHref = s.live ? s.funnel : "index.html#deals";
   const ctaLabel = s.live ? s.hero.cta : (homeT.liveBadge && homeT.soonBadge ? homeT.soonBadge : s.hero.cta);
 
   return (
@@ -97,7 +97,7 @@ function ServiceApp() {
   const id = window.VERTICAL || "roofing";
   const lang0 = detectLang();
   const s0 = (window.STRINGS[lang0] || window.STRINGS.en).services[id];
-  const ctaHref = s0.live ? s0.funnel : "Homepage.html#deals";
+  const ctaHref = s0.live ? s0.funnel : "index.html#deals";
   return <SitePage ctaHref={ctaHref} ctaLabel={s0.hero.cta}><ServicePage /></SitePage>;
 }
 

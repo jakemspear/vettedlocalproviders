@@ -1,6 +1,51 @@
 /* form.jsx — screen 2: multi-step roofing form + processing. Exported to window. */
 const { useState: useStateF, useEffect: useEffectF } = React;
 
+const GOOGLE_MAPS_CALLBACK = "__vlpGoogleMapsReady";
+const GOOGLE_MAPS_SRC_BASE = "https://maps.googleapis.com/maps/api/js?libraries=places&v=weekly";
+const AZ_BOUNDS = {
+  north: 37.00426,
+  south: 31.33218,
+  west: -114.81659,
+  east: -109.04522,
+};
+
+let googleMapsLoadPromise = null;
+let placesServicesPromise = null;
+
+function normalizeAddr(v) {
+  return (v || "").toLowerCase().replace(/[^\w\s]/g, " ").replace(/\s+/g, " ").trim();
+}
+
+function scoreAddressMatch(query, candidate) {
+  const q = normalizeAddr(query);
+  const c = normalizeAddr(candidate);
+  if (!q || !c) return -1;
+  if (c.startsWith(q)) return 400 - c.length;
+  const qNoNumber = q.replace(/^\d+\s*/, "");
+  if (qNoNumber && c.startsWith(qNoNumber)) return 320 - c.length;
+
+  const tokens = q.split(" ").filter(Boolean);
+  if (!tokens.length) return -1;
+  let score = 0;
+  for (const token of tokens) {
+    if (c.startsWith(token)) score += 90;
+    else if (c.includes(` ${token}`)) score += 60;
+    else if (c.includes(token)) score += 35;
+    else return -1;
+  }
+  return score - c.length * 0.01;
+}
+
+function getAddressMatches(query) {
+  const ranked = META.azSuggest
+    .map((candidate) => ({ candidate, score: scoreAddressMatch(query, candidate) }))
+    .filter((item) => item.score >= 0)
+    .sort((a, b) => b.score - a.score)
+    .slice(0, 6);
+  return ranked.map((item) => item.candidate);
+}
+
 function cityFromAddress(addr) {
   if (!addr) return "your area";
   const parts = addr.split(",").map((s) => s.trim()).filter(Boolean);
@@ -8,6 +53,117 @@ function cityFromAddress(addr) {
   if (azIdx > 0) return parts[azIdx - 1];
   if (parts.length >= 2) return parts[1];
   return "your area";
+}
+
+function getGoogleMapsApiKey() {
+  const fromWindow = window.GOOGLE_MAPS_API_KEY || window.googleMapsApiKey;
+  if (fromWindow) return String(fromWindow).trim();
+  const meta = document.querySelector('meta[name="google-maps-api-key"]');
+  return meta?.content?.trim() || "";
+}
+
+function loadGoogleMapsPlaces() {
+  if (window.google?.maps?.places) return Promise.resolve(window.google.maps);
+  if (googleMapsLoadPromise) return googleMapsLoadPromise;
+
+  const apiKey = getGoogleMapsApiKey();
+  if (!apiKey) return Promise.reject(new Error("missing-google-maps-api-key"));
+
+  googleMapsLoadPromise = new Promise((resolve, reject) => {
+    const existing = document.querySelector('script[data-google-maps-loader="true"]');
+    const cleanup = () => {
+      try { delete window[GOOGLE_MAPS_CALLBACK]; } catch (e) {}
+    };
+    window[GOOGLE_MAPS_CALLBACK] = () => {
+      cleanup();
+      resolve(window.google.maps);
+    };
+    if (existing) {
+      existing.addEventListener("error", () => {
+        cleanup();
+        reject(new Error("google-maps-script-failed"));
+      }, { once: true });
+      return;
+    }
+
+    const script = document.createElement("script");
+    script.src = `${GOOGLE_MAPS_SRC_BASE}&key=${encodeURIComponent(apiKey)}&callback=${GOOGLE_MAPS_CALLBACK}`;
+    script.async = true;
+    script.defer = true;
+    script.dataset.googleMapsLoader = "true";
+    script.onerror = () => {
+      cleanup();
+      reject(new Error("google-maps-script-failed"));
+    };
+    document.head.appendChild(script);
+  }).catch((error) => {
+    googleMapsLoadPromise = null;
+    throw error;
+  });
+
+  return googleMapsLoadPromise;
+}
+
+function getPlacesServices() {
+  if (placesServicesPromise) return placesServicesPromise;
+  placesServicesPromise = loadGoogleMapsPlaces().then((maps) => {
+    const places = maps.places;
+    return {
+      token: new places.AutocompleteSessionToken(),
+      autocomplete: new places.AutocompleteService(),
+      details: new places.PlacesService(document.createElement("div")),
+    };
+  }).catch((error) => {
+    placesServicesPromise = null;
+    throw error;
+  });
+  return placesServicesPromise;
+}
+
+function fetchPlacePredictions(query) {
+  return getPlacesServices().then(({ autocomplete, token }) => new Promise((resolve, reject) => {
+    autocomplete.getPlacePredictions({
+      input: query,
+      sessionToken: token,
+      componentRestrictions: { country: "us" },
+      types: ["address"],
+      bounds: AZ_BOUNDS,
+    }, (predictions, status) => {
+      if (status === "OK" && Array.isArray(predictions)) {
+        resolve(predictions.map((prediction) => ({
+          id: prediction.place_id,
+          placeId: prediction.place_id,
+          label: prediction.description,
+        })));
+        return;
+      }
+      if (status === "ZERO_RESULTS") {
+        resolve([]);
+        return;
+      }
+      reject(new Error(`places-predictions-${status || "unknown"}`));
+    });
+  }));
+}
+
+function fetchPlaceDetails(placeId, fallbackLabel) {
+  return getPlacesServices().then(({ details, token }) => new Promise((resolve, reject) => {
+    details.getDetails({
+      placeId,
+      sessionToken: token,
+      fields: ["formatted_address"],
+    }, (place, status) => {
+      if (status === "OK" && place?.formatted_address) {
+        resolve(place.formatted_address);
+        return;
+      }
+      if ((status === "ZERO_RESULTS" || status === "NOT_FOUND") && fallbackLabel) {
+        resolve(fallbackLabel);
+        return;
+      }
+      reject(new Error(`place-details-${status || "unknown"}`));
+    });
+  }));
 }
 
 function StepHead({ id }) {
@@ -61,11 +217,98 @@ function AddressStep({ data, set, onNext }) {
   const s = T.form.steps.address;
   const [open, setOpen] = useStateF(false);
   const [found, setFound] = useStateF(false);
+  const [active, setActive] = useStateF(0);
+  const [matches, setMatches] = useStateF(() => META.azSuggest.slice(0, 4).map((label) => ({ id: label, label })));
+  const [usingGoogle, setUsingGoogle] = useStateF(false);
+  const [loadingMatches, setLoadingMatches] = useStateF(false);
   const val = data.address || "";
-  const matches = val.length > 1
-    ? META.azSuggest.filter((x) => x.toLowerCase().includes(val.toLowerCase().slice(0, 4))).slice(0, 4)
-    : META.azSuggest.slice(0, 3);
-  const pick = (m) => { set("address", m); setOpen(false); setFound(true); };
+  useEffectF(() => { setActive(0); }, [val, matches.length]);
+
+  useEffectF(() => {
+    let cancelled = false;
+
+    if (val.trim().length <= 1) {
+      setLoadingMatches(false);
+      setMatches(META.azSuggest.slice(0, 4).map((label) => ({ id: label, label })));
+      return undefined;
+    }
+
+    setLoadingMatches(true);
+    const timer = setTimeout(() => {
+      fetchPlacePredictions(val)
+        .then((predictions) => {
+          if (cancelled) return;
+          if (predictions.length) {
+            setMatches(predictions);
+            setUsingGoogle(true);
+            return;
+          }
+          setMatches(getAddressMatches(val).map((label) => ({ id: label, label })));
+        })
+        .catch(() => {
+          if (cancelled) return;
+          setUsingGoogle(false);
+          setMatches(getAddressMatches(val).map((label) => ({ id: label, label })));
+        })
+        .finally(() => {
+          if (!cancelled) setLoadingMatches(false);
+        });
+    }, 180);
+
+    return () => {
+      cancelled = true;
+      clearTimeout(timer);
+    };
+  }, [val]);
+
+  useEffectF(() => {
+    let cancelled = false;
+    loadGoogleMapsPlaces()
+      .then(() => {
+        if (!cancelled) setUsingGoogle(true);
+      })
+      .catch(() => {
+        if (!cancelled) setUsingGoogle(false);
+      });
+    return () => { cancelled = true; };
+  }, []);
+
+  const pick = (match) => {
+    const finalize = (address) => {
+      set("address", address);
+      setOpen(false);
+      setFound(true);
+    };
+    if (match?.placeId) {
+      fetchPlaceDetails(match.placeId, match.label).then(finalize).catch(() => finalize(match.label));
+      return;
+    }
+    finalize(match.label);
+  };
+
+  const onKeyDown = (e) => {
+    if (!open || !matches.length) {
+      if (e.key === "ArrowDown" && matches.length) {
+        e.preventDefault();
+        setOpen(true);
+      }
+      return;
+    }
+    if (e.key === "ArrowDown") {
+      e.preventDefault();
+      setActive((i) => Math.min(i + 1, matches.length - 1));
+    } else if (e.key === "ArrowUp") {
+      e.preventDefault();
+      setActive((i) => Math.max(i - 1, 0));
+    } else if (e.key === "Enter") {
+      if (matches[active]) {
+        e.preventDefault();
+        pick(matches[active]);
+      }
+    } else if (e.key === "Escape") {
+      setOpen(false);
+    }
+  };
   return (
     <div>
       <StepHead id="address" />
@@ -75,12 +318,19 @@ function AddressStep({ data, set, onNext }) {
           <Ico name="ph-map-pin" className="input-ico" />
           <input id="addr" className="input has-ico" autoComplete="off" placeholder={s.placeholder} value={val}
             onChange={(e) => { set("address", e.target.value); setOpen(true); setFound(false); }}
-            onFocus={() => setOpen(true)} />
+            onFocus={() => setOpen(true)} onBlur={() => setTimeout(() => setOpen(false), 120)}
+            onKeyDown={onKeyDown} />
         </div>
-        {open && (
+        {loadingMatches && <p className="submit-hint" style={{ textAlign: "left", marginTop: 8 }}>Looking up addresses...</p>}
+        {!usingGoogle && val.trim().length > 1 && !loadingMatches && (
+          <p className="submit-hint" style={{ textAlign: "left", marginTop: 8 }}>Live address lookup is off, so suggestions are limited.</p>
+        )}
+        {open && matches.length > 0 && (
           <ul className="suggest">
-            {matches.map((m) => (
-              <li key={m} onMouseDown={() => pick(m)}><Ico name="ph-map-pin" /> <span>{m}</span></li>
+            {matches.map((m, idx) => (
+              <li key={m.id} className={idx === active ? "active" : ""} onMouseDown={() => pick(m)}>
+                <Ico name="ph-map-pin" /> <span>{m.label}</span>
+              </li>
             ))}
           </ul>
         )}
@@ -145,7 +395,15 @@ function ContactStep({ data, set, onSubmit }) {
       <label className={`consent${data.consent ? " on" : ""}`}>
         <input type="checkbox" checked={!!data.consent} onChange={(e) => set("consent", e.target.checked)} />
         <span className="consent-box"><Ico name="ph-check" weight="bold" /></span>
-        <span className="consent-text">{T.form.tcpa}</span>
+        <span className="consent-text">
+          <span>{T.form.tcpa}</span>
+          <span className="consent-meta">{T.form.tcpaMeta}</span>
+          <span className="consent-links">
+            <a href={PRIVACY_PAGE} target="_blank" rel="noreferrer">Privacy Policy</a>
+            <span>·</span>
+            <a href={TERMS_PAGE} target="_blank" rel="noreferrer">Terms of Service</a>
+          </span>
+        </span>
       </label>
       <button className={`btn btn-gold submit${submitting ? " loading" : ""}`} disabled={!ok || submitting} onClick={go} style={{ marginTop: 4 }}>
         {submitting ? <span className="spin" /> : <>{s.submit} <Ico name="ph-arrow-right" weight="bold" /></>}

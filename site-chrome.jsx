@@ -8,8 +8,9 @@ const PROS_PAGE = "For Pros.html";
 
 function saveVCardSite() {
   const v = ["BEGIN:VCARD", "VERSION:3.0", "N:;Vetted Local Providers;;;", "FN:Vetted Local Providers",
-    "ORG:Vetted Local Providers", `TEL;TYPE=CELL,VOICE:${PHONE_TEL}`, "EMAIL;TYPE=INTERNET:hello@vettedlocalproviders.com",
-    "URL:https://vettedlocalproviders.com", "NOTE:Your Arizona home-service concierge. Reply STOP to opt out of texts.", "END:VCARD"].join("\r\n");
+    "ORG:Vetted Local Providers", `TEL;TYPE=CELL,VOICE:${PHONE_TEL}`, `EMAIL;TYPE=INTERNET:${EMAIL}`,
+    `ADR;TYPE=WORK:;;${ADDRESS_VCARD}`, "URL:https://vettedlocalproviders.com",
+    "NOTE:Your Arizona home-service concierge. Reply STOP to cancel text messages or HELP for help.", "END:VCARD"].join("\r\n");
   const url = URL.createObjectURL(new Blob([v], { type: "text/vcard;charset=utf-8" }));
   const a = document.createElement("a"); a.href = url; a.download = "vetted-local-providers.vcf";
   document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(url), 1500);
@@ -70,11 +71,13 @@ function SiteFooter() {
           <nav className="sp-footer-links">
             <a href={`${HOMEPAGE}#about`}>{L.about}</a>
             <a href={PROS_PAGE}>{H.nav.forPros || "For pros"}</a>
-            <a href="#" onClick={(e) => e.preventDefault()}>{L.privacy}</a>
-            <a href="#" onClick={(e) => e.preventDefault()}>{L.terms}</a>
+            <a href={PRIVACY_PAGE}>{L.privacy}</a>
+            <a href={TERMS_PAGE}>{L.terms}</a>
             <a href={`tel:${PHONE_TEL}`}>{PHONE}</a>
           </nav>
         </div>
+        <p className="sp-footer-fine">{LEGAL_DBA}</p>
+        <p className="sp-footer-fine">{ADDRESS} · {EMAIL}</p>
         <p className="sp-footer-fine">{f.fine}</p>
         <div className="sp-footer-disclaimer">
           <div className="sp-footer-legal-note"><Ico name="ph-scales" weight="bold" /> {f.disclaimerNote}</div>
@@ -133,11 +136,10 @@ function SiteTrustBar() {
 
 function PageHero({ eyebrow, h, sub, ctaLabel, ctaHref, secondaryLabel, secondaryHref, crumbs }) {
   const motion = useMotion();
-  const T = useT();
   return (
     <div className="above-fold">
       <header className="sp-hero">
-        <div className="hero-media"><span className="hero-media-tag">{T.hero.photoTag}</span><div className="hero-scrim" /></div>
+        <div className="hero-media"><div className="hero-scrim" /></div>
         <div className={`sp-hero-content${motion ? " anim" : ""}`}>
           {crumbs && <Crumbs items={crumbs} />}
           <div className="eyebrow on-dark">{eyebrow}</div>

@@ -20,8 +20,8 @@ html.is-desktop .landing .hero { min-height: 620px; }
 html.is-desktop .landing .hero-media {
   background-image:
     radial-gradient(80% 55% at 74% 20%, rgba(224,162,59,.35), transparent 55%),
-    url('uploads/Roofing-hero.png?v=2');
-  background-position: center, center 65%;
+    url('uploads/roofing-inspection-hero.png?v=3');
+  background-position: center, 62% 36%;
   background-size: auto, cover;
   background-repeat: no-repeat, no-repeat;
 }

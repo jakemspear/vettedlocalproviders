@@ -22,7 +22,7 @@ window.STRINGS.en.services = {
     live: true, funnel: "Vetted Home Professionals.html", costPage: "Roofing Cost.html",
     meta: { title: "Arizona Roofing · Vetted Local Roofers | Vetted Local Providers",
       desc: "Tile, foam, and shingle roofing across the Phoenix Valley. Get matched with a vetted, ROC-registered Arizona roofer. Free quotes, no spam." },
-    crumbs: [{ label: "Home", href: "Homepage.html" }, { label: "Services", href: "Homepage.html#services" }, { label: "Roofing" }],
+    crumbs: [{ label: "Home", href: "index.html" }, { label: "Services", href: "index.html#services" }, { label: "Roofing" }],
     hero: { eyebrow: "Arizona roofing", h: "Roofing built for Arizona roofs.", sub: "Tile, foam, and shingle. We match you with a vetted local roofer who knows monsoons, desert heat, and how to handle an insurance claim.", cta: "Get a free quote" },
     cover: { eyebrow: "What we cover", h: "Every kind of Arizona roof.", items: [
       { icon: "ph-stack", h: "Tile roofs", b: "Concrete and clay tile repair, re-felt, and full replacement. The Valley's most common roof." },
@@ -52,7 +52,7 @@ window.STRINGS.es.services = {
     live: true, funnel: "Vetted Home Professionals.html", costPage: "Roofing Cost.html",
     meta: { title: "Techos en Arizona · Techadores locales verificados | Vetted Local Providers",
       desc: "Techos de teja, espuma y asfalto en el Valle del Sol. Conéctese con un techador de Arizona verificado y registrado ROC. Cotizaciones gratis, sin spam." },
-    crumbs: [{ label: "Inicio", href: "Homepage.html" }, { label: "Servicios", href: "Homepage.html#services" }, { label: "Techos" }],
+    crumbs: [{ label: "Inicio", href: "index.html" }, { label: "Servicios", href: "index.html#services" }, { label: "Techos" }],
     hero: { eyebrow: "Techos en Arizona", h: "Techos hechos para el clima de Arizona.", sub: "Teja, espuma y asfalto. Lo conectamos con un techador local verificado que conoce los monzones, el calor del desierto y cómo manejar un reclamo de seguro.", cta: "Recibir cotización gratis" },
     cover: { eyebrow: "Qué cubrimos", h: "Todo tipo de techo de Arizona.", items: [
       { icon: "ph-stack", h: "Techos de teja", b: "Reparación, recambio de fieltro y reemplazo total de teja de concreto y barro. El techo más común del Valle." },

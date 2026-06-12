@@ -9,9 +9,10 @@ function saveVCard() {
     "FN:Vetted Local Providers",
     "ORG:Vetted Local Providers",
     `TEL;TYPE=CELL,VOICE:${PHONE_TEL}`,
-    "EMAIL;TYPE=INTERNET:hello@vettedlocalproviders.com",
+    `EMAIL;TYPE=INTERNET:${EMAIL}`,
+    `ADR;TYPE=WORK:;;${ADDRESS_VCARD}`,
     "URL:https://vettedlocalproviders.com",
-    "NOTE:Your Arizona home-service concierge. Reply STOP to opt out of texts.",
+    "NOTE:Your Arizona home-service concierge. Reply STOP to cancel text messages or HELP for help.",
     "END:VCARD",
   ].join("\r\n");
   const blob = new Blob([vcard], { type: "text/vcard;charset=utf-8" });

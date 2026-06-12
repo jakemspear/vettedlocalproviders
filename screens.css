@@ -17,16 +17,10 @@
   position: absolute; inset: 0; z-index: -2;
   background-image:
     radial-gradient(80% 55% at 74% 20%, rgba(224,162,59,.35), transparent 55%),
-    url('uploads/Roofing-hero-mobile.png?v=2');
-  background-position: center, center top;
+    url('uploads/roofing-inspection-hero.png?v=3');
+  background-position: center, 70% 28%;
   background-size: auto, cover;
   background-repeat: no-repeat, no-repeat;
-}
-.hero-media-tag {
-  position: absolute; top: 14px; left: 16px; z-index: 1;
-  font-family: ui-monospace, "SF Mono", Menlo, monospace;
-  font-size: 9.5px; letter-spacing: .12em; color: rgba(255,255,255,.55);
-  background: rgba(0,0,0,.22); padding: 4px 8px; border-radius: 5px;
 }
 .hero-scrim {
   position: absolute; inset: 0; z-index: -1;
@@ -221,7 +215,7 @@ html.is-desktop .above-fold { display: block; min-height: 0; }
   position: absolute; left: 0; right: 0; top: 100%; z-index: 5;
 }
 .suggest li { display: flex; align-items: center; gap: 10px; padding: 11px 12px; border-radius: 9px; cursor: pointer; font-size: 14.5px; color: var(--ink-soft); }
-.suggest li:hover { background: var(--bone); }
+.suggest li:hover, .suggest li.active { background: var(--bone); }
 .suggest li .ph { color: var(--sage); font-size: 17px; }
 
 .addr-found {
@@ -258,6 +252,10 @@ html.is-desktop .above-fold { display: block; min-height: 0; }
 .consent.on .consent-box { background: var(--pine); border-color: var(--pine); color: #fff; }
 .consent-text { font-size: 12.5px; line-height: 1.5; color: var(--ink-soft); }
 .consent-text strong { color: var(--ink); }
+.consent-meta { display: block; margin-top: 6px; }
+.consent-links { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; font-weight: 700; }
+.consent-links a { color: var(--pine); text-decoration: underline; }
+.consent-links a:hover { color: var(--pine-deep); }
 
 .btn:disabled { opacity: .45; cursor: not-allowed; box-shadow: none; }
 .submit-hint { text-align: center; font-size: 13px; color: var(--ink-mute); margin: 10px 0 0; }

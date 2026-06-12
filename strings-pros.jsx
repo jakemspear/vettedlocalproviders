@@ -6,7 +6,7 @@ window.STRINGS.es = window.STRINGS.es || {};
 window.STRINGS.en.pros = {
   meta: { title: "For Arizona Pros · Join the Vetted Network | Vetted Local Providers",
     desc: "Get matched to vetted Arizona homeowners who asked for your service. No bidding wars, no auctioned leads. Apply to join the vetted pro network." },
-  crumbs: [{ label: "Home", href: "Homepage.html" }, { label: "For pros" }],
+  crumbs: [{ label: "Home", href: "index.html" }, { label: "For pros" }],
   hero: { eyebrow: "For Arizona pros", h: "Get matched to homeowners who actually show up.",
     sub: "We send you vetted homeowners who asked for your service. No bidding wars, no auctioned leads, no tire-kickers.", cta: "Apply to join", secondary: "See our standards" },
   why: { eyebrow: "Why join", h: "Built to respect your time.", items: [
@@ -44,7 +44,7 @@ window.STRINGS.en.pros = {
     { q: "What does it cost to join?", a: "Fee structure is set per partnership. [Placeholder: the client will define the fee/lead model here before launch.] We will walk you through it during onboarding." },
     { q: "Is the network exclusive?", a: "We keep it intentionally small per trade and area, so you are not competing against twenty other companies for the same homeowner." },
     { q: "How does payment work?", a: "[Placeholder: payment and billing terms to be defined by the client.] You will get the full terms in writing before any match." },
-    { q: "Do you sell my information?", a: "No. We are not a lead farm. Homeowner and pro details stay inside the network and are handled per our privacy policy." },
+    { q: "Do you sell my information?", a: "No. Homeowner and pro details stay inside the network and are handled according to our privacy policy." },
   ] },
   cta: { h: "Ready to grow with a network that respects your time?", sub: "Apply now. We will verify your details and follow up.", cta: "Apply to join" },
 };
@@ -52,7 +52,7 @@ window.STRINGS.en.pros = {
 window.STRINGS.es.pros = {
   meta: { title: "Para profesionales de Arizona · Únase a la red verificada | Vetted Local Providers",
     desc: "Conéctese con propietarios verificados de Arizona que pidieron su servicio. Sin guerras de ofertas ni contactos subastados. Solicite unirse a la red." },
-  crumbs: [{ label: "Inicio", href: "Homepage.html" }, { label: "Para profesionales" }],
+  crumbs: [{ label: "Inicio", href: "index.html" }, { label: "Para profesionales" }],
   hero: { eyebrow: "Para profesionales de Arizona", h: "Conéctese con clientes que de verdad están listos.",
     sub: "Le enviamos propietarios verificados que pidieron su servicio. Sin guerras de ofertas, sin contactos subastados, sin curiosos.", cta: "Solicitar unirse", secondary: "Ver nuestros estándares" },
   why: { eyebrow: "Por qué unirse", h: "Hecho para respetar su tiempo.", items: [

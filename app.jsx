@@ -35,6 +35,7 @@ function App() {
   const [route, setRoute] = useStateA("landing");
   const [answers, setAnswers] = useStateA(null);
   const [picked, setPicked] = useStateA(0);
+  const [editModeActive, setEditModeActive] = useStateA(false);
 
   const T = window.STRINGS[lang] || window.STRINGS.en;
   const setLang = (l) => { setLangState(l); persistLang(l); document.documentElement.lang = l; };
@@ -54,11 +55,22 @@ function App() {
   useEffectA(() => { document.documentElement.classList.toggle("no-motion", !t.motion); }, [t.motion]);
 
   useEffectA(() => {
-    applyView(t.view);
-    const on = () => applyView(t.view);
+    const onMsg = (e) => {
+      const type = e?.data?.type;
+      if (type === "__activate_edit_mode") setEditModeActive(true);
+      if (type === "__deactivate_edit_mode" || type === "__edit_mode_dismissed") setEditModeActive(false);
+    };
+    window.addEventListener("message", onMsg);
+    return () => window.removeEventListener("message", onMsg);
+  }, []);
+
+  useEffectA(() => {
+    const mode = editModeActive ? t.view : "auto";
+    applyView(mode);
+    const on = () => applyView(mode);
     window.addEventListener("resize", on);
     return () => window.removeEventListener("resize", on);
-  }, [t.view]);
+  }, [editModeActive, t.view]);
 
   const go = (r) => { setRoute(r); requestAnimationFrame(() => window.scrollTo({ top: 0 })); };
 

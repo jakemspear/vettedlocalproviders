@@ -3,8 +3,15 @@
    all human copy lives in STRINGS.en / STRINGS.es keyed by id. */
 
 const BRAND = "Vetted Local Providers";
-const PHONE = "(480) 555-0147";
-const PHONE_TEL = "+14805550147"; // replace with the real tracked line at launch
+const LEGAL_NAME = "Scaling Adventures, LLC";
+const LEGAL_DBA = "Scaling Adventures, LLC d/b/a Vetted Local Providers";
+const PHONE = "(520) 277-2778";
+const PHONE_TEL = "+15202772778";
+const EMAIL = "hello@vettedlocalproviders.com";
+const ADDRESS = "30 N Gould St Ste R, Sheridan, WY 82801";
+const ADDRESS_VCARD = "30 N Gould St Ste R;Sheridan;WY;82801;United States";
+const PRIVACY_PAGE = "privacy-policy.html";
+const TERMS_PAGE = "terms-of-service.html";
 
 const META = {
   offerOrder: ["free_quote", "free_inspection", "qualify_quiz", "zero_down", "insurance_storm"],
@@ -41,8 +48,18 @@ const META = {
   steps: [
     { id: "s1", n: 1, icon: "ph-house" }, { id: "s2", n: 2, icon: "ph-users-three" }, { id: "s3", n: 3, icon: "ph-phone-call" } ],
   azSuggest: [
-    "E Camelback Rd, Phoenix, AZ 85016", "N Gilbert Rd, Gilbert, AZ 85234", "W Ray Rd, Chandler, AZ 85224",
-    "E University Dr, Mesa, AZ 85203", "N Scottsdale Rd, Scottsdale, AZ 85257" ],
+    "1234 E Camelback Rd, Phoenix, AZ 85016",
+    "2211 N Scottsdale Rd, Scottsdale, AZ 85257",
+    "875 W Ray Rd, Chandler, AZ 85225",
+    "1430 E University Dr, Mesa, AZ 85203",
+    "990 N Gilbert Rd, Gilbert, AZ 85234",
+    "4500 N Oracle Rd, Tucson, AZ 85705",
+    "7014 E Broadway Blvd, Tucson, AZ 85710",
+    "2020 S Mill Ave, Tempe, AZ 85282",
+    "1845 E Baseline Rd, Phoenix, AZ 85042",
+    "3030 W Happy Valley Rd, Phoenix, AZ 85083",
+    "1601 N Litchfield Rd, Goodyear, AZ 85395",
+    "1455 W Southern Ave, Apache Junction, AZ 85120" ],
 };
 
 const OFFER_LABELS = {
@@ -67,6 +84,6 @@ function useT() { return React.useContext(LangCtx).t; }
 function useLang() { const c = React.useContext(LangCtx); return [c.lang, c.setLang]; }
 
 Object.assign(window, {
-  BRAND, PHONE, PHONE_TEL, META, OFFER_LABELS,
+  BRAND, LEGAL_NAME, LEGAL_DBA, PHONE, PHONE_TEL, EMAIL, ADDRESS, ADDRESS_VCARD, PRIVACY_PAGE, TERMS_PAGE, META, OFFER_LABELS,
   detectLang, persistLang, LangCtx, useT, useLang,
 });

@@ -13,8 +13,9 @@ function scrollToId(id) {
 
 function saveVCardHome() {
   const v = ["BEGIN:VCARD", "VERSION:3.0", "N:;Vetted Local Providers;;;", "FN:Vetted Local Providers",
-    "ORG:Vetted Local Providers", `TEL;TYPE=CELL,VOICE:${PHONE_TEL}`, "EMAIL;TYPE=INTERNET:hello@vettedlocalproviders.com",
-    "URL:https://vettedlocalproviders.com", "NOTE:Your Arizona home-service concierge. Reply STOP to opt out of texts.", "END:VCARD"].join("\r\n");
+    "ORG:Vetted Local Providers", `TEL;TYPE=CELL,VOICE:${PHONE_TEL}`, `EMAIL;TYPE=INTERNET:${EMAIL}`,
+    `ADR;TYPE=WORK:;;${ADDRESS_VCARD}`, "URL:https://vettedlocalproviders.com",
+    "NOTE:Your Arizona home-service concierge. Reply STOP to cancel text messages or HELP for help.", "END:VCARD"].join("\r\n");
   const url = URL.createObjectURL(new Blob([v], { type: "text/vcard;charset=utf-8" }));
   const a = document.createElement("a"); a.href = url; a.download = "vetted-local-providers.vcf";
   document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(url), 1500);
@@ -65,10 +66,9 @@ function Hero() {
   const T = useT(); const H = T.home; const motion = useMotion();
   return (
     <header className="hp-hero">
-      <div className="hero-media"><span className="hero-media-tag">{T.hero.photoTag}</span><div className="hero-scrim" /></div>
+      <div className="hero-media"><div className="hero-scrim" /></div>
       <div className={`hp-hero-content${motion ? " anim" : ""}`}>
         <div className="eyebrow on-dark">{H.hero.eyebrow}</div>
-        <div className="hp-hero-pill"><Ico name="ph-map-pin" weight="fill" /> {H.hero.pill}</div>
         <h1 className="display hp-hero-h">{H.hero.h}</h1>
         <p className="hp-hero-sub">{H.hero.sub}</p>
         <div className="hp-hero-cta">
@@ -236,7 +236,7 @@ function ServiceAreas() {
 
 function Deals() {
   const T = useT(); const H = T.home;
-  const [val, setVal] = useStateH(""); const [sms, setSms] = useStateH(false); const [done, setDone] = useStateH(false);
+  const [val, setVal] = useStateH(""); const [done, setDone] = useStateH(false);
   const ok = /\S+@\S+\.\S+/.test(val);
   return (
     <section className="section band-pine hp-deals" id="deals">
@@ -253,7 +253,6 @@ function Deals() {
               <input type="email" inputMode="email" className="input" placeholder={H.deals.emailPlaceholder} value={val} onChange={(e) => setVal(e.target.value)} />
               <button type="submit" className="btn btn-gold cta" disabled={!ok}>{H.deals.btn} <Ico name="ph-arrow-right" weight="bold" className="cta-arrow" /></button>
             </div>
-            <label className="hp-sms"><input type="checkbox" checked={sms} onChange={(e) => setSms(e.target.checked)} /><span className="hp-sms-box"><Ico name="ph-check" weight="bold" /></span><span>{H.deals.sms}</span></label>
           </form>
         )}
         <button className="hp-deals-save" onClick={saveVCardHome}><Ico name="ph-address-book" weight="bold" /> {H.deals.save}</button>
@@ -306,14 +305,15 @@ function Footer() {
       <div className="hp-footer-in">
         <div className="hp-footer-brand">
           <div className="hp-logo-txt" style={{ color: "#fff" }}>Vetted Local Providers</div>
+          <p className="hp-footer-dba">{LEGAL_DBA}</p>
           <p className="hp-footer-tag">{f.tagline}</p>
           <div className="hp-footer-roc"><Ico name="ph-seal-check" weight="fill" /> {f.roc}</div>
         </div>
         <div className="hp-footer-cols">
-          <div className="hp-footer-col"><div className="hp-footer-h">{f.company}</div>{["about", "howWeVet", "contact", "reviews"].map((k) => <a key={k} href="#" onClick={(e) => e.preventDefault()}>{L[k]}</a>)}</div>
+          <div className="hp-footer-col"><div className="hp-footer-h">{f.company}</div><a href="#about">{L.about}</a><a href="#vetted">{L.howWeVet}</a><a href={`mailto:${EMAIL}`}>{L.contact}</a><a href="#proof">{L.reviews}</a></div>
           <div className="hp-footer-col"><div className="hp-footer-h">{f.servicesCol}</div>{H.services.slice(0, 6).map((s) => <a key={s.id} href={s.page || "#"} onClick={s.page ? undefined : (e) => e.preventDefault()}>{s.name}</a>)}</div>
           <div className="hp-footer-col"><div className="hp-footer-h">{f.areasCol}</div>{H.areas.cities.slice(0, 6).map((c) => <a key={c} href={CITY_PAGES[c] || "#"} onClick={CITY_PAGES[c] ? undefined : (e) => e.preventDefault()}>{c}</a>)}</div>
-          <div className="hp-footer-col"><div className="hp-footer-h">{f.legal}</div>{["privacy", "terms", "tcpa", "cookies", "accessibility", "guarantee"].map((k) => <a key={k} href="#" onClick={(e) => e.preventDefault()}>{L[k]}</a>)}</div>
+          <div className="hp-footer-col"><div className="hp-footer-h">{f.legal}</div><a href={PRIVACY_PAGE}>{L.privacy}</a><a href={TERMS_PAGE}>{L.terms}</a><a href={`${TERMS_PAGE}#sms-messaging`}>{L.tcpa}</a><a href={`${PRIVACY_PAGE}#cookies`}>{L.cookies}</a><a href={`${TERMS_PAGE}#accessibility`}>{L.accessibility}</a><a href={`${TERMS_PAGE}#service-disclaimer`}>{L.guarantee}</a></div>
         </div>
       </div>
       <div className="hp-footer-fine"><span>{f.addr} · {PHONE} · {f.contact}</span><span>{f.fine}</span></div>

@@ -1,5 +1,4 @@
-/* strings-es.jsx — Spanish copy. window.STRINGS.es
-   NOTE: the TCPA/consent string is a draft and must be reviewed by counsel. */
+/* strings-es.jsx — Spanish copy. window.STRINGS.es */
 window.STRINGS = window.STRINGS || {};
 window.STRINGS.es = {
   langName: "Español", otherLang: "English",
@@ -49,9 +48,9 @@ window.STRINGS.es = {
     { quote: "Una vez usé un directorio grande y recibí veinte llamadas en un día. Con ellos fue una llamada, un profesional, listo. Como del cielo a la tierra.", name: "Ramon T.", city: "Surprise, AZ" },
   ],
   concierge: { h: "Por qué un concierge, no un directorio.", body: "Los directorios venden su número a veinte empresas y las dejan pelear por usted. Nosotros no. Mantenemos una red pequeña y verificada de profesionales de Arizona y lo conectamos a mano con uno que hace su tipo de techo.", cardH: "Lo que eso significa para usted", points: ["Un especialista, no un menú de opciones", "Equipos locales con licencia y verificados", "Su información nunca se revende"] },
-  footer: { meta: "Profesionales con licencia y registro ROC · Sirviendo al Valle del Sol", privacy: "Política de privacidad", terms: "Términos", fine: "Somos un servicio de referencia que conecta a propietarios de Arizona con profesionales con licencia y registro ROC. Nunca vendemos ni enviamos spam con su información. © 2026 Vetted Local Providers.",
-    disclaimerNote: "Texto de marcador, pendiente de revisión legal.",
-    disclaimerShort: "Vetted Local Providers es un servicio de referencia que conecta a propietarios de Arizona con proveedores independientes, con licencia y registro ROC. No somos un contratista con licencia y no estamos afiliados ni respaldados por Meta, Google ni ninguna otra plataforma. Todas las marcas pertenecen a sus respectivos dueños. No vendemos su información personal. Las ofertas y resultados varían y no están garantizados. © 2026 Vetted Local Providers. Todos los derechos reservados." },
+  footer: { meta: "Profesionales locales con licencia · Expansión en Estados Unidos", privacy: "Política de privacidad", terms: "Términos", fine: "Somos un servicio de referencia que conecta a propietarios con proveedores de servicios locales e independientes. Nunca vendemos ni enviamos spam con su información. © 2026 Vetted Local Providers.",
+    disclaimerNote: "Divulgación legal importante",
+    disclaimerShort: "Vetted Local Providers es un servicio de referencia en Estados Unidos que conecta a propietarios con proveedores de servicios locales e independientes. No somos un contratista con licencia y no estamos afiliados ni respaldados por Meta, Google ni ninguna otra plataforma. Todas las marcas pertenecen a sus respectivos dueños. No vendemos su información personal. Las ofertas, la disponibilidad y los resultados varían según el mercado y no están garantizados. © 2026 Vetted Local Providers. Todos los derechos reservados." },
   form: {
     back: "Volver", continue: "Continuar", continueAnyway: "Continuar de todos modos",
     foot: "Seguro y privado · Nunca vendemos su información",
@@ -66,7 +65,8 @@ window.STRINGS.es = {
     },
     renter: { strong: "Aviso: las cotizaciones de techo son para propietarios.", body: "No hay problema si renta. Siga y le conseguiremos servicios que sí puede usar, como control de plagas y seguridad." },
     antispam: { lead: "La mayoría de los sitios venden su información a los spammers.", emphasis: "Nosotros no.", tail: "Usted habla con nosotros, y solo con los profesionales que pida." },
-    tcpa: "Sí, este es el número correcto. Autorizo a Vetted Local Providers a comunicarse conmigo por llamada, mensaje de texto y mensajes automatizados o asistidos por inteligencia artificial para coordinar mi cotización gratis y los profesionales que solicité. Pueden aplicar tarifas estándar. Puedo cancelar en cualquier momento respondiendo STOP. El consentimiento no es requisito para recibir una cotización.",
+    tcpa: "Al marcar esta casilla, acepto recibir llamadas y mensajes de texto de Vetted Local Providers, operado por Scaling Adventures, LLC, al número que proporcioné sobre mi solicitud de cotización, la programación de citas, el seguimiento y los servicios relacionados que solicite, incluidos mensajes enviados con tecnología automatizada.",
+    tcpaMeta: "La frecuencia de los mensajes varía. Pueden aplicarse tarifas de mensajes y datos. Responda STOP para cancelar o HELP para obtener ayuda. El consentimiento no es una condición de compra.",
   },
   processing: { title: "Preparando su llamada", items: { match: "Conectándolo con un especialista verificado de Arizona", confirm: "Confirmando que un profesional cubre {city}", reserve: "Reservando su llamada de 2 minutos" }, foot: "Buscando profesionales cerca de usted en el Valle" },
   ty: {

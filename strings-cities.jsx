@@ -9,7 +9,7 @@ window.STRINGS.es.cities = { roofing: {
   mesa: {
     city: "Mesa", funnel: "Vetted Home Professionals.html", costPage: "Roofing Cost.html", servicePage: "Roofing.html",
     meta: { title: "Techos en Mesa, AZ · Techadores locales verificados | Vetted Local Providers", desc: "Techos de teja, espuma y asfalto en Mesa, AZ. Conéctese con un techador local verificado que conoce los techos de teja antiguos de Mesa, las HOA y el monzón." },
-    crumbs: [{ label: "Inicio", href: "Homepage.html" }, { label: "Techos", href: "Roofing.html" }, { label: "Mesa" }],
+    crumbs: [{ label: "Inicio", href: "index.html" }, { label: "Techos", href: "Roofing.html" }, { label: "Mesa" }],
     hero: { eyebrow: "Techos en Mesa, AZ", h: "Techos en Mesa, bien hechos.", sub: "Mesa tiene algunos de los techos de teja más antiguos del Valle. Lo conectamos con un techador local verificado que los conoce, junto con las HOA y los permisos de Mesa.", cta: "Recibir cotización gratis" },
     local: { eyebrow: "Local de Mesa", h: "Lo que enfrentan los techos de Mesa.", blocks: [
       { p: "Mesa tiene muchísimas casas construidas entre los años 70 y 90, lo que significa muchos techos de teja de concreto originales sobre un fieltro que ya pasó su vida de 20 a 25 años. La teja se ve bien desde la calle, pero el fieltro debajo es lo que falla, y en barrios antiguos como Dobson Ranch y Alta Mesa vemos ese problema constantemente." },
@@ -33,7 +33,7 @@ window.STRINGS.es.cities = { roofing: {
   gilbert: {
     city: "Gilbert", funnel: "Vetted Home Professionals.html", costPage: "Roofing Cost.html", servicePage: "Roofing.html",
     meta: { title: "Techos en Gilbert, AZ · Techadores locales verificados | Vetted Local Providers", desc: "Techos de teja y asfalto en Gilbert, AZ. Conéctese con un techador local verificado que conoce las reglas de HOA y las comunidades planificadas de Gilbert." },
-    crumbs: [{ label: "Inicio", href: "Homepage.html" }, { label: "Techos", href: "Roofing.html" }, { label: "Gilbert" }],
+    crumbs: [{ label: "Inicio", href: "index.html" }, { label: "Techos", href: "Roofing.html" }, { label: "Gilbert" }],
     hero: { eyebrow: "Techos en Gilbert, AZ", h: "Techos en Gilbert, como debe ser.", sub: "Gilbert es territorio de HOA. Lo conectamos con un techador local verificado que conoce las reglas de aprobación de color y material y lo hace limpio.", cta: "Recibir cotización gratis" },
     local: { eyebrow: "Local de Gilbert", h: "Lo que enfrentan los techos de Gilbert.", blocks: [
       { p: "Gilbert creció rápido en los años 90 y 2000, así que la mayoría de sus casas son planificadas y relativamente nuevas, con la teja de concreto como techo dominante. Los techos no son antiguos, pero el fieltro original de constructor en las primeras de estas comunidades ya llega a la edad en que conviene un recambio, sobre todo en barrios como Val Vista Lakes y the Islands." },
@@ -57,7 +57,7 @@ window.STRINGS.es.cities = { roofing: {
   chandler: {
     city: "Chandler", funnel: "Vetted Home Professionals.html", costPage: "Roofing Cost.html", servicePage: "Roofing.html",
     meta: { title: "Techos en Chandler, AZ · Techadores locales verificados | Vetted Local Providers", desc: "Techos de teja, espuma y asfalto en Chandler, AZ. Conéctese con un techador local verificado que conoce la mezcla de barrios antiguos y nuevos de Chandler." },
-    crumbs: [{ label: "Inicio", href: "Homepage.html" }, { label: "Techos", href: "Roofing.html" }, { label: "Chandler" }],
+    crumbs: [{ label: "Inicio", href: "index.html" }, { label: "Techos", href: "Roofing.html" }, { label: "Chandler" }],
     hero: { eyebrow: "Techos en Chandler, AZ", h: "Techos en Chandler, sin vueltas.", sub: "Del centro histórico a las subdivisiones del corredor tecnológico, los techos de Chandler varían mucho. Lo conectamos con un techador local verificado que conoce la diferencia.", cta: "Recibir cotización gratis" },
     local: { eyebrow: "Local de Chandler", h: "Lo que enfrentan los techos de Chandler.", blocks: [
       { p: "Chandler es en realidad dos mercados de techos en una sola ciudad. Alrededor del centro histórico y los barrios centrales más antiguos hay una verdadera mezcla, incluso algunos techos planos y de espuma y asfalto envejecido, mientras que las subdivisiones nuevas hacia la 202 y el corredor tecnológico son casi todas de teja de concreto de los años 90 en adelante. El enfoque correcto de reparación es completamente distinto entre ellos." },
@@ -84,7 +84,7 @@ window.STRINGS.en.cities = { roofing: {
   mesa: {
     city: "Mesa", funnel: "Vetted Home Professionals.html", costPage: "Roofing Cost.html", servicePage: "Roofing.html",
     meta: { title: "Roofing in Mesa, AZ · Vetted Local Roofers | Vetted Local Providers", desc: "Tile, foam, and shingle roofing in Mesa, AZ. Matched with a vetted local roofer who knows Mesa's older tile roofs, HOAs, and monsoon exposure." },
-    crumbs: [{ label: "Home", href: "Homepage.html" }, { label: "Roofing", href: "Roofing.html" }, { label: "Mesa" }],
+    crumbs: [{ label: "Home", href: "index.html" }, { label: "Roofing", href: "Roofing.html" }, { label: "Mesa" }],
     hero: { eyebrow: "Roofing in Mesa, AZ", h: "Roofing in Mesa, done right.", sub: "Mesa has some of the Valley's oldest tile roofs. We match you with a vetted local roofer who knows them, the HOAs, and Mesa's permit process.", cta: "Get a free quote" },
     local: { eyebrow: "Local to Mesa", h: "What Mesa roofs actually deal with.", blocks: [
       { p: "Mesa has a huge stock of homes built from the 1970s through the 1990s, which means a lot of original concrete tile roofs sitting on underlayment that is now well past its 20 to 25 year life. The tile still looks fine from the street, but the felt underneath is what fails, and in older neighborhoods like Dobson Ranch and Alta Mesa we see that exact problem constantly." },
@@ -108,7 +108,7 @@ window.STRINGS.en.cities = { roofing: {
   gilbert: {
     city: "Gilbert", funnel: "Vetted Home Professionals.html", costPage: "Roofing Cost.html", servicePage: "Roofing.html",
     meta: { title: "Roofing in Gilbert, AZ · Vetted Local Roofers | Vetted Local Providers", desc: "Tile and shingle roofing in Gilbert, AZ. Matched with a vetted local roofer who knows Gilbert's HOA rules and master-planned communities." },
-    crumbs: [{ label: "Home", href: "Homepage.html" }, { label: "Roofing", href: "Roofing.html" }, { label: "Gilbert" }],
+    crumbs: [{ label: "Home", href: "index.html" }, { label: "Roofing", href: "Roofing.html" }, { label: "Gilbert" }],
     hero: { eyebrow: "Roofing in Gilbert, AZ", h: "Roofing in Gilbert, by the book.", sub: "Gilbert is HOA country. We match you with a vetted local roofer who knows the color-and-material approval rules and gets it done clean.", cta: "Get a free quote" },
     local: { eyebrow: "Local to Gilbert", h: "What Gilbert roofs actually deal with.", blocks: [
       { p: "Gilbert grew fast through the 1990s and 2000s, so most of its housing stock is master-planned and relatively young, with concrete tile the dominant roof by far. The roofs themselves are not ancient, but the original builder-grade underlayment on the earliest of these communities is now reaching the age where a re-felt makes sense, especially in neighborhoods like Val Vista Lakes and the Islands." },
@@ -132,7 +132,7 @@ window.STRINGS.en.cities = { roofing: {
   chandler: {
     city: "Chandler", funnel: "Vetted Home Professionals.html", costPage: "Roofing Cost.html", servicePage: "Roofing.html",
     meta: { title: "Roofing in Chandler, AZ · Vetted Local Roofers | Vetted Local Providers", desc: "Tile, foam, and shingle roofing in Chandler, AZ. Matched with a vetted local roofer who knows Chandler's mix of older and newer neighborhoods." },
-    crumbs: [{ label: "Home", href: "Homepage.html" }, { label: "Roofing", href: "Roofing.html" }, { label: "Chandler" }],
+    crumbs: [{ label: "Home", href: "index.html" }, { label: "Roofing", href: "Roofing.html" }, { label: "Chandler" }],
     hero: { eyebrow: "Roofing in Chandler, AZ", h: "Roofing in Chandler, no runaround.", sub: "From historic downtown to the tech-corridor subdivisions, Chandler roofs vary a lot. We match you with a vetted local roofer who knows the difference.", cta: "Get a free quote" },
     local: { eyebrow: "Local to Chandler", h: "What Chandler roofs actually deal with.", blocks: [
       { p: "Chandler is really two roofing markets in one city. Around historic downtown and the older central neighborhoods you find a real mix, including some flat and foam roofs and aging shingle, while the newer subdivisions out toward the 202 and the tech corridor are almost entirely concrete tile from the 1990s onward. The right repair approach is completely different between them." },

@@ -11,7 +11,7 @@ window.STRINGS.en.cost = {
     funnel: "Vetted Home Professionals.html", servicePage: "Roofing.html",
     meta: { title: "What Does a Roof Cost in Arizona? (2026 Guide) | Vetted Local Providers",
       desc: "Honest Arizona roof cost ranges for tile, foam, and shingle, plus what drives the price and how to avoid overpaying. No pressure, no spam." },
-    crumbs: [{ label: "Home", href: "Homepage.html" }, { label: "Roofing", href: "Roofing.html" }, { label: "Cost guide" }],
+    crumbs: [{ label: "Home", href: "index.html" }, { label: "Roofing", href: "Roofing.html" }, { label: "Cost guide" }],
     hero: { eyebrow: "Roofing cost guide", h: "What does a roof cost in Arizona?", sub: "An honest look at tile, foam, and shingle pricing in the Valley, what moves the number, and how to avoid overpaying. No pressure to buy.", cta: "Get a real quote for my home" },
     placeholderNote: "The ranges below are placeholders pending validation against partner pricing and current Arizona market data. Replace with verified figures before launch. Every roof is different, so treat these as ballpark only.",
     table: { eyebrow: "Ballpark ranges", h: "Arizona roof cost ranges.", head: { label: "Roof type", val: "Typical range (2,000 sq ft home)" }, rows: [
@@ -53,7 +53,7 @@ window.STRINGS.es.cost = {
     funnel: "Vetted Home Professionals.html", servicePage: "Roofing.html",
     meta: { title: "¿Cuánto cuesta un techo en Arizona? (Guía 2026) | Vetted Local Providers",
       desc: "Rangos honestos de precios de techos en Arizona para teja, espuma y asfalto, qué mueve el precio y cómo evitar pagar de más. Sin presión, sin spam." },
-    crumbs: [{ label: "Inicio", href: "Homepage.html" }, { label: "Techos", href: "Roofing.html" }, { label: "Guía de precios" }],
+    crumbs: [{ label: "Inicio", href: "index.html" }, { label: "Techos", href: "Roofing.html" }, { label: "Guía de precios" }],
     hero: { eyebrow: "Guía de precios de techos", h: "¿Cuánto cuesta un techo en Arizona?", sub: "Una mirada honesta a los precios de teja, espuma y asfalto en el Valle, qué mueve el número y cómo evitar pagar de más. Sin presión para comprar.", cta: "Recibir una cotización real" },
     placeholderNote: "Los rangos siguientes son marcadores pendientes de validar con los precios de los socios y datos actuales del mercado de Arizona. Reemplazar con cifras verificadas antes del lanzamiento. Cada techo es distinto, tómelos solo como referencia.",
     table: { eyebrow: "Rangos aproximados", h: "Rangos de precios de techos en Arizona.", head: { label: "Tipo de techo", val: "Rango típico (casa de 185 m²)" }, rows: [

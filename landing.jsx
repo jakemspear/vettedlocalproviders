@@ -13,10 +13,8 @@ function LangToggle() {
 }
 
 function HeroMedia() {
-  const T = useT();
   return (
     <div className="hero-media" role="img" aria-label="Arizona home, placeholder image">
-      <span className="hero-media-tag">{T.hero.photoTag}</span>
       <div className="hero-scrim" />
     </div>
   );
@@ -197,14 +195,16 @@ function Footer() {
   return (
     <footer className="footer">
       <div className="footer-brand">{BRAND}</div>
+      <div className="footer-meta">{LEGAL_DBA}</div>
       <div className="footer-meta">{T.footer.meta}</div>
       <div className="footer-links">
-        <a href="#privacy">{T.footer.privacy}</a>
+        <a href={PRIVACY_PAGE}>{T.footer.privacy}</a>
         <span>·</span>
-        <a href="#terms">{T.footer.terms}</a>
+        <a href={TERMS_PAGE}>{T.footer.terms}</a>
         <span>·</span>
         <a href={`tel:${PHONE_TEL}`}>{PHONE}</a>
       </div>
+      <div className="footer-fine">{ADDRESS} · {EMAIL}</div>
       <div className="footer-fine">{T.footer.fine}</div>
       <div className="footer-disclaimer">
         <span className="footer-legal-note"><Ico name="ph-scales" weight="bold" /> {T.footer.disclaimerNote}</span>

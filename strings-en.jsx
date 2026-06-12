@@ -48,9 +48,9 @@ window.STRINGS.en = {
     { quote: "Used a big directory once and got twenty calls in a day. With these folks it was one call, one pro, done. Night and day.", name: "Ramon T.", city: "Surprise, AZ" },
   ],
   concierge: { h: "Why a concierge, not a directory.", body: "Directories sell your number to twenty companies and let them fight over you. We don't. We keep a small, vetted network of Arizona pros and hand-match you to one who does your kind of roof.", cardH: "What that means for you", points: ["One specialist, not a phone tree", "Screened, licensed local crews", "Your info is never resold"] },
-  footer: { meta: "Licensed, ROC-registered Arizona pros · Serving the Greater Phoenix Valley", privacy: "Privacy Policy", terms: "Terms", fine: "We are a referral service that connects Arizona homeowners with licensed, ROC-registered pros. We never sell or spam your information. © 2026 Vetted Local Providers.",
-    disclaimerNote: "Placeholder language, pending attorney review.",
-    disclaimerShort: "Vetted Local Providers is a lead-referral service connecting Arizona homeowners with independent, licensed, ROC-registered providers. We are not a licensed contractor and are not affiliated with or endorsed by Meta, Google, or any other platform. All trademarks belong to their respective owners. We do not sell your personal information. Offers and results vary and are not guaranteed. © 2026 Vetted Local Providers. All rights reserved." },
+  footer: { meta: "Licensed local pros · Expanding across the United States", privacy: "Privacy Policy", terms: "Terms", fine: "We are a referral service that connects homeowners with independent local service providers. We never sell or spam your information. © 2026 Vetted Local Providers.",
+    disclaimerNote: "Important legal disclosure",
+    disclaimerShort: "Vetted Local Providers is a U.S. lead-referral service connecting homeowners with independent local service providers. We are not a licensed contractor and are not affiliated with or endorsed by Meta, Google, or any other platform. All trademarks belong to their respective owners. We do not sell your personal information. Offers, availability, and results vary by market and are not guaranteed. © 2026 Vetted Local Providers. All rights reserved." },
   form: {
     back: "Go back", continue: "Continue", continueAnyway: "Continue anyway",
     foot: "Secure and private · We never sell your info",
@@ -65,7 +65,8 @@ window.STRINGS.en = {
     },
     renter: { strong: "Heads up, roof quotes are for homeowners.", body: "No problem if you rent. Keep going and we will line up services you can use, like pest control and security." },
     antispam: { lead: "Most sites sell your info to spammers.", emphasis: "We don't.", tail: "You talk to us, and only the pros you ask for." },
-    tcpa: "Yes, this is the right number. I'd like Vetted Local Providers to reach out by call, text, and automated or AI-assisted messages to set up my free quote and any pros I asked about. Standard rates may apply. I can opt out anytime by replying STOP. Consent isn't required to get a quote.",
+    tcpa: "By checking this box, I agree to receive calls and text messages from Vetted Local Providers, operated by Scaling Adventures, LLC, at the number I provided about my quote request, appointment scheduling, follow-up, and the related services I ask about, including messages sent with automated technology.",
+    tcpaMeta: "Message frequency varies. Message and data rates may apply. Reply STOP to cancel or HELP for help. Consent is not a condition of purchase.",
   },
   processing: { title: "Setting up your callback", items: { match: "Matching you with a vetted Arizona specialist", confirm: "Confirming a pro covers {city}", reserve: "Reserving your 2-minute callback" }, foot: "Finding pros near you in the Valley" },
   ty: {
