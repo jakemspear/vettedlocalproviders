@@ -5,8 +5,8 @@ const { useState: useStateT, useMemo: useMemoT, useEffect: useEffectT } = React;
 function saveVCard() {
   const vcard = [
     "BEGIN:VCARD", "VERSION:3.0",
-    "N:;Vetted Local Providers;;;",
-    "FN:Vetted Local Providers",
+    "N:;Home Concierge;;;",
+    "FN:Home Concierge",
     "ORG:Vetted Local Providers",
     `TEL;TYPE=CELL,VOICE:${PHONE_TEL}`,
     `EMAIL;TYPE=INTERNET:${EMAIL}`,
@@ -85,13 +85,13 @@ function OfferWall({ t, answers, onContinue }) {
 
       <div className="ty-addbar">
         <div className="ty-addbar-inner">
-          <button className="btn btn-gold cta" onClick={() => onContinue(count)}>
+          <button className="btn btn-gold cta" onClick={() => onContinue(Object.keys(picked).filter((id) => picked[id]))}>
             {count === 0
               ? <>{T.ty.ctaZero} <Ico name="ph-arrow-right" weight="bold" className="cta-arrow" /></>
               : <>{ctaParts[0]}<Odometer value={count} />{ctaParts[1]} <Ico name="ph-arrow-right" weight="bold" className="cta-arrow" /></>}
           </button>
           {count >= 1 && (
-            <button className="ty-skip" onClick={() => onContinue(0)}>
+            <button className="ty-skip" onClick={() => onContinue([])}>
               {T.ty.skip} <Ico name="ph-arrow-right" weight="bold" />
             </button>
           )}
@@ -112,7 +112,7 @@ function EmailStep({ onDone }) {
         <div className="email-step-ico"><Ico name="ph-envelope-simple" weight="duotone" /></div>
         <h2 className="display email-step-h">{T.ty.emailStepH}</h2>
         <p className="email-step-sub">{T.ty.emailStepSub}</p>
-        <form className="email-step-form" onSubmit={(e) => { e.preventDefault(); onDone(); }}>
+        <form className="email-step-form" onSubmit={(e) => { e.preventDefault(); onDone({ email: val, emailCaptureStatus: "submitted" }); }}>
           <div className="input-ico-wrap">
             <Ico name="ph-envelope-simple" className="input-ico" />
             <input type="email" inputMode="email" className="input has-ico" placeholder={T.ty.emailPlaceholder}
@@ -122,7 +122,7 @@ function EmailStep({ onDone }) {
             {T.ty.emailBtn} <Ico name="ph-arrow-right" weight="bold" className="cta-arrow" />
           </button>
         </form>
-        <button className="email-step-skip" onClick={onDone}>{T.ty.emailSkip}</button>
+        <button className="email-step-skip" onClick={() => onDone({ email: "", emailCaptureStatus: "skipped" })}>{T.ty.emailSkip}</button>
       </div>
     </div>
   );

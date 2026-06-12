@@ -1,0 +1,11 @@
+BEGIN:VCARD
+VERSION:3.0
+N:;Home Concierge;;;
+FN:Home Concierge
+ORG:Vetted Local Providers
+TEL;TYPE=CELL,VOICE:+15202772778
+EMAIL;TYPE=INTERNET:hello@vettedlocalproviders.com
+ADR;TYPE=WORK:;;30 N Gould St Ste R;Sheridan;WY;82801;United States
+URL:https://vettedlocalproviders.com
+NOTE:Your Arizona home-service concierge. Reply STOP to cancel text messages or HELP for help.
+END:VCARD

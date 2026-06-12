@@ -29,12 +29,24 @@ function resolveOffer(T, id, monsoon) {
   return { ...base, qualify };
 }
 
+function resolveOfferLabel(offerId, monsoon) {
+  if (monsoon) return "monsoon-ready roof inspection";
+  const offerLabels = {
+    free_quote: "free roof quote",
+    free_inspection: "roof inspection",
+    qualify_quiz: "roof qualification review",
+    zero_down: "$0 down roof quote",
+    insurance_storm: "storm damage roof review",
+  };
+  return offerLabels[offerId] || "roof inspection";
+}
+
 function App() {
   const [t, setTweak] = useTweaks(TWEAK_DEFAULTS);
   const [lang, setLangState] = useStateA(detectLang());
   const [route, setRoute] = useStateA("landing");
   const [answers, setAnswers] = useStateA(null);
-  const [picked, setPicked] = useStateA(0);
+  const [picked, setPicked] = useStateA([]);
   const [editModeActive, setEditModeActive] = useStateA(false);
 
   const T = window.STRINGS[lang] || window.STRINGS.en;
@@ -73,22 +85,54 @@ function App() {
   }, [editModeActive, t.view]);
 
   const go = (r) => { setRoute(r); requestAnimationFrame(() => window.scrollTo({ top: 0 })); };
+  const syncLead = async (checkpoint, data) => {
+    if (typeof window.submitLeadCheckpoint !== "function") return;
+    await window.submitLeadCheckpoint(checkpoint, data);
+  };
+
+  const handleInitialComplete = async (nextAnswers) => {
+    const leadAnswers = {
+      ...nextAnswers,
+      offer: resolveOfferLabel(t.offer, t.monsoon),
+      offerId: t.offer,
+      opportunityValue: 350,
+    };
+    setAnswers(leadAnswers);
+    await syncLead("initial_form", leadAnswers);
+    go("email");
+  };
+
+  const handleEmailDone = async ({ email, emailCaptureStatus }) => {
+    const nextAnswers = { ...(answers || {}), email: email || "", emailCaptureStatus };
+    setAnswers(nextAnswers);
+    await syncLead("email_capture", nextAnswers);
+    go("processing");
+  };
+
+  const handleAdditionalServices = async (selectedServices) => {
+    const nextPicked = Array.isArray(selectedServices) ? selectedServices : [];
+    const nextAnswers = { ...(answers || {}), additionalServices: nextPicked };
+    setPicked(nextPicked);
+    setAnswers(nextAnswers);
+    await syncLead("additional_services", nextAnswers);
+    go("confirmation");
+  };
 
   return (
     <LangCtx.Provider value={{ lang, t: T, setLang }}>
       <MotionCtx.Provider value={!!t.motion}>
         {route === "landing" && <Landing offer={offer} onStart={() => go("form")} />}
         {route === "form" && (
-          <Form onBackToStart={() => go("landing")} onComplete={(a) => { setAnswers(a); go("email"); }} />
+          <Form onBackToStart={() => go("landing")} onComplete={handleInitialComplete} />
         )}
-        {route === "email" && <EmailStep onDone={() => go("processing")} />}
+        {route === "email" && <EmailStep onDone={handleEmailDone} />}
         {route === "processing" && <Processing answers={answers} onDone={() => go("offerwall")} />}
         {route === "offerwall" && (
-          <OfferWall t={t} answers={answers} onContinue={(n) => { setPicked(n); go("confirmation"); }} />
+          <OfferWall t={t} answers={answers} onContinue={handleAdditionalServices} />
         )}
         {route === "confirmation" && (
-          <Confirmation offer={offer} answers={answers} count={picked}
-            onRestart={() => { setAnswers(null); setPicked(0); go("landing"); }} />
+          <Confirmation offer={offer} answers={answers} count={picked.length}
+            onRestart={() => { setAnswers(null); setPicked([]); go("landing"); }} />
         )}
 
         {ReactDOM.createPortal(

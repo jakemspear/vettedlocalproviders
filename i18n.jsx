@@ -34,10 +34,10 @@ const META = {
   offersOwner: [
     { id: "solar", icon: "ph-sun" }, { id: "windows", icon: "ph-grid-nine" }, { id: "hvac", icon: "ph-wind" },
     { id: "pest", icon: "ph-bug-beetle" }, { id: "gutters", icon: "ph-cloud-rain" },
-    { id: "landscape", icon: "ph-plant" }, { id: "windowcln", icon: "ph-sparkle" } ],
+    { id: "landscape", icon: "ph-plant" }, { id: "windowcleaning", icon: "ph-sparkle" } ],
   offersRenter: [
-    { id: "pest", icon: "ph-bug-beetle" }, { id: "security", icon: "ph-shield-check" }, { id: "hvac", icon: "ph-wind" },
-    { id: "windowcln", icon: "ph-sparkle" }, { id: "rinsure", icon: "ph-umbrella" }, { id: "internet", icon: "ph-wifi-high" } ],
+    { id: "pest", icon: "ph-bug-beetle" }, { id: "alarms", icon: "ph-shield-check" }, { id: "hvac", icon: "ph-wind" },
+    { id: "windowcleaning", icon: "ph-sparkle" }, { id: "housecleaning", icon: "ph-broom" }, { id: "plumbing", icon: "ph-wrench" } ],
   trust: [
     { id: "licensed", icon: "ph-seal-check" }, { id: "local", icon: "ph-map-pin" },
     { id: "free", icon: "ph-hand-coins" }, { id: "spam", icon: "ph-shield-slash", spam: true } ],

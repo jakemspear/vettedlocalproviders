@@ -1,18 +1,6 @@
 /* form.jsx — screen 2: multi-step roofing form + processing. Exported to window. */
 const { useState: useStateF, useEffect: useEffectF } = React;
 
-const GOOGLE_MAPS_CALLBACK = "__vlpGoogleMapsReady";
-const GOOGLE_MAPS_SRC_BASE = "https://maps.googleapis.com/maps/api/js?libraries=places&v=weekly";
-const AZ_BOUNDS = {
-  north: 37.00426,
-  south: 31.33218,
-  west: -114.81659,
-  east: -109.04522,
-};
-
-let googleMapsLoadPromise = null;
-let placesServicesPromise = null;
-
 function normalizeAddr(v) {
   return (v || "").toLowerCase().replace(/[^\w\s]/g, " ").replace(/\s+/g, " ").trim();
 }
@@ -37,13 +25,16 @@ function scoreAddressMatch(query, candidate) {
   return score - c.length * 0.01;
 }
 
-function getAddressMatches(query) {
+function getFallbackAddressMatches(query) {
   const ranked = META.azSuggest
     .map((candidate) => ({ candidate, score: scoreAddressMatch(query, candidate) }))
     .filter((item) => item.score >= 0)
     .sort((a, b) => b.score - a.score)
     .slice(0, 6);
-  return ranked.map((item) => item.candidate);
+  const labels = ranked.map((item) => item.candidate);
+  const trimmed = query.trim();
+  if (trimmed.length >= 5 && !labels.includes(trimmed)) labels.unshift(trimmed);
+  return labels.slice(0, 6);
 }
 
 function cityFromAddress(addr) {
@@ -55,115 +46,36 @@ function cityFromAddress(addr) {
   return "your area";
 }
 
-function getGoogleMapsApiKey() {
-  const fromWindow = window.GOOGLE_MAPS_API_KEY || window.googleMapsApiKey;
-  if (fromWindow) return String(fromWindow).trim();
-  const meta = document.querySelector('meta[name="google-maps-api-key"]');
-  return meta?.content?.trim() || "";
-}
+function fetchPlacePredictions(query, lang, signal) {
+  const url = new URL("https://photon.komoot.io/api/");
+  url.searchParams.set("limit", "5");
+  url.searchParams.set("q", /\b(usa|united states)\b/i.test(query) ? query : `${query}, USA`);
+  url.searchParams.set("lang", lang === "es" ? "es" : "en");
 
-function loadGoogleMapsPlaces() {
-  if (window.google?.maps?.places) return Promise.resolve(window.google.maps);
-  if (googleMapsLoadPromise) return googleMapsLoadPromise;
-
-  const apiKey = getGoogleMapsApiKey();
-  if (!apiKey) return Promise.reject(new Error("missing-google-maps-api-key"));
-
-  googleMapsLoadPromise = new Promise((resolve, reject) => {
-    const existing = document.querySelector('script[data-google-maps-loader="true"]');
-    const cleanup = () => {
-      try { delete window[GOOGLE_MAPS_CALLBACK]; } catch (e) {}
-    };
-    window[GOOGLE_MAPS_CALLBACK] = () => {
-      cleanup();
-      resolve(window.google.maps);
-    };
-    if (existing) {
-      existing.addEventListener("error", () => {
-        cleanup();
-        reject(new Error("google-maps-script-failed"));
-      }, { once: true });
-      return;
+  return fetch(url.toString(), {
+    signal,
+    headers: {
+      Accept: "application/json",
+    },
+  }).then(async (res) => {
+    if (!res.ok) throw new Error(`photon-${res.status}`);
+    const data = await res.json();
+    const next = [];
+    for (const item of Array.isArray(data?.features) ? data.features : []) {
+      const props = item?.properties || {};
+      const streetLine = [props.housenumber, props.street].filter(Boolean).join(" ").trim();
+      const locality = [props.city || props.town || props.village || props.county, props.state, props.postcode]
+        .filter(Boolean)
+        .join(", ");
+      const label = [streetLine || props.name, locality, props.country]
+        .filter(Boolean)
+        .join(", ");
+      if (label && !next.some((entry) => entry.label === label)) {
+        next.push({ id: item?.properties?.osm_id || label, label });
+      }
     }
-
-    const script = document.createElement("script");
-    script.src = `${GOOGLE_MAPS_SRC_BASE}&key=${encodeURIComponent(apiKey)}&callback=${GOOGLE_MAPS_CALLBACK}`;
-    script.async = true;
-    script.defer = true;
-    script.dataset.googleMapsLoader = "true";
-    script.onerror = () => {
-      cleanup();
-      reject(new Error("google-maps-script-failed"));
-    };
-    document.head.appendChild(script);
-  }).catch((error) => {
-    googleMapsLoadPromise = null;
-    throw error;
+    return next;
   });
-
-  return googleMapsLoadPromise;
-}
-
-function getPlacesServices() {
-  if (placesServicesPromise) return placesServicesPromise;
-  placesServicesPromise = loadGoogleMapsPlaces().then((maps) => {
-    const places = maps.places;
-    return {
-      token: new places.AutocompleteSessionToken(),
-      autocomplete: new places.AutocompleteService(),
-      details: new places.PlacesService(document.createElement("div")),
-    };
-  }).catch((error) => {
-    placesServicesPromise = null;
-    throw error;
-  });
-  return placesServicesPromise;
-}
-
-function fetchPlacePredictions(query) {
-  return getPlacesServices().then(({ autocomplete, token }) => new Promise((resolve, reject) => {
-    autocomplete.getPlacePredictions({
-      input: query,
-      sessionToken: token,
-      componentRestrictions: { country: "us" },
-      types: ["address"],
-      bounds: AZ_BOUNDS,
-    }, (predictions, status) => {
-      if (status === "OK" && Array.isArray(predictions)) {
-        resolve(predictions.map((prediction) => ({
-          id: prediction.place_id,
-          placeId: prediction.place_id,
-          label: prediction.description,
-        })));
-        return;
-      }
-      if (status === "ZERO_RESULTS") {
-        resolve([]);
-        return;
-      }
-      reject(new Error(`places-predictions-${status || "unknown"}`));
-    });
-  }));
-}
-
-function fetchPlaceDetails(placeId, fallbackLabel) {
-  return getPlacesServices().then(({ details, token }) => new Promise((resolve, reject) => {
-    details.getDetails({
-      placeId,
-      sessionToken: token,
-      fields: ["formatted_address"],
-    }, (place, status) => {
-      if (status === "OK" && place?.formatted_address) {
-        resolve(place.formatted_address);
-        return;
-      }
-      if ((status === "ZERO_RESULTS" || status === "NOT_FOUND") && fallbackLabel) {
-        resolve(fallbackLabel);
-        return;
-      }
-      reject(new Error(`place-details-${status || "unknown"}`));
-    });
-  }));
 }
 
 function StepHead({ id }) {
@@ -214,76 +126,59 @@ function ChoiceStep({ meta, value, onPick }) {
 
 function AddressStep({ data, set, onNext }) {
   const T = useT();
+  const [lang] = useLang();
   const s = T.form.steps.address;
   const [open, setOpen] = useStateF(false);
   const [found, setFound] = useStateF(false);
   const [active, setActive] = useStateF(0);
   const [matches, setMatches] = useStateF(() => META.azSuggest.slice(0, 4).map((label) => ({ id: label, label })));
-  const [usingGoogle, setUsingGoogle] = useStateF(false);
   const [loadingMatches, setLoadingMatches] = useStateF(false);
+  const [lookupFallback, setLookupFallback] = useStateF(false);
   const val = data.address || "";
   useEffectF(() => { setActive(0); }, [val, matches.length]);
 
   useEffectF(() => {
-    let cancelled = false;
+    const ctrl = new AbortController();
 
     if (val.trim().length <= 1) {
       setLoadingMatches(false);
+      setLookupFallback(false);
       setMatches(META.azSuggest.slice(0, 4).map((label) => ({ id: label, label })));
       return undefined;
     }
 
     setLoadingMatches(true);
+    setLookupFallback(false);
     const timer = setTimeout(() => {
-      fetchPlacePredictions(val)
+      fetchPlacePredictions(val, lang, ctrl.signal)
         .then((predictions) => {
-          if (cancelled) return;
           if (predictions.length) {
             setMatches(predictions);
-            setUsingGoogle(true);
             return;
           }
-          setMatches(getAddressMatches(val).map((label) => ({ id: label, label })));
+          setMatches(getFallbackAddressMatches(val).map((label) => ({ id: label, label })));
+          setLookupFallback(true);
         })
-        .catch(() => {
-          if (cancelled) return;
-          setUsingGoogle(false);
-          setMatches(getAddressMatches(val).map((label) => ({ id: label, label })));
+        .catch((err) => {
+          if (err && err.name === "AbortError") return;
+          setMatches(getFallbackAddressMatches(val).map((label) => ({ id: label, label })));
+          setLookupFallback(true);
         })
         .finally(() => {
-          if (!cancelled) setLoadingMatches(false);
+          if (!ctrl.signal.aborted) setLoadingMatches(false);
         });
-    }, 180);
+    }, 280);
 
     return () => {
-      cancelled = true;
       clearTimeout(timer);
+      ctrl.abort();
     };
-  }, [val]);
-
-  useEffectF(() => {
-    let cancelled = false;
-    loadGoogleMapsPlaces()
-      .then(() => {
-        if (!cancelled) setUsingGoogle(true);
-      })
-      .catch(() => {
-        if (!cancelled) setUsingGoogle(false);
-      });
-    return () => { cancelled = true; };
-  }, []);
+  }, [lang, val]);
 
   const pick = (match) => {
-    const finalize = (address) => {
-      set("address", address);
-      setOpen(false);
-      setFound(true);
-    };
-    if (match?.placeId) {
-      fetchPlaceDetails(match.placeId, match.label).then(finalize).catch(() => finalize(match.label));
-      return;
-    }
-    finalize(match.label);
+    set("address", match.label);
+    setOpen(false);
+    setFound(true);
   };
 
   const onKeyDown = (e) => {
@@ -321,9 +216,9 @@ function AddressStep({ data, set, onNext }) {
             onFocus={() => setOpen(true)} onBlur={() => setTimeout(() => setOpen(false), 120)}
             onKeyDown={onKeyDown} />
         </div>
-        {loadingMatches && <p className="submit-hint" style={{ textAlign: "left", marginTop: 8 }}>Looking up addresses...</p>}
-        {!usingGoogle && val.trim().length > 1 && !loadingMatches && (
-          <p className="submit-hint" style={{ textAlign: "left", marginTop: 8 }}>Live address lookup is off, so suggestions are limited.</p>
+        {loadingMatches && <p className="submit-hint" style={{ textAlign: "left", marginTop: 8 }}>{s.loading}</p>}
+        {lookupFallback && val.trim().length > 1 && !loadingMatches && (
+          <p className="submit-hint" style={{ textAlign: "left", marginTop: 8 }}>{s.fallback}</p>
         )}
         {open && matches.length > 0 && (
           <ul className="suggest">
