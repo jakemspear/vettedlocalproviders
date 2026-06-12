@@ -18,7 +18,7 @@
   background-image:
     radial-gradient(80% 55% at 74% 20%, rgba(224,162,59,.35), transparent 55%),
     url('uploads/roofing-inspection-hero.png?v=3');
-  background-position: center, 70% 28%;
+  background-position: center, 82% 28%;
   background-size: auto, cover;
   background-repeat: no-repeat, no-repeat;
 }
@@ -41,40 +41,39 @@
 
 /* trust bar: static trust badges (not buttons) — 2x2 on mobile, borderless */
 .trustbar {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 12px 16px;
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px 18px;
   padding: 18px 24px;
   background: var(--sage-tint);
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
 }
 .trustbar .chip {
+  display: grid; grid-template-columns: 24px minmax(0, 1fr); align-items: center; column-gap: 10px;
   background: none; border: none; border-radius: 0; padding: 0; box-shadow: none;
-  white-space: normal; color: var(--ink-soft); font-weight: 600;
+  white-space: normal; color: var(--ink-soft); font-weight: 600; line-height: 1.25;
 }
-.trustbar .chip .ph { color: var(--pine); }
+.trustbar .chip .ph { color: var(--pine); width: 24px; font-size: 19px; text-align: center; }
 .trustbar .lbl-full { display: none; }
 .trustbar .lbl-short { display: inline; }
 
-/* === ABOVE-FOLD: hero + trust bar fill the full viewport on mobile ===
-   Wrap <Hero> + <TrustBar> (or <sp-hero> + <SiteTrustBar>) in .above-fold.
-   The hero flexes to fill remaining space; trustbar pins to the bottom.
-   Reset to normal block layout at tablet/desktop breakpoints. */
-.above-fold {
-  display: flex;
-  flex-direction: column;
-  min-height: 100svh;  /* svh = small viewport height — respects mobile browser chrome */
+/* === ABOVE-FOLD: hero owns the full first viewport on mobile ===
+   Wrap hero + trust bar in .above-fold, but keep the trust bar below the fold.
+   The hero itself fills the viewport; the trust bar follows in normal flow. */
+@media (max-width: 899px) {
+  .above-fold {
+    display: block;
+    min-height: 0;
+  }
+  .above-fold .hero,
+  .above-fold .hp-hero,
+  .above-fold .sp-hero {
+    min-height: 100svh;  /* full mobile viewport, trust bar moves below the fold */
+  }
+  .hero-media {
+    background-position: center, 84% 24%;
+    background-size: auto, cover;
+  }
 }
-.above-fold .hero,
-.above-fold .hp-hero,
-.above-fold .sp-hero {
-  flex: 1;  /* hero grows; trustbar stays at natural height */
-}
-/* Desktop via media query (homepage, SEO pages) */
-@media (min-width: 900px) {
-  .above-fold { display: block; min-height: 0; }
-}
-/* Desktop via JS class (roofing funnel + forced-desktop preview) */
-html.is-desktop .above-fold { display: block; min-height: 0; }
 
 /* exclusivity: full-bleed bands, content in the shared container */
 .deals-band .deals-ico { font-size: 38px; color: var(--sage); }
