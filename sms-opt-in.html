@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#163A34" />
+<title>Get Casa Concierge by text</title>
+<meta name="description" content="Enter your mobile number to get home help by text from Casa Concierge (Scaling Adventures, LLC)." />
+<meta name="robots" content="noindex" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@600;700;800&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+<!-- =========================================================================
+     SELF-CONTAINED SMS OPT-IN FORM — Casa Concierge (Scaling Adventures, LLC)
+     - Two optional consent checkboxes (transactional + marketing). Neither is
+       required; the form submits whether or not either is checked.
+     - On submit, POSTs an audit JSON record to a configurable webhook with the
+       EXACT consent text strings that were displayed (read from the DOM).
+     - Brand reads exactly "Casa Concierge (Scaling Adventures, LLC)".
+     ========================================================================= -->
+<style>
+  :root{
+    --bone:#F2EDE4; --white:#fff;
+    --ink:#171A21; --ink-soft:#3B414C; --ink-mute:#5B616E;
+    --pine:#1F4D45; --pine-deep:#163A34; --pine-tint:#E4ECE8;
+    --gold:#E0A23B; --gold-deep:#C7861E;
+    --line:#E2DACC; --line-soft:#EDE7DB;
+    --display:"Hanken Grotesk",system-ui,-apple-system,sans-serif;
+    --body:"Public Sans",system-ui,-apple-system,sans-serif;
+    --disc:#4A515E; /* disclosure text: AA-contrast on white at 12px */
+  }
+  *{ box-sizing:border-box; }
+  html,body{ margin:0; padding:0; }
+  body{
+    font-family:var(--body); color:var(--ink); background:var(--bone);
+    -webkit-font-smoothing:antialiased; min-height:100svh;
+    display:flex; align-items:center; justify-content:center; padding:16px;
+  }
+  .card{
+    width:100%; max-width:400px; background:var(--white);
+    border:1px solid var(--line); border-radius:20px;
+    box-shadow:0 18px 50px rgba(23,26,33,.10), 0 1px 2px rgba(23,26,33,.05);
+    padding:20px 20px 16px;
+  }
+  .eyebrow{
+    font-weight:700; font-size:11px; letter-spacing:.14em; text-transform:uppercase;
+    color:var(--pine); display:flex; align-items:center; gap:7px; margin-bottom:8px;
+  }
+  .eyebrow .mark{
+    width:22px; height:22px; border-radius:7px; background:var(--pine); color:#fff;
+    display:grid; place-items:center; flex:none;
+  }
+  .eyebrow .mark svg{ width:13px; height:13px; }
+  h1{
+    font-family:var(--display); font-weight:800; letter-spacing:-.02em; line-height:1.05;
+    font-size:24px; margin:0 0 4px;
+  }
+  .sub{ font-size:13.5px; line-height:1.4; color:var(--ink-mute); margin:0 0 14px; }
+
+  .field{ margin-bottom:12px; }
+  .field label{ display:block; font-weight:700; font-size:12.5px; color:var(--ink-soft); margin-bottom:5px; }
+  .phone-wrap{ position:relative; }
+  .phone-wrap .pico{
+    position:absolute; left:13px; top:50%; transform:translateY(-50%);
+    width:18px; height:18px; color:var(--pine); pointer-events:none;
+  }
+  input[type="tel"]{
+    width:100%; min-height:50px; background:var(--white);
+    border:1.5px solid var(--line); border-radius:12px;
+    padding:0 14px 0 40px; font-family:var(--body); font-size:16px; color:var(--ink);
+    transition:border-color .15s, box-shadow .15s;
+  }
+  input[type="tel"]::placeholder{ color:#A9A294; }
+  input[type="tel"]:focus{ outline:none; border-color:var(--pine); box-shadow:0 0 0 3px rgba(31,77,69,.16); }
+
+  /* consent checkboxes */
+  .consent{ display:flex; gap:10px; align-items:flex-start; padding:8px 0; cursor:pointer; }
+  .consent + .consent{ border-top:1px solid var(--line-soft); }
+  .consent input{ position:absolute; opacity:0; width:1px; height:1px; }
+  .box{
+    width:22px; height:22px; flex:none; margin-top:1px; border-radius:6px;
+    border:1.6px solid var(--line); background:var(--white);
+    display:grid; place-items:center; color:transparent;
+    transition:background .15s, border-color .15s, color .15s;
+  }
+  .box svg{ width:13px; height:13px; }
+  .consent input:checked + .box{ background:var(--gold); border-color:var(--gold); color:#2A1E08; }
+  .consent input:focus-visible + .box{ outline:3px solid var(--pine); outline-offset:2px; }
+  .c-text{ min-width:0; }
+  .c-label{ display:block; font-weight:600; font-size:13.5px; line-height:1.3; color:var(--ink); }
+  .c-disc{ display:block; font-size:12px; line-height:1.35; color:var(--disc); margin-top:2px; }
+
+  button[type="submit"]{
+    width:100%; min-height:52px; margin-top:12px;
+    font-family:var(--display); font-weight:700; font-size:17px; letter-spacing:-.01em;
+    border:none; border-radius:12px; background:var(--gold); color:#2A1E08;
+    display:inline-flex; align-items:center; justify-content:center; gap:9px;
+    cursor:pointer; box-shadow:0 8px 22px rgba(224,162,59,.32);
+    transition:transform .14s cubic-bezier(.16,1,.3,1), background .2s, box-shadow .2s;
+    -webkit-tap-highlight-color:transparent;
+  }
+  button[type="submit"]:hover:not(:disabled){ background:var(--gold-deep); transform:translateY(-1px); }
+  button[type="submit"]:active:not(:disabled){ transform:scale(.98); }
+  button[type="submit"]:disabled{ opacity:.55; cursor:not-allowed; box-shadow:none; }
+  button[type="submit"]:focus-visible{ outline:3px solid var(--pine); outline-offset:2px; }
+  .arrow{ width:18px; height:18px; }
+
+  .hint{ font-size:12px; color:var(--gold-deep); margin:7px 2px 0; min-height:0; }
+  .hint:empty{ display:none; }
+
+  .fine{ font-size:11.5px; line-height:1.45; color:var(--ink-mute); margin:12px 2px 0; }
+  .fine a{ color:var(--pine); font-weight:600; text-decoration:underline; }
+  .fine a:focus-visible{ outline:3px solid var(--pine); outline-offset:2px; border-radius:3px; }
+  .fine .noshare{ display:block; margin-top:5px; }
+
+  /* success state */
+  .done{ text-align:center; padding:14px 6px; }
+  .done .check{
+    width:54px; height:54px; margin:0 auto 12px; border-radius:50%;
+    background:var(--pine-tint); color:var(--pine); display:grid; place-items:center;
+  }
+  .done .check svg{ width:28px; height:28px; }
+  .done h2{ font-family:var(--display); font-weight:800; font-size:21px; margin:0 0 6px; color:var(--ink); }
+  .done p{ font-size:13.5px; line-height:1.45; color:var(--ink-mute); margin:0; }
+  [hidden]{ display:none !important; }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ transition:none !important; animation:none !important; }
+  }
+</style>
+</head>
+<body>
+  <main class="card" role="main">
+    <form id="optin" novalidate aria-describedby="finePrint">
+      <div class="eyebrow">
+        <span class="mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3 3 10v10a1 1 0 0 0 1 1h5v-6h6v6h5a1 1 0 0 0 1-1V10z"/></svg>
+        </span>
+        Casa Concierge
+      </div>
+      <h1>Get home help by text.</h1>
+      <p class="sub">Enter your mobile number and we’ll text you back.</p>
+
+      <div class="field">
+        <label for="phone">Mobile number</label>
+        <div class="phone-wrap">
+          <svg class="pico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          <input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel-national"
+                 placeholder="(555) 123-4567" aria-describedby="phoneHint" required />
+        </div>
+      </div>
+
+      <label class="consent" for="txConsent">
+        <input type="checkbox" id="txConsent" name="transactional_consent" />
+        <span class="box" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></span>
+        <span class="c-text">
+          <span class="c-label" id="txLabel">Yes, text me updates about my home service requests.</span>
+          <span class="c-disc" id="txDisc">Messages are sent by Casa Concierge (Scaling Adventures, LLC). Msg &amp; data rates may apply. Msg frequency varies. Reply STOP to opt out, HELP for help.</span>
+        </span>
+      </label>
+
+      <label class="consent" for="mkConsent">
+        <input type="checkbox" id="mkConsent" name="marketing_consent" />
+        <span class="box" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></span>
+        <span class="c-text">
+          <span class="c-label" id="mkLabel">Yes, text me exclusive offers and seasonal deals.</span>
+          <span class="c-disc" id="mkDisc">Offers are sent by Casa Concierge (Scaling Adventures, LLC). Consent is not a condition of any purchase. Msg &amp; data rates may apply. Msg frequency varies. Reply STOP to opt out, HELP for help.</span>
+        </span>
+      </label>
+
+      <button type="submit" id="submitBtn">
+        Get started
+        <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </button>
+      <p class="hint" id="phoneHint" role="alert" aria-live="polite"></p>
+
+      <p class="fine" id="finePrint">
+        By continuing you agree to our
+        <a href="terms-of-service.html" target="_blank" rel="noopener">Terms of Service</a> and
+        <a href="privacy-policy.html" target="_blank" rel="noopener">Privacy Policy</a>.
+        <span class="noshare">Casa Concierge does not share your information with third parties except as needed to provide messaging services.</span>
+      </p>
+    </form>
+
+    <div class="done" id="done" hidden>
+      <div class="check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
+      <h2>You’re all set.</h2>
+      <p id="doneMsg">Thanks! We’ll text you shortly from Casa Concierge.</p>
+    </div>
+  </main>
+
+<script>
+(function () {
+  "use strict";
+
+  /* ---- CONFIG: set your opt-in webhook here, or define window.SMS_OPTIN_WEBHOOK_URL ---- */
+  var WEBHOOK_URL = (typeof window !== "undefined" && window.SMS_OPTIN_WEBHOOK_URL) || "";
+
+  var form    = document.getElementById("optin");
+  var phone   = document.getElementById("phone");
+  var hint    = document.getElementById("phoneHint");
+  var btn     = document.getElementById("submitBtn");
+  var tx      = document.getElementById("txConsent");
+  var mk      = document.getElementById("mkConsent");
+  var doneEl  = document.getElementById("done");
+
+  function digitsOf(v) { return (v || "").replace(/\D/g, "").slice(0, 10); }
+
+  /* (XXX) XXX-XXXX live formatting */
+  function fmt(v) {
+    var d = digitsOf(v);
+    if (d.length < 4) return d;
+    if (d.length < 7) return "(" + d.slice(0, 3) + ") " + d.slice(3);
+    return "(" + d.slice(0, 3) + ") " + d.slice(3, 6) + "-" + d.slice(6);
+  }
+  function isValid() { return digitsOf(phone.value).length === 10; }
+  function toE164() { return "+1" + digitsOf(phone.value); }
+
+  function syncBtn() { btn.disabled = !isValid(); }
+
+  phone.addEventListener("input", function () {
+    var pos = phone.selectionStart, before = phone.value;
+    phone.value = fmt(phone.value);
+    // keep caret sensible after reformat
+    if (pos === before.length) phone.selectionStart = phone.selectionEnd = phone.value.length;
+    if (hint.textContent) hint.textContent = "";
+    syncBtn();
+  });
+  syncBtn();
+
+  /* Read the EXACT text shown on screen so the stored record matches the display. */
+  function shownText(labelId, discId) {
+    var l = document.getElementById(labelId).textContent.replace(/\s+/g, " ").trim();
+    var d = document.getElementById(discId).textContent.replace(/\s+/g, " ").trim();
+    return l + " " + d;
+  }
+
+  function buildPayload() {
+    return {
+      phone: toE164(),                          // E.164
+      timestamp: new Date().toISOString(),
+      page_url: window.location.href,
+      transactional_consent: !!tx.checked,
+      marketing_consent: !!mk.checked,
+      // exact consent text strings as displayed, for the audit record:
+      transactional_consent_text: shownText("txLabel", "txDisc"),
+      marketing_consent_text: shownText("mkLabel", "mkDisc")
+    };
+  }
+
+  async function postConsent(payload) {
+    if (!WEBHOOK_URL) {
+      console.warn("SMS opt-in webhook URL is not configured (window.SMS_OPTIN_WEBHOOK_URL). Consent record was not sent.", payload);
+      return { ok: false, skipped: true };
+    }
+    var ctrl = new AbortController();
+    var t = setTimeout(function () { ctrl.abort(); }, 4500);
+    try {
+      var res = await fetch(WEBHOOK_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+        signal: ctrl.signal,
+        keepalive: true
+      });
+      return { ok: res.ok, status: res.status };
+    } catch (err) {
+      console.warn("SMS opt-in webhook failed.", err);
+      return { ok: false, error: err };
+    } finally {
+      clearTimeout(t);
+    }
+  }
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    if (!isValid()) {                            // only the phone gates submit
+      hint.textContent = "Enter a 10-digit U.S. mobile number.";
+      phone.focus();
+      return;
+    }
+    btn.disabled = true;
+    var payload = buildPayload();                // capture consent states + exact text
+    postConsent(payload).finally(function () {
+      form.setAttribute("hidden", "");
+      doneEl.removeAttribute("hidden");
+      doneEl.focus && doneEl.focus();
+    });
+  });
+})();
+</script>
+</body>
+</html>
