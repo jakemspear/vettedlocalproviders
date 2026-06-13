@@ -90,16 +90,22 @@ function App() {
     await window.submitLeadCheckpoint(checkpoint, data);
   };
 
+  /* "express" variant (e.g. /roof-inspection): form submit jumps straight to the
+     final page — no email, no loading, no additional-services wall. Set via
+     window.FUNNEL_VARIANT = "express" in the page shell. Default funnel is unaffected. */
+  const express = typeof window !== "undefined" && window.FUNNEL_VARIANT === "express";
+
   const handleInitialComplete = async (nextAnswers) => {
     const leadAnswers = {
       ...nextAnswers,
       offer: resolveOfferLabel(t.offer, t.monsoon),
       offerId: t.offer,
       opportunityValue: 350,
+      ...(express ? { funnelVariant: "express" } : {}),
     };
     setAnswers(leadAnswers);
     await syncLead("initial_form", leadAnswers);
-    go("email");
+    go(express ? "confirmation" : "email");
   };
 
   const handleEmailDone = async ({ email, emailCaptureStatus }) => {

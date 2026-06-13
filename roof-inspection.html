@@ -4,340 +4,66 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <meta name="theme-color" content="#163A34" />
-<title>Casa Concierge · Free AZ Roof Inspection</title>
-<meta name="description" content="Book a free roof inspection in under 2 minutes. Enter your number and schedule by text or phone with Casa Concierge (Scaling Adventures, LLC)." />
+<meta name="google-maps-api-key" content="AIzaSyByjUn0F_SvIw0Cg2TLRbOscTG858qLNOU" />
+<!-- Express variant of the roofing funnel: same front end, trimmed post-submit
+     (no email / loading / additional-services). Marked noindex to avoid
+     duplicate-content with /roofing-inspection. -->
 <meta name="robots" content="noindex" />
+<title>Casa Concierge · Free AZ Roof Inspection</title>
+
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@600;700;800&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@500;600;700;800&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/bold/style.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/fill/style.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/duotone/style.css" />
 
-<!-- =========================================================================
-     ROOF INSPECTION — two-CTA capture — Casa Concierge (Scaling Adventures, LLC)
-     - We initiate contact (outbound): user picks "Schedule by Text" or
-       "Schedule by Phone"; backend fires the SMS or voice-AI call.
-     - Transactional consent is REQUIRED before either button fires (outbound
-       contact); marketing consent stays optional.
-     - On submit, POSTs an audit JSON record to the webhook with the channel
-       (sms | voice) and the EXACT consent text strings displayed (read from DOM).
-     - Brand reads exactly "Casa Concierge (Scaling Adventures, LLC)".
-     ========================================================================= -->
-<style>
-  :root{
-    --bone:#F2EDE4; --white:#fff;
-    --ink:#171A21; --ink-soft:#3B414C; --ink-mute:#5B616E;
-    --pine:#1F4D45; --pine-deep:#163A34; --pine-tint:#E4ECE8;
-    --gold:#E0A23B; --gold-deep:#C7861E;
-    --line:#E2DACC; --line-soft:#EDE7DB;
-    --display:"Hanken Grotesk",system-ui,-apple-system,sans-serif;
-    --body:"Public Sans",system-ui,-apple-system,sans-serif;
-    --disc:#4A515E; /* disclosure text: AA-contrast on white at 12px */
-  }
-  *{ box-sizing:border-box; }
-  html,body{ margin:0; padding:0; }
-  body{
-    font-family:var(--body); color:var(--ink); background:var(--bone);
-    -webkit-font-smoothing:antialiased; min-height:100svh;
-    display:flex; align-items:center; justify-content:center; padding:16px;
-  }
-  .card{
-    width:100%; max-width:400px; background:var(--white);
-    border:1px solid var(--line); border-radius:20px;
-    box-shadow:0 18px 50px rgba(23,26,33,.10), 0 1px 2px rgba(23,26,33,.05);
-    padding:20px 20px 16px;
-  }
-  .eyebrow{
-    font-weight:700; font-size:11px; letter-spacing:.14em; text-transform:uppercase;
-    color:var(--pine); display:flex; align-items:center; gap:7px; margin-bottom:8px;
-  }
-  .eyebrow .mark{
-    width:22px; height:22px; border-radius:7px; background:var(--pine); color:#fff;
-    display:grid; place-items:center; flex:none;
-  }
-  .eyebrow .mark svg{ width:13px; height:13px; }
-  h1{
-    font-family:var(--display); font-weight:800; letter-spacing:-.02em; line-height:1.05;
-    font-size:24px; margin:0 0 4px;
-  }
-  .sub{ font-size:13.5px; line-height:1.4; color:var(--ink-mute); margin:0 0 14px; }
-
-  .field{ margin-bottom:12px; }
-  .field label{ display:block; font-weight:700; font-size:12.5px; color:var(--ink-soft); margin-bottom:5px; }
-  .phone-wrap{ position:relative; }
-  .phone-wrap .pico{
-    position:absolute; left:13px; top:50%; transform:translateY(-50%);
-    width:18px; height:18px; color:var(--pine); pointer-events:none;
-  }
-  input[type="tel"]{
-    width:100%; min-height:50px; background:var(--white);
-    border:1.5px solid var(--line); border-radius:12px;
-    padding:0 14px 0 40px; font-family:var(--body); font-size:16px; color:var(--ink);
-    transition:border-color .15s, box-shadow .15s;
-  }
-  input[type="tel"]::placeholder{ color:#A9A294; }
-  input[type="tel"]:focus{ outline:none; border-color:var(--pine); box-shadow:0 0 0 3px rgba(31,77,69,.16); }
-
-  /* consent checkboxes */
-  .consent{ display:flex; gap:10px; align-items:flex-start; padding:8px 0; cursor:pointer; }
-  .consent + .consent{ border-top:1px solid var(--line-soft); }
-  .consent input{ position:absolute; opacity:0; width:1px; height:1px; }
-  .box{
-    width:22px; height:22px; flex:none; margin-top:1px; border-radius:6px;
-    border:1.6px solid var(--line); background:var(--white);
-    display:grid; place-items:center; color:transparent;
-    transition:background .15s, border-color .15s, color .15s;
-  }
-  .box svg{ width:13px; height:13px; }
-  .consent input:checked + .box{ background:var(--gold); border-color:var(--gold); color:#2A1E08; }
-  .consent input:focus-visible + .box{ outline:3px solid var(--pine); outline-offset:2px; }
-  .c-text{ min-width:0; }
-  .c-label{ display:block; font-weight:600; font-size:13.5px; line-height:1.3; color:var(--ink); }
-  .c-disc{ display:block; font-size:12px; line-height:1.35; color:var(--disc); margin-top:2px; }
-
-  .cta-row{ display:flex; gap:10px; margin-top:12px; }
-  .cta{
-    flex:1 1 0; min-width:0; min-height:54px; padding:0 8px;
-    font-family:var(--display); font-weight:700; font-size:15px; letter-spacing:-.015em; white-space:nowrap;
-    border-radius:12px; border:2px solid transparent;
-    display:inline-flex; align-items:center; justify-content:center; gap:7px;
-    cursor:pointer; -webkit-tap-highlight-color:transparent;
-    transition:transform .14s cubic-bezier(.16,1,.3,1), background .2s, box-shadow .2s, border-color .2s;
-  }
-  .cta svg{ width:17px; height:17px; flex:none; }
-  .cta-text{ background:var(--gold); color:#2A1E08; box-shadow:0 8px 22px rgba(224,162,59,.32); }
-  .cta-text:hover:not(:disabled){ background:var(--gold-deep); transform:translateY(-1px); }
-  .cta-call{ background:var(--pine); color:#fff; box-shadow:0 8px 22px rgba(31,77,69,.26); }
-  .cta-call:hover:not(:disabled){ background:var(--pine-deep); transform:translateY(-1px); }
-  .cta:active:not(:disabled){ transform:scale(.98); }
-  .cta:disabled{ opacity:.5; cursor:not-allowed; box-shadow:none; }
-  .cta:focus-visible{ outline:3px solid var(--pine); outline-offset:2px; }
-
-  .hint{ font-size:12px; color:var(--gold-deep); margin:7px 2px 0; min-height:0; }
-  .hint:empty{ display:none; }
-
-  .fine{ font-size:11.5px; line-height:1.45; color:var(--ink-mute); margin:12px 2px 0; }
-  .fine a{ color:var(--pine); font-weight:600; text-decoration:underline; }
-  .fine a:focus-visible{ outline:3px solid var(--pine); outline-offset:2px; border-radius:3px; }
-  .fine .noshare{ display:block; margin-top:5px; }
-
-  /* success state */
-  .done{ text-align:center; padding:14px 6px; }
-  .done .check{
-    width:54px; height:54px; margin:0 auto 12px; border-radius:50%;
-    background:var(--pine-tint); color:var(--pine); display:grid; place-items:center;
-  }
-  .done .check svg{ width:28px; height:28px; }
-  .done h2{ font-family:var(--display); font-weight:800; font-size:21px; margin:0 0 6px; color:var(--ink); }
-  .done p{ font-size:13.5px; line-height:1.45; color:var(--ink-mute); margin:0; }
-  [hidden]{ display:none !important; }
-
-  @media (prefers-reduced-motion: reduce){
-    *{ transition:none !important; animation:none !important; }
-  }
-</style>
+<link rel="stylesheet" href="styles.css?v=20260613g" />
+<link rel="stylesheet" href="screens.css?v=20260613g" />
+<link rel="stylesheet" href="desktop.css?v=20260613g" />
 </head>
 <body>
-  <main class="card" role="main">
-    <form id="optin" novalidate aria-describedby="finePrint">
-      <div class="eyebrow">
-        <span class="mark" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3 3 10v10a1 1 0 0 0 1 1h5v-6h6v6h5a1 1 0 0 0 1-1V10z"/></svg>
-        </span>
-        Casa Concierge
-      </div>
-      <h1>Your free roof inspection.</h1>
-      <p class="sub">Booked in under 2 minutes by a vetted local roofer. Enter your number and pick how you’d like to schedule.</p>
-
-      <div class="field">
-        <label for="phone">Mobile number</label>
-        <div class="phone-wrap">
-          <svg class="pico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-          <input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel-national"
-                 placeholder="(555) 123-4567" aria-describedby="phoneHint" required />
-        </div>
-      </div>
-
-      <label class="consent" for="txConsent">
-        <input type="checkbox" id="txConsent" name="transactional_consent" />
-        <span class="box" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></span>
-        <span class="c-text">
-          <span class="c-label" id="txLabel">Yes — text or call me about my home service requests.</span>
-          <span class="c-disc" id="txDisc">Messages and calls are sent by Casa Concierge (Scaling Adventures, LLC), including by automated technology. Msg &amp; data rates may apply. Msg frequency varies. Reply STOP to opt out, HELP for help.</span>
-        </span>
-      </label>
-
-      <label class="consent" for="mkConsent">
-        <input type="checkbox" id="mkConsent" name="marketing_consent" />
-        <span class="box" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></span>
-        <span class="c-text">
-          <span class="c-label" id="mkLabel">Yes — text or call me with exclusive offers and seasonal deals.</span>
-          <span class="c-disc" id="mkDisc">Sent by Casa Concierge (Scaling Adventures, LLC), including by automated technology. Consent is not a condition of any purchase. Msg &amp; data rates may apply. Msg frequency varies. Reply STOP to opt out, HELP for help.</span>
-        </span>
-      </label>
-
-      <div class="cta-row">
-        <button type="submit" id="textBtn" class="cta cta-text" data-channel="sms">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
-          Schedule by Text
-        </button>
-        <button type="submit" id="callBtn" class="cta cta-call" data-channel="voice">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-          Schedule by Phone
-        </button>
-      </div>
-      <p class="hint" id="phoneHint" role="alert" aria-live="polite"></p>
-
-      <p class="fine" id="finePrint">
-        By continuing you agree to our
-        <a href="terms-of-service.html" target="_blank" rel="noopener">Terms of Service</a> and
-        <a href="privacy-policy.html" target="_blank" rel="noopener">Privacy Policy</a>.
-        <span class="noshare">Casa Concierge does not share your information with third parties except as needed to provide messaging services.</span>
-      </p>
-    </form>
-
-    <div class="done" id="done" hidden>
-      <div class="check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
-      <h2>You’re all set.</h2>
-      <p id="doneMsg">Thanks! We’ll text you shortly from Casa Concierge.</p>
-    </div>
-  </main>
+<div class="stage">
+  <div class="app">
+    <div id="root"></div>
+  </div>
+</div>
 
 <script>
-  /* Lead destination — same GoHighLevel webhook the full roofing funnel posts to.
-     Override by defining window.SMS_OPTIN_WEBHOOK_URL before this script runs. */
-  window.GHL_WEBHOOK_URL = window.GHL_WEBHOOK_URL ||
-    "https://services.leadconnectorhq.com/hooks/0C22tQbVS0yHDEPGrb7Y/webhook-trigger/2e03d749-83ca-47a4-9b30-ec36b2bbc62c";
+  /* Set a referrer-restricted browser key here or before this page loads:
+     window.GOOGLE_MAPS_API_KEY = "YOUR_KEY"; */
+  window.GHL_WEBHOOK_URL = "https://services.leadconnectorhq.com/hooks/0C22tQbVS0yHDEPGrb7Y/webhook-trigger/2e03d749-83ca-47a4-9b30-ec36b2bbc62c";
+  /* Express flow: form submit -> confirmation. Skips email, loading, offer wall. */
+  window.FUNNEL_VARIANT = "express";
 </script>
-<script>
-(function () {
-  "use strict";
 
-  /* ---- CONFIG: posts to the GHL webhook by default; SMS_OPTIN_WEBHOOK_URL wins if set ---- */
-  var WEBHOOK_URL = (typeof window !== "undefined" &&
-    (window.SMS_OPTIN_WEBHOOK_URL || window.GHL_WEBHOOK_URL)) || "";
+<template id="__bundler_thumbnail" data-bg-color="#1F4D45">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+    <rect width="100" height="100" fill="#1F4D45" />
+    <circle cx="50" cy="42" r="22" fill="none" stroke="#E0A23B" stroke-width="6" stroke-linecap="round" stroke-dasharray="104 138" transform="rotate(-90 50 42)" />
+    <rect x="34" y="68" width="32" height="8" rx="4" fill="#E0A23B" />
+  </svg>
+</template>
 
-  var form    = document.getElementById("optin");
-  var phone   = document.getElementById("phone");
-  var hint    = document.getElementById("phoneHint");
-  var textBtn = document.getElementById("textBtn");
-  var callBtn = document.getElementById("callBtn");
-  var tx      = document.getElementById("txConsent");
-  var mk      = document.getElementById("mkConsent");
-  var doneEl  = document.getElementById("done");
-  var doneMsg = document.getElementById("doneMsg");
-  var doneH   = doneEl.querySelector("h2");
+<!-- React + Babel (pinned) -->
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
 
-  function digitsOf(v) { return (v || "").replace(/\D/g, "").slice(0, 10); }
+<!-- web components -->
+<script src="image-slot.js?v=20260613g"></script>
+<script src="lead-sync.js?v=20260613g"></script>
 
-  /* (XXX) XXX-XXXX live formatting */
-  function fmt(v) {
-    var d = digitsOf(v);
-    if (d.length < 4) return d;
-    if (d.length < 7) return "(" + d.slice(0, 3) + ") " + d.slice(3);
-    return "(" + d.slice(0, 3) + ") " + d.slice(3, 6) + "-" + d.slice(6);
-  }
-  function isValid() { return digitsOf(phone.value).length === 10; }
-  function toE164() { return "+1" + digitsOf(phone.value); }
-
-  function syncBtn() {
-    var ok = isValid();
-    textBtn.disabled = !ok;
-    callBtn.disabled = !ok;
-  }
-
-  phone.addEventListener("input", function () {
-    var pos = phone.selectionStart, before = phone.value;
-    phone.value = fmt(phone.value);
-    // keep caret sensible after reformat
-    if (pos === before.length) phone.selectionStart = phone.selectionEnd = phone.value.length;
-    if (hint.textContent) hint.textContent = "";
-    syncBtn();
-  });
-  syncBtn();
-
-  /* Read the EXACT text shown on screen so the stored record matches the display. */
-  function shownText(labelId, discId) {
-    var l = document.getElementById(labelId).textContent.replace(/\s+/g, " ").trim();
-    var d = document.getElementById(discId).textContent.replace(/\s+/g, " ").trim();
-    return l + " " + d;
-  }
-
-  function buildPayload(channel) {
-    return {
-      phone: toE164(),                          // E.164
-      channel: channel,                         // "sms" or "voice" — which outbound contact they requested
-      source: "roof-inspection-2cta",           // distinguishes this funnel in GHL routing
-      offer: "free roof inspection",
-      timestamp: new Date().toISOString(),
-      page_url: window.location.href,
-      transactional_consent: !!tx.checked,
-      marketing_consent: !!mk.checked,
-      // exact consent text strings as displayed, for the audit record:
-      transactional_consent_text: shownText("txLabel", "txDisc"),
-      marketing_consent_text: shownText("mkLabel", "mkDisc")
-    };
-  }
-
-  async function postConsent(payload) {
-    if (!WEBHOOK_URL) {
-      console.warn("SMS opt-in webhook URL is not configured (window.SMS_OPTIN_WEBHOOK_URL). Consent record was not sent.", payload);
-      return { ok: false, skipped: true };
-    }
-    var ctrl = new AbortController();
-    var t = setTimeout(function () { ctrl.abort(); }, 4500);
-    try {
-      var res = await fetch(WEBHOOK_URL, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-        signal: ctrl.signal,
-        keepalive: true
-      });
-      return { ok: res.ok, status: res.status };
-    } catch (err) {
-      console.warn("SMS opt-in webhook failed.", err);
-      return { ok: false, error: err };
-    } finally {
-      clearTimeout(t);
-    }
-  }
-
-  form.addEventListener("submit", function (e) {
-    e.preventDefault();
-
-    // Which door did they press? (button[type=submit] sets e.submitter)
-    var pressed = e.submitter || textBtn;
-    var channel = pressed.getAttribute("data-channel") || "sms";
-
-    if (!isValid()) {                            // need a valid number to reach them
-      hint.textContent = "Enter a 10-digit U.S. mobile number.";
-      phone.focus();
-      return;
-    }
-    // Outbound contact REQUIRES affirmative consent — we're reaching out to them.
-    if (!tx.checked) {
-      hint.textContent = "Please check the box above so we can " +
-        (channel === "voice" ? "call" : "text") + " you.";
-      tx.focus();
-      return;
-    }
-
-    textBtn.disabled = true;
-    callBtn.disabled = true;
-    var payload = buildPayload(channel);         // capture channel + consent states + exact text
-    postConsent(payload).finally(function () {
-      if (channel === "voice") {
-        doneH.textContent  = "Calling you now.";
-        doneMsg.textContent = "Keep your phone handy — Casa Concierge is calling you in a moment.";
-      } else {
-        doneH.textContent  = "Texting you now.";
-        doneMsg.textContent = "Check your messages — Casa Concierge is texting you in a moment.";
-      }
-      form.setAttribute("hidden", "");
-      doneEl.removeAttribute("hidden");
-      doneEl.focus && doneEl.focus();
-    });
-  });
-})();
-</script>
+<!-- app (order matters: helpers export to window before app mounts) -->
+<script type="text/babel" src="tweaks-panel.jsx?v=20260613g"></script>
+<script type="text/babel" src="i18n.jsx?v=20260613g"></script>
+<script type="text/babel" src="strings-en.jsx?v=20260613g"></script>
+<script type="text/babel" src="strings-es.jsx?v=20260613g"></script>
+<script type="text/babel" src="ui.jsx?v=20260613g"></script>
+<script type="text/babel" src="landing.jsx?v=20260613g"></script>
+<script type="text/babel" src="form.jsx?v=20260613g"></script>
+<script type="text/babel" src="thankyou.jsx?v=20260613g"></script>
+<script type="text/babel" src="app.jsx?v=20260613g"></script>
 </body>
 </html>
