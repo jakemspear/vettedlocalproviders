@@ -157,8 +157,18 @@
 .cc-ben-t { font-size: 14.5px; line-height: 1.55; color: var(--ink-mute); margin: 0; }
 
 /* ── testimonials ───────────────────────────────────────────────── */
-.cc-rev-grid { display: grid; grid-template-columns: 1fr; gap: 14px; }
+/* auto-scrolling testimonial marquee (full-bleed, seamless loop) */
+.cc-rev-marquee { position: relative; left: 50%; width: 100vw; margin-left: -50vw; margin-top: 26px; overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent); mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent); }
+.cc-rev-track { display: flex; width: max-content; padding: 10px 16px; animation: ccRevScroll 48s linear infinite; }
+.cc-rev-marquee:hover .cc-rev-track, .cc-rev-track:active { animation-play-state: paused; }
+@keyframes ccRevScroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@media (prefers-reduced-motion: reduce) {
+  .cc-rev-marquee { overflow-x: auto; -webkit-overflow-scrolling: touch; -webkit-mask-image: none; mask-image: none; }
+  .cc-rev-track { animation: none; }
+}
 .cc-rev { background: var(--white); border: 1px solid var(--line-soft); border-radius: var(--r-lg); padding: 24px; box-shadow: var(--shadow-sm); display: flex; flex-direction: column; gap: 12px; }
+.cc-rev-track .cc-rev { flex: 0 0 300px; width: 300px; margin-right: 16px; }
+.cc-rev-track .cc-rev figcaption { margin-top: auto; }
 .cc-rev blockquote { margin: 0; font-size: 15.5px; line-height: 1.55; color: var(--ink-soft); }
 .cc-rev figcaption { display: flex; flex-direction: column; gap: 1px; }
 .cc-rev-name { font-family: var(--display); font-weight: 800; font-size: 15px; color: var(--ink); }
@@ -232,7 +242,6 @@
   .cc-pain-grid { grid-template-columns: repeat(2, 1fr); }
   .cc-steps { grid-template-columns: repeat(2, 1fr); }
   .cc-ben-grid { grid-template-columns: repeat(2, 1fr); }
-  .cc-rev-grid { grid-template-columns: repeat(3, 1fr); }
   .cc-svc-grid { grid-template-columns: repeat(4, 1fr); }
   .cc-hero-cta { flex-direction: row; }
   .cc-hero-cta .btn { width: auto; min-width: 230px; }
