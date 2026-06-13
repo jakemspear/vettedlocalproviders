@@ -43,11 +43,11 @@
     width:100%; max-width:400px; background:var(--white);
     border:1px solid var(--line); border-radius:20px;
     box-shadow:0 18px 50px rgba(23,26,33,.10), 0 1px 2px rgba(23,26,33,.05);
-    padding:20px 20px 16px;
+    padding:16px 18px 14px;
   }
   .eyebrow{
     font-weight:700; font-size:11px; letter-spacing:.14em; text-transform:uppercase;
-    color:var(--pine); display:flex; align-items:center; gap:7px; margin-bottom:8px;
+    color:var(--pine); display:flex; align-items:center; gap:7px; margin-bottom:6px;
   }
   .eyebrow .mark{
     width:22px; height:22px; border-radius:7px; background:var(--pine); color:#fff;
@@ -56,19 +56,19 @@
   .eyebrow .mark svg{ width:13px; height:13px; }
   h1{
     font-family:var(--display); font-weight:800; letter-spacing:-.02em; line-height:1.05;
-    font-size:24px; margin:0 0 4px;
+    font-size:22px; margin:0 0 3px;
   }
-  .sub{ font-size:13.5px; line-height:1.4; color:var(--ink-mute); margin:0 0 14px; }
+  .sub{ font-size:13px; line-height:1.35; color:var(--ink-mute); margin:0 0 10px; }
 
-  .field{ margin-bottom:12px; }
-  .field label{ display:block; font-weight:700; font-size:12.5px; color:var(--ink-soft); margin-bottom:5px; }
+  .field{ margin-bottom:10px; }
+  .field label{ display:block; font-weight:700; font-size:12px; color:var(--ink-soft); margin-bottom:4px; }
   .phone-wrap{ position:relative; }
   .phone-wrap .pico{
     position:absolute; left:13px; top:50%; transform:translateY(-50%);
     width:18px; height:18px; color:var(--pine); pointer-events:none;
   }
   input[type="tel"]{
-    width:100%; min-height:50px; background:var(--white);
+    width:100%; min-height:48px; background:var(--white);
     border:1.5px solid var(--line); border-radius:12px;
     padding:0 14px 0 40px; font-family:var(--body); font-size:16px; color:var(--ink);
     transition:border-color .15s, box-shadow .15s;
@@ -77,7 +77,7 @@
   input[type="tel"]:focus{ outline:none; border-color:var(--pine); box-shadow:0 0 0 3px rgba(31,77,69,.16); }
 
   /* consent checkboxes */
-  .consent{ display:flex; gap:10px; align-items:flex-start; padding:8px 0; cursor:pointer; }
+  .consent{ display:flex; gap:10px; align-items:flex-start; padding:7px 0; cursor:pointer; }
   .consent + .consent{ border-top:1px solid var(--line-soft); }
   .consent input{ position:absolute; opacity:0; width:1px; height:1px; }
   .box{
@@ -90,12 +90,12 @@
   .consent input:checked + .box{ background:var(--gold); border-color:var(--gold); color:#2A1E08; }
   .consent input:focus-visible + .box{ outline:3px solid var(--pine); outline-offset:2px; }
   .c-text{ min-width:0; }
-  .c-label{ display:block; font-weight:600; font-size:13.5px; line-height:1.3; color:var(--ink); }
-  .c-disc{ display:block; font-size:12px; line-height:1.35; color:var(--disc); margin-top:2px; }
+  .c-label{ display:block; font-weight:600; font-size:13px; line-height:1.28; color:var(--ink); }
+  .c-disc{ display:block; font-size:11px; line-height:1.3; color:var(--disc); margin-top:2px; }
 
-  .cta-row{ display:flex; gap:10px; margin-top:12px; }
+  .cta-row{ display:flex; gap:10px; margin-top:11px; }
   .cta{
-    flex:1 1 0; min-width:0; min-height:54px; padding:0 8px;
+    flex:1 1 0; min-width:0; min-height:50px; padding:0 8px;
     font-family:var(--display); font-weight:700; font-size:15px; letter-spacing:-.015em; white-space:nowrap;
     border-radius:12px; border:2px solid transparent;
     display:inline-flex; align-items:center; justify-content:center; gap:7px;
@@ -114,10 +114,9 @@
   .hint{ font-size:12px; color:var(--gold-deep); margin:7px 2px 0; min-height:0; }
   .hint:empty{ display:none; }
 
-  .fine{ font-size:11.5px; line-height:1.45; color:var(--ink-mute); margin:12px 2px 0; }
+  .fine{ font-size:11px; line-height:1.4; color:var(--ink-mute); margin:9px 2px 0; }
   .fine a{ color:var(--pine); font-weight:600; text-decoration:underline; }
   .fine a:focus-visible{ outline:3px solid var(--pine); outline-offset:2px; border-radius:3px; }
-  .fine .noshare{ display:block; margin-top:5px; }
 
   /* success state */
   .done{ text-align:center; padding:14px 6px; }
@@ -145,7 +144,7 @@
         Casa Concierge
       </div>
       <h1>Your free roof inspection.</h1>
-      <p class="sub">Booked in under 2 minutes by a vetted local roofer. Enter your number and pick how you’d like to schedule.</p>
+      <p class="sub">Booked in under 2 minutes by a vetted local roofer.</p>
 
       <div class="field">
         <label for="phone">Mobile number</label>
@@ -160,8 +159,8 @@
         <input type="checkbox" id="txConsent" name="transactional_consent" />
         <span class="box" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></span>
         <span class="c-text">
-          <span class="c-label" id="txLabel">Yes — text or call me about my home service requests.</span>
-          <span class="c-disc" id="txDisc">Messages and calls are sent by Casa Concierge (Scaling Adventures, LLC), including by automated technology. Msg &amp; data rates may apply. Msg frequency varies. Reply STOP to opt out, HELP for help.</span>
+          <span class="c-label" id="txLabel">Yes, text or call me about my home service requests.</span>
+          <span class="c-disc" id="txDisc">Messages are sent by Casa Concierge (Scaling Adventures, LLC). Msg &amp; data rates may apply. Msg frequency varies. Reply STOP to opt out, HELP for help.</span>
         </span>
       </label>
 
@@ -169,8 +168,8 @@
         <input type="checkbox" id="mkConsent" name="marketing_consent" />
         <span class="box" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></span>
         <span class="c-text">
-          <span class="c-label" id="mkLabel">Yes — text or call me with exclusive offers and seasonal deals.</span>
-          <span class="c-disc" id="mkDisc">Sent by Casa Concierge (Scaling Adventures, LLC), including by automated technology. Consent is not a condition of any purchase. Msg &amp; data rates may apply. Msg frequency varies. Reply STOP to opt out, HELP for help.</span>
+          <span class="c-label" id="mkLabel">Yes, text or call me exclusive offers &amp; seasonal deals.</span>
+          <span class="c-disc" id="mkDisc">Offers are sent only by Casa Concierge (Scaling Adventures, LLC). Consent is not a condition of any purchase. Msg &amp; data rates may apply. Msg frequency varies. Reply STOP to opt out, HELP for help.</span>
         </span>
       </label>
 
@@ -190,7 +189,6 @@
         By continuing you agree to our
         <a href="terms-of-service.html" target="_blank" rel="noopener">Terms of Service</a> and
         <a href="privacy-policy.html" target="_blank" rel="noopener">Privacy Policy</a>.
-        <span class="noshare">Casa Concierge does not share your information with third parties except as needed to provide messaging services.</span>
       </p>
     </form>
 
