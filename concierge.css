@@ -160,7 +160,6 @@
 /* auto-scrolling testimonial marquee (full-bleed, seamless loop) */
 .cc-rev-marquee { position: relative; left: 50%; width: 100vw; margin-left: -50vw; margin-top: 26px; overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent); mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent); }
 .cc-rev-track { display: flex; width: max-content; padding: 10px 16px; animation: ccRevScroll 48s linear infinite; }
-.cc-rev-marquee:hover .cc-rev-track, .cc-rev-track:active { animation-play-state: paused; }
 @keyframes ccRevScroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 @media (prefers-reduced-motion: reduce) {
   .cc-rev-marquee { overflow-x: auto; -webkit-overflow-scrolling: touch; -webkit-mask-image: none; mask-image: none; }
