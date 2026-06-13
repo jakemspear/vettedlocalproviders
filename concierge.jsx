@@ -135,10 +135,10 @@ function Problem() {
 function Capabilities() {
   const caps = [
     { icon: "ph-bell-ringing", h: "Reminds you what the house needs", b: "Seasonal nudges and maintenance reminders to change the filter, flush the heater, and prep for monsoon, so small things never become expensive ones." },
-    { icon: "ph-seal-check", h: "Connects you to vetted local pros", b: "One text and we match you with a screened, licensed local provider for the exact job. No bidding wars, no selling your number." },
-    { icon: "ph-tag", h: "Seasonal offers from our network", b: "Deals our exclusive network gets first. Off-season rates and offers we keep off the public market, sent only to our homeowners." },
-    { icon: "ph-link-simple", h: "Sends product links that solve it", b: "Sometimes you don't need a pro. We send the exact part, tool, or quick how-to so you can knock it out yourself in minutes." },
-    { icon: "ph-flag-checkered", h: "Pushes projects to the finish", b: "We follow up, coordinate the schedule, and keep every project moving until it's actually done, not stuck on your to-do list." },
+    { icon: "ph-seal-check", h: "Connects you to vetted local professionals", b: "One text and we match you with a screened, licensed local provider for the exact job. No bidding wars, no selling your number." },
+    { icon: "ph-tag", h: "Seasonal offers from our exclusive network", b: "Deals our exclusive network gets first. Off-season rates and offers we keep off the public market, sent only to our homeowners." },
+    { icon: "ph-link-simple", h: "Sends product links that solve problems", b: "Sometimes you don't need a pro. We send the exact part, tool, or quick how-to so you can knock it out yourself in minutes." },
+    { icon: "ph-flag-checkered", h: "Pushes home projects across the finish line", b: "We follow up, coordinate the schedule, and keep every project moving until it's actually done, not stuck on your to-do list." },
   ];
   return (
     <section className="section band-tint cc-caps" id="does">
@@ -174,7 +174,7 @@ function Capabilities() {
 function HowItWorks() {
   const steps = [
     { icon: "ph-house-line", h: "We learn your home", b: "A quick onboarding covers your home's age, systems, and what's coming up, so every answer fits your house, not a script." },
-    { icon: "ph-chats-circle", h: "Text or call, anytime", b: "A quick question, an emergency, or a full remodel. Reach a real concierge the way you want, in one ongoing thread." },
+    { icon: "ph-chats-circle", h: "Text or call, anytime", b: "A quick question, an emergency, or a full remodel. Your concierge answers instantly, the way you want, in one ongoing thread." },
     { icon: "ph-seal-check", h: "We line up the right pro", b: "Matched to a vetted, licensed local provider for the exact job, with scheduling and confirmations handled for you." },
     { icon: "ph-flag-checkered", h: "We push it to done", b: "Follow-ups and reminders until the work is finished and you're happy, then we watch for what your home needs next." },
   ];
@@ -277,7 +277,7 @@ function Benefits() {
   const b = [
     { icon: "ph-house-line", h: "Knows your home", t: "We onboard your home once, so every recommendation fits your house instead of a generic checklist." },
     { icon: "ph-bell-ringing", h: "Stays ahead of problems", t: "Proactive reminders for filters, roofs, warranties, and monsoon prep, so small things never become emergencies." },
-    { icon: "ph-phone-call", h: "Call or text a real person", t: "Reach a concierge the way you want, any hour. No app, no phone tree, no bot runaround." },
+    { icon: "ph-lightning", h: "Always on, instant answers", t: "Your concierge replies in seconds by text or call, any hour, day or night. No app, no phone tree, no waiting on a callback." },
     { icon: "ph-seal-check", h: "Vetted local pros only", t: "Every provider is licensed, insured, and proven. We carry the vetting so you're never gambling." },
     { icon: "ph-flag-checkered", h: "We see it through", t: "No hand-off and vanish. We coordinate and follow up until the project is actually finished." },
     { icon: "ph-shield-check", h: "Free, and yours stays yours", t: "The concierge costs nothing, and we never sell or spam your number. You only pay the pro for work you approve." },
@@ -285,8 +285,8 @@ function Benefits() {
   return (
     <section className="section band-tint cc-benefits">
       <div className="cc-head">
-        <div className="eyebrow">More than a referral</div>
-        <h2 className="display sec-h2">Not a lead service. <span className="cc-mute">A concierge that sticks around.</span></h2>
+        <div className="eyebrow">The difference</div>
+        <h2 className="display sec-h2">Everything your home needs, <span className="cc-mute">under one concierge.</span></h2>
       </div>
       <div className="cc-ben-grid">
         {b.map((x) => (
