@@ -49,10 +49,8 @@ function OfferWall({ t, answers, onContinue }) {
     <div className="ty offerwall screen-enter">
       <section className="section ty-narr ow-top">
         <div className="eyebrow">{T.ty.narrEyebrow}</div>
-        <p className="ty-narr-body">{T.ty.narr1}</p>
-        <p className="ty-narr-body">
-          {T.ty.narr2.replace(T.ty.narr2strong, "")}<strong>{T.ty.narr2strong}</strong>
-        </p>
+        <h2 className="display sec-h2">{T.ty.narrTitle}</h2>
+        <p className="ty-narr-body">{T.ty.narrSub}</p>
       </section>
 
       <section className="section tight ty-wall-sec">
