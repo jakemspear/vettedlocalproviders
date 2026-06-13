@@ -81,13 +81,21 @@ function GetStartedFlow({ mode, onClose }) {
     </div>
   );
 
+  const STEP_ICON = { contact: "ph-house-line", out: "ph-hourglass-medium", choose: "ph-sparkle", home: "ph-house-line", needs: "ph-wrench", done: "ph-check-circle" };
+  const BACK_TO = { choose: "contact", home: "choose", needs: "home", out: "contact" };
+  const backTo = BACK_TO[step];
+
   return (
-    <div className="cc-gate-veil" onClick={onClose}>
-      <div className="cc-gate" role="dialog" aria-modal="true" onClick={(e) => e.stopPropagation()}>
-        <div className="cc-gate-top">
-          <span className="cc-gate-ico"><Ico name={step === "out" ? "ph-hourglass-medium" : step === "done" ? "ph-check-circle" : "ph-house-line"} weight="duotone" /></span>
-          <button className="cc-gate-x" onClick={onClose} aria-label="Close"><Ico name="ph-x" weight="bold" /></button>
-        </div>
+    <div className="cc-flow" role="dialog" aria-modal="true">
+      <div className="cc-flow-bar">
+        {backTo
+          ? <button className="cc-flow-back" onClick={() => setStep(backTo)}><Ico name="ph-arrow-left" weight="bold" /> Back</button>
+          : <div className="cc-logo"><span className="cc-logo-mark"><Ico name="ph-house-line" weight="fill" /></span><span className="cc-logo-txt">Casa Concierge</span></div>}
+        <button className="cc-flow-x" onClick={onClose} aria-label="Close"><Ico name="ph-x" weight="bold" /></button>
+      </div>
+      <div className="cc-flow-scroll">
+        <div className="cc-flow-inner">
+          <div className="cc-flow-ico"><Ico name={STEP_ICON[step]} weight="duotone" /></div>
 
         {step === "contact" && (
           <React.Fragment>
@@ -112,7 +120,6 @@ function GetStartedFlow({ mode, onClose }) {
             <div className="cc-gate-h">We're not in your area yet</div>
             <p className="cc-gate-sub">Casa Concierge is live across Greater Phoenix and expanding fast. You're on our radar, {d.first || "friend"}. Join the waitlist and you'll be first to know the day we reach you.</p>
             <a className="btn btn-gold cta cc-gate-go" href="join-the-waitlist.html">Join the waitlist <Ico name="ph-arrow-right" weight="bold" /></a>
-            <button className="cc-gate-back" onClick={() => setStep("contact")}><Ico name="ph-arrow-left" weight="bold" /> Use a different address</button>
           </React.Fragment>
         )}
 
@@ -174,6 +181,7 @@ function GetStartedFlow({ mode, onClose }) {
             <a className="btn btn-ghost cta cc-gate-go cc-gate-go2" href={TEL_HREF}>Call Your Concierge <Ico name="ph-phone" weight="bold" /></a>
           </React.Fragment>
         )}
+        </div>
       </div>
     </div>
   );
