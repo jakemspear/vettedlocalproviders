@@ -118,7 +118,6 @@ function Confirmation({ offer, answers, count, onRestart }) {
   const motion = useMotion();
   const T = useT();
   const c = T.confirmed;
-  const svc = count === 1 ? c.svc1 : c.svcN;
   const tst = T.testimonials[0];
   const isRenter = answers && answers.owner === "rent";
   const celebrate = !!(offer && offer.qualify) && !isRenter;
@@ -164,11 +163,6 @@ function Confirmation({ offer, answers, count, onRestart }) {
       </section>
 
       <section className="section confirmed-body-sec">
-        <h2 className="display confirmed-h">{c.h}</h2>
-        <p className="confirmed-body">
-          {c.bodyA}{count > 0 ? " " + c.bodyPlus.replace("{n}", count).replace("{svc}", svc) : ""}. {c.bodyB.replace("{phone}", PHONE)}
-        </p>
-
         <div className="next-card">
           <div className="next-h">{c.nextH}</div>
           <ol className="next-list">

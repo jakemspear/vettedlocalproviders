@@ -105,5 +105,5 @@ window.STRINGS.en = {
   },
   confirmed: { h: "All set. Talk soon.", bodyA: "Your specialist has your roof request", bodyPlus: "plus {n} more {svc} to cover", svc1: "service", svcN: "services", bodyB: "Watch for a call from {phone}.", restart: "Start over",
     nextH: "What happens next", next: ["Talk to a real home-service concierge", "Lock in your roof appointment", "See which exclusive offers you qualify for"],
-    saveH: "Save our number so you never miss a deal.", saveSub: "Add us to your contacts and we'll text you the seasonal Arizona offers our network gets first.", saveBtn: "Save our number" },
+    saveH: "Save the contact of your new home concierge.", saveSub: "Add us to your contacts so you can find us whenever you need us.", saveBtn: "Save contact" },
 };

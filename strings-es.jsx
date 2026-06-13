@@ -105,5 +105,5 @@ window.STRINGS.es = {
   },
   confirmed: { h: "Todo listo. Hablamos pronto.", bodyA: "Su especialista tiene su solicitud de techo", bodyPlus: "más {n} {svc} para cubrir", svc1: "servicio", svcN: "servicios", bodyB: "Esté pendiente de una llamada desde {phone}.", restart: "Empezar de nuevo",
     nextH: "Qué sigue", next: ["Hable con un asesor de servicios para el hogar de verdad", "Asegure su cita para el techo", "Vea para qué ofertas exclusivas califica"],
-    saveH: "Guarde nuestro número y no se pierda ninguna oferta.", saveSub: "Agréguenos a sus contactos y le enviaremos por mensaje las ofertas de temporada de Arizona que nuestra red recibe primero.", saveBtn: "Guardar nuestro número" },
+    saveH: "Guarde el contacto de su nuevo asesor del hogar.", saveSub: "Agréguenos a sus contactos para que pueda encontrarnos cuando nos necesite.", saveBtn: "Guardar contacto" },
 };

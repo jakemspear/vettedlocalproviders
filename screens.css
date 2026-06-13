@@ -511,3 +511,35 @@
 .confirmed-restart { margin-top: 22px; background: none; border: none; cursor: pointer; font-family: var(--body); font-weight: 600; font-size: 13.5px; color: var(--ink-mute); display: inline-flex; align-items: center; gap: 6px; padding: 8px; }
 .confirmed-restart:hover { color: var(--pine); }
 .confirmed-restart .ph { font-size: 15px; }
+
+/* ---- compact confirmation: timer + next steps + save card above the fold ---- */
+.confirmation .ty-hero { padding: 26px 22px 26px; }
+.confirmation .ty-h1 { font-size: 26px; margin-top: 6px; }
+.confirmation .ty-callfrom { margin-top: 12px; }
+.confirmation .confirmed-body-sec { padding-block: 26px; }
+.confirmation .next-card { margin-top: 0; padding: 16px 16px; }
+.confirmation .next-h { margin-bottom: 12px; }
+.confirmation .next-list { gap: 12px; }
+.confirmation .save-card { margin-top: 14px; padding: 16px; }
+.confirmation .confirmed-tst { margin-top: 14px; }
+
+@media (max-width: 480px) {
+  .confirmation .ty-hero { padding: 18px 20px 20px; }
+  .confirmation .ring-wrap,
+  .confirmation .ring-wrap svg { width: 124px; height: 124px; }
+  .confirmation .ring-time { font-size: 31px; }
+  .confirmation .ring-label { margin-top: 4px; }
+  .confirmation .ty-h1 { font-size: 22px; line-height: 1.1; }
+  .confirmation .ty-callfrom { margin-top: 10px; padding: 7px 13px; font-size: 12.5px; }
+  .confirmation .confirmed-body-sec { padding-block: 16px; }
+  .confirmation .next-card { padding: 14px; }
+  .confirmation .next-h { margin-bottom: 10px; }
+  .confirmation .next-list { gap: 10px; }
+  .confirmation .next-num { width: 22px; height: 22px; font-size: 12px; }
+  .confirmation .next-ico { width: 30px; height: 30px; font-size: 17px; }
+  .confirmation .next-label { font-size: 13.5px; line-height: 1.3; }
+  .confirmation .save-card { margin-top: 12px; padding: 14px; }
+  .confirmation .save-ico { width: 38px; height: 38px; font-size: 21px; margin-bottom: 4px; }
+  .confirmation .save-h { font-size: 15.5px; }
+  .confirmation .save-sub { font-size: 12.5px; margin: 4px 0 10px; }
+}
