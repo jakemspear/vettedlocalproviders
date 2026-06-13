@@ -91,13 +91,13 @@ function Hero() {
           at your door.
         </h1>
         <p className="cc-hero-sub">
-          Stop searching. Stop waiting on callbacks. Text your concierge once and we line up the
-          right vetted local pro, send the fix, and push every home project to done.
-          <strong> You just send one message.</strong>
+          Casa Concierge helps with all your home needs — reminding you about household tasks,
+          finding vetted local pros, and pushing every project to done.
+          <strong> And it's free, forever.</strong>
         </p>
         <div className="cc-hero-cta">
-          <a className="btn btn-gold cta" href={SMS_HREF}>Text Me Now <Ico name="ph-chat-circle-dots" weight="bold" /></a>
-          <a className="btn btn-ghost-light" href={TEL_HREF}>Call Me Now <Ico name="ph-phone" weight="bold" /></a>
+          <a className="btn btn-gold cta" href={SMS_HREF}>Text Us Now <Ico name="ph-chat-circle-dots" weight="bold" /></a>
+          <a className="btn btn-ghost-light" href={TEL_HREF}>Call Us Now <Ico name="ph-phone" weight="bold" /></a>
         </div>
         <p className="cc-hero-consent">
           By texting or calling, you agree to receive messages about your request and to our{" "}
@@ -471,8 +471,8 @@ function ConciergeDock({ showBar }) {
 
       {/* mobile sticky bar — two deep-link CTAs, appears after the hero scrolls away */}
       <div className={`cc-mobile-bar${showBar ? " show" : ""}`}>
-        <a className="btn btn-gold cta" href={SMS_HREF}>Text Me Now <Ico name="ph-chat-circle-dots" weight="bold" /></a>
-        <a className="btn btn-ghost-dark cta" href={TEL_HREF}>Call Me Now <Ico name="ph-phone" weight="bold" /></a>
+        <a className="btn btn-gold cta" href={SMS_HREF}>Text Us Now <Ico name="ph-chat-circle-dots" weight="bold" /></a>
+        <a className="btn btn-ghost-dark cta" href={TEL_HREF}>Call Us Now <Ico name="ph-phone" weight="bold" /></a>
       </div>
     </React.Fragment>
   );
