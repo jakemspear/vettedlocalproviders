@@ -118,14 +118,19 @@
   .fine a{ color:var(--pine); font-weight:600; text-decoration:underline; }
   .fine a:focus-visible{ outline:3px solid var(--pine); outline-offset:2px; border-radius:3px; }
 
-  /* success state */
-  .done{ text-align:center; padding:14px 6px; }
-  .done .check{
-    width:54px; height:54px; margin:0 auto 12px; border-radius:50%;
-    background:var(--pine-tint); color:var(--pine); display:grid; place-items:center;
+  /* success state — 60s countdown */
+  .done{ text-align:center; padding:18px 6px 16px; }
+  .cd-ring{ position:relative; width:132px; height:132px; margin:0 auto 16px; }
+  .cd-ring svg{ width:100%; height:100%; transform:rotate(-90deg); }
+  .cd-track{ fill:none; stroke:var(--line-soft); stroke-width:8; }
+  .cd-prog{ fill:none; stroke:var(--gold); stroke-width:8; stroke-linecap:round;
+            transition:stroke-dashoffset 1s linear; }
+  .cd-num{
+    position:absolute; inset:0; display:grid; place-items:center;
+    font-family:var(--display); font-weight:800; font-size:32px; letter-spacing:-.02em;
+    color:var(--ink); font-variant-numeric:tabular-nums;
   }
-  .done .check svg{ width:28px; height:28px; }
-  .done h2{ font-family:var(--display); font-weight:800; font-size:21px; margin:0 0 6px; color:var(--ink); }
+  .done h2{ font-family:var(--display); font-weight:800; font-size:22px; margin:0 0 6px; color:var(--ink); }
   .done p{ font-size:13.5px; line-height:1.45; color:var(--ink-mute); margin:0; }
   [hidden]{ display:none !important; }
 
@@ -192,10 +197,16 @@
       </p>
     </form>
 
-    <div class="done" id="done" hidden>
-      <div class="check" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
-      <h2>You’re all set.</h2>
-      <p id="doneMsg">Thanks! We’ll text you shortly from Casa Concierge.</p>
+    <div class="done" id="done" hidden role="status" aria-live="polite">
+      <div class="cd-ring">
+        <svg viewBox="0 0 132 132" aria-hidden="true">
+          <circle class="cd-track" cx="66" cy="66" r="58"/>
+          <circle class="cd-prog" id="cdProg" cx="66" cy="66" r="58"/>
+        </svg>
+        <div class="cd-num" id="cdNum">1:00</div>
+      </div>
+      <h2 id="doneH">Calling you now…</h2>
+      <p id="doneMsg">Keep your phone handy — your Casa Concierge call is on its way.</p>
     </div>
   </main>
 
@@ -324,17 +335,39 @@
     var payload = buildPayload(channel);         // capture channel + consent states + exact text
     postConsent(payload).finally(function () {
       if (channel === "voice") {
-        doneH.textContent  = "Calling you now.";
-        doneMsg.textContent = "Keep your phone handy — Casa Concierge is calling you in a moment.";
+        doneH.textContent  = "Calling you now…";
+        doneMsg.textContent = "Keep your phone handy — your Casa Concierge call is on its way.";
       } else {
-        doneH.textContent  = "Texting you now.";
-        doneMsg.textContent = "Check your messages — Casa Concierge is texting you in a moment.";
+        doneH.textContent  = "Texting you now…";
+        doneMsg.textContent = "Check your messages — your first text from Casa Concierge is on its way.";
       }
       form.setAttribute("hidden", "");
       doneEl.removeAttribute("hidden");
       doneEl.focus && doneEl.focus();
+      startCountdown(60);
     });
   });
+
+  /* 60-second countdown ring shown on the success screen. */
+  function startCountdown(seconds) {
+    var prog = document.getElementById("cdProg");
+    var num  = document.getElementById("cdNum");
+    var C = 2 * Math.PI * 58;                      // circle r=58
+    prog.style.strokeDasharray = C;
+    var remaining = seconds;
+
+    function fmt(s) { return Math.floor(s / 60) + ":" + (s % 60 < 10 ? "0" : "") + (s % 60); }
+    function render() {
+      num.textContent = fmt(remaining);
+      prog.style.strokeDashoffset = C * (seconds - remaining) / seconds;  // deplete as time passes
+    }
+    render();
+    var iv = setInterval(function () {
+      remaining -= 1;
+      render();
+      if (remaining <= 0) clearInterval(iv);
+    }, 1000);
+  }
 })();
 </script>
 </body>
