@@ -54,7 +54,7 @@ window.STRINGS.es = {
   form: {
     back: "Volver", continue: "Continuar", continueAnyway: "Continuar de todos modos",
     foot: "Seguro y privado · Nunca vendemos su información",
-    smsOptInLabel: "Consentimiento SMS",
+    smsOptInLabel: "Sí, envíenme actualizaciones y ofertas por texto",
     steps: {
       need: { q: "¿Qué necesita su techo?", why: "Para conectarlo con un profesional que haga exactamente este tipo de trabajo.", options: { replace: "Reemplazar mi techo", repair: "Reparar un problema", inspect: "Inspección gratis", explore: "Solo explorando" } },
       material: { q: "¿Qué tipo de techo tiene?", why: "Los techos en Arizona son especializados, así que esto le consigue al especialista correcto, no a un generalista.", options: { tile: "Teja", shingle: "Asfalto (shingle)", foam: "Espuma / Plano", metal: "Metal", unsure: "No estoy seguro" } },
@@ -62,12 +62,14 @@ window.STRINGS.es = {
       owner: { q: "¿Es dueño de la casa?", why: "Solo cotizamos a propietarios, así que su lugar queda reservado para proyectos reales.", options: { own: "Sí, soy el dueño", rent: "Rento" } },
       address: { q: "¿Dónde está la casa?", why: "Para que su profesional revise detalles de HOA y permisos y cotice con precisión, sin adivinar.", label: "Dirección de la casa", placeholder: "Empiece a escribir su dirección", found: "Encontramos su casa.", loading: "Buscando direcciones...", fallback: "La búsqueda en vivo no está disponible ahora, así que mostramos sugerencias de respaldo." },
       name: { q: "¿Por quién debe preguntar nuestro especialista?", why: "Para saber a quién llamamos. Queda con nosotros, nunca con un centro de llamadas.", first: "Nombre", last: "Apellido" },
-      contact: { q: "¿Cuál es el mejor número para su llamada en 2 minutos?", phoneLabel: "Número de celular", phonePlaceholder: "(480) 555-0123", submit: "Recibir mi cotización gratis", hint: "Agregue su número para continuar. El consentimiento SMS no es obligatorio." },
+      contact: { q: "¿Cuál es el mejor número para su llamada en 2 minutos?", phoneLabel: "Número de celular", phonePlaceholder: "(480) 555-0123", submit: "Recibir mi cotización gratis", hint: "Agregue su número para continuar." },
     },
     renter: { strong: "Aviso: las cotizaciones de techo son para propietarios.", body: "No hay problema si renta. Siga y le conseguiremos servicios que sí puede usar, como control de plagas y alarmas." },
     antispam: { lead: "La mayoría de los sitios venden su información a los spammers.", emphasis: "Nosotros no.", tail: "Usted habla con nosotros, y solo con los profesionales que pida." },
-    tcpa: "Al marcar esta casilla y hacer clic en \"{cta}\", acepto recibir llamadas y mensajes de texto de Vetted Local Providers, operado por Scaling Adventures, LLC, al número que proporcioné sobre mi solicitud de cotización, la programación de citas, actualizaciones del servicio, la coordinación con proveedores solicitados y los servicios relacionados que solicite, incluidos mensajes conversacionales, transaccionales y promocionales enviados con tecnología automatizada.",
-    tcpaMeta: "La frecuencia de los mensajes varía. Pueden aplicarse tarifas de mensajes y datos. Responda STOP para cancelar o HELP para obtener ayuda. El consentimiento no es una condición de compra. Marcar esta casilla es opcional y no es necesario para enviar su solicitud.",
+    requestConsent: "Al hacer clic en \"{cta}\", acepto que Vetted Local Providers, operado por Scaling Adventures, LLC, pueda llamarme o enviarme mensajes de texto al número que proporcioné para programar, confirmar, coordinar y dar seguimiento a esta solicitud de inspección de techo.",
+    requestConsentMeta: "Nuestro equipo usa esta información de contacto solo para ayudar con la inspección que usted pidió.",
+    tcpa: "Acepto recibir llamadas y mensajes de texto conversacionales, transaccionales y promocionales de Vetted Local Providers, operado por Scaling Adventures, LLC, sobre esta solicitud y servicios relacionados, incluidos mensajes enviados con tecnología automatizada.",
+    tcpaMeta: "La frecuencia de los mensajes varía. Pueden aplicarse tarifas de mensajes y datos. Responda STOP para cancelar o HELP para obtener ayuda. El consentimiento no es una condición de compra. Esta casilla es opcional.",
   },
   processing: { title: "Preparando su llamada", items: { match: "Conectándolo con un especialista verificado de Arizona", confirm: "Confirmando que un profesional cubre {city}", reserve: "Reservando su llamada de 2 minutos" }, foot: "Buscando profesionales cerca de usted en el Valle" },
   ty: {

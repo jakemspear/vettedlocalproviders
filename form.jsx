@@ -271,6 +271,7 @@ function ContactStep({ data, set, onSubmit, offer }) {
   const digits = (data.phone || "").replace(/\D/g, "");
   const ok = digits.length >= 10;
   const submitLabel = offer?.cta || s.submit;
+  const requestConsentText = (T.form.requestConsent || "").replace("{cta}", submitLabel);
   const consentText = (T.form.tcpa || "").replace("{cta}", submitLabel);
   const go = () => { if (!ok || submitting) return; setSubmitting(true); buzz(14); setTimeout(onSubmit, 360); };
   return (
@@ -289,7 +290,19 @@ function ContactStep({ data, set, onSubmit, offer }) {
           <p>{T.form.antispam.lead} <strong>{T.form.antispam.emphasis}</strong><br />{T.form.antispam.tail}</p>
         </div>
       </div>
-      <label className={`consent${data.consent ? " on" : ""}`}>
+      <div className="request-consent">
+        <p className="request-consent-copy">{requestConsentText}</p>
+        <p className="request-consent-meta">{T.form.requestConsentMeta}</p>
+        <div className="consent-links request-consent-links">
+          <a href={PRIVACY_PAGE} target="_blank" rel="noreferrer">Privacy Policy</a>
+          <span>·</span>
+          <a href={TERMS_PAGE} target="_blank" rel="noreferrer">Terms of Service</a>
+        </div>
+      </div>
+      <button className={`btn btn-gold submit${submitting ? " loading" : ""}`} disabled={!ok || submitting} onClick={go} style={{ marginTop: 10 }}>
+        {submitting ? <span className="spin" /> : <>{submitLabel} <Ico name="ph-arrow-right" weight="bold" /></>}
+      </button>
+      <label className={`consent consent-optional${data.consent ? " on" : ""}`}>
         <input type="checkbox" checked={!!data.consent} onChange={(e) => set("consent", e.target.checked)} />
         <span className="consent-box"><Ico name="ph-check" weight="bold" /></span>
         <span className="consent-text">
@@ -303,9 +316,6 @@ function ContactStep({ data, set, onSubmit, offer }) {
           </span>
         </span>
       </label>
-      <button className={`btn btn-gold submit${submitting ? " loading" : ""}`} disabled={!ok || submitting} onClick={go} style={{ marginTop: 4 }}>
-        {submitting ? <span className="spin" /> : <>{submitLabel} <Ico name="ph-arrow-right" weight="bold" /></>}
-      </button>
       {!ok && <p className="submit-hint">{s.hint}</p>}
     </div>
   );

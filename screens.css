@@ -237,6 +237,12 @@
 .antispam strong { color: var(--pine-deep); font-weight: 800; }
 .opt { color: var(--ink-mute); font-weight: 500; }
 
+.request-consent { margin-top: 12px; }
+.request-consent-copy { margin: 0; font-size: 11.9px; line-height: 1.38; color: var(--ink-soft); }
+.request-consent-copy strong { color: var(--ink); }
+.request-consent-meta { margin: 4px 0 0; font-size: 11px; line-height: 1.35; color: var(--ink-mute); }
+.request-consent-links { margin-top: 6px; font-size: 11.4px; }
+
 .consent {
   display: flex; gap: 12px; align-items: flex-start; margin: 18px 0 6px; cursor: pointer;
   background: var(--white); border: 1.5px solid var(--line); border-radius: var(--r-md);
@@ -244,14 +250,15 @@
 }
 .consent.on { border-color: var(--pine); background: var(--pine-tint); }
 .consent input { position: absolute; opacity: 0; width: 0; height: 0; }
+.consent-optional { margin-top: 12px; padding: 10px 12px; background: #f8faf7; border-color: #cfe0d8; }
 .consent-box {
   width: 26px; height: 26px; flex: none; border-radius: 7px;
   border: 1.5px solid var(--sage); background: var(--white);
   display: grid; place-items: center; color: transparent; font-size: 16px; transition: all .15s;
 }
 .consent.on .consent-box { background: var(--pine); border-color: var(--pine); color: #fff; }
-.consent-text { font-size: 12.5px; line-height: 1.5; color: var(--ink-soft); }
-.consent-text strong { color: var(--ink); }
+.consent-text { font-size: 12px; line-height: 1.42; color: var(--ink-soft); }
+.consent-text strong { display: block; margin-bottom: 4px; color: var(--ink); font-size: 13px; line-height: 1.2; }
 .consent-meta { display: block; margin-top: 6px; }
 .consent-links { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; font-weight: 700; }
 .consent-links a { color: var(--pine); text-decoration: underline; }
@@ -260,15 +267,20 @@
 @media (max-width: 480px) {
   .form-body { padding: 12px 18px 22px; }
   .form-q { margin-bottom: 18px; }
-  .form-q-text { font-size: 25px; line-height: 1.1; }
-  .antispam { margin-top: 10px; padding: 10px 12px; }
+  .form-q-text { font-size: 24px; line-height: 1.08; }
+  .antispam { margin-top: 8px; padding: 9px 11px; }
   .antispam .ph { font-size: 17px; }
-  .antispam p { font-size: 12.5px; line-height: 1.4; }
-  .consent { gap: 10px; margin: 14px 0 4px; padding: 11px 12px; }
-  .consent-box { width: 22px; height: 22px; border-radius: 6px; font-size: 14px; }
-  .consent-text { font-size: 11.4px; line-height: 1.36; }
-  .consent-meta { margin-top: 4px; }
-  .consent-links { margin-top: 6px; gap: 4px 6px; font-size: 11.4px; }
+  .antispam p { font-size: 12px; line-height: 1.34; }
+  .request-consent { margin-top: 10px; }
+  .request-consent-copy { font-size: 11px; line-height: 1.32; }
+  .request-consent-meta { margin-top: 3px; font-size: 10.3px; line-height: 1.28; }
+  .request-consent-links { margin-top: 5px; font-size: 10.7px; }
+  .consent { gap: 9px; margin: 10px 0 4px; padding: 9px 10px; }
+  .consent-box { width: 20px; height: 20px; border-radius: 6px; font-size: 13px; }
+  .consent-text { font-size: 10.8px; line-height: 1.3; }
+  .consent-text strong { margin-bottom: 3px; font-size: 12px; }
+  .consent-meta { margin-top: 3px; }
+  .consent-links { margin-top: 5px; gap: 4px 6px; font-size: 10.7px; }
 }
 
 .btn:disabled { opacity: .45; cursor: not-allowed; box-shadow: none; }
