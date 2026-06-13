@@ -351,7 +351,9 @@ function ContactStepTwoCta({ data, set, onSubmit }) {
 
   return (
     <div>
-      <StepHead id="contact" />
+      <div className="form-q">
+        <h2 className="display form-q-text">How would you like to schedule your free roof inspection?</h2>
+      </div>
       <div className="field">
         <label htmlFor="phone">{s.phoneLabel}</label>
         <div className="input-ico-wrap">
