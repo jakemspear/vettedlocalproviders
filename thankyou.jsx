@@ -201,4 +201,25 @@ function Confirmation({ offer, answers, count, onRestart }) {
   );
 }
 
-Object.assign(window, { OfferWall, EmailStep, Confirmation });
+/* twocta variant final screen: 60s "Calling you now…" countdown. */
+function Countdown({ channel }) {
+  const isVoice = channel === "voice";
+  const head = isVoice ? "Calling you now…" : "Texting you now…";
+  const sub = isVoice
+    ? "Keep your phone handy — your Casa Concierge call is on its way."
+    : "Check your messages — your first text from Casa Concierge is on its way.";
+  return (
+    <div className="processing screen-enter">
+      <div className="proc-inner" style={{ textAlign: "center" }}>
+        <div className="proc-brand"><Ico name={isVoice ? "ph-phone-call" : "ph-chat-circle-text"} weight="duotone" /></div>
+        <h2 className="display proc-title">{head}</h2>
+        <div style={{ display: "grid", placeItems: "center", margin: "8px 0 14px" }}>
+          <CountdownRing total={60} label="" />
+        </div>
+        <p className="proc-foot"><Ico name="ph-shield-check" weight="fill" /> {sub}</p>
+      </div>
+    </div>
+  );
+}
+
+Object.assign(window, { OfferWall, EmailStep, Confirmation, Countdown });
