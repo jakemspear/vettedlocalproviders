@@ -472,7 +472,7 @@ function ConciergeDock({ showBar }) {
       {/* mobile sticky bar: two deep-link CTAs, appears after the hero scrolls away */}
       <div className={`cc-mobile-bar${showBar ? " show" : ""}`}>
         <a className="btn btn-gold cta" href={SMS_HREF}>Text Your Concierge <Ico name="ph-chat-circle-dots" weight="bold" /></a>
-        <a className="btn btn-ghost-dark cta" href={TEL_HREF}>Call Your Concierge <Ico name="ph-phone" weight="bold" /></a>
+        <a className="btn btn-ghost cta" href={TEL_HREF}>Call Your Concierge <Ico name="ph-phone" weight="bold" /></a>
       </div>
     </React.Fragment>
   );
