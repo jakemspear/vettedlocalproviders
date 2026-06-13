@@ -316,6 +316,87 @@ function ContactStep({ data, set, onSubmit, offer }) {
   );
 }
 
+/* Two-CTA finish (variant): phone + dual consent + Schedule by Text / Phone.
+   Transactional consent is required before either button fires (outbound contact). */
+const TX_LABEL = "Yes, text or call me about my home service requests.";
+const TX_DISC  = "Messages are sent by Casa Concierge (Scaling Adventures, LLC). Msg & data rates may apply. Msg frequency varies. Reply STOP to opt out, HELP for help.";
+const MK_LABEL = "Yes, text or call me exclusive offers & seasonal deals.";
+const MK_DISC  = "Offers are sent only by Casa Concierge (Scaling Adventures, LLC). Consent is not a condition of any purchase. Msg & data rates may apply. Msg frequency varies. Reply STOP to opt out, HELP for help.";
+
+function ContactStepTwoCta({ data, set, onSubmit }) {
+  const T = useT();
+  const s = T.form.steps.contact;
+  const [focusPhone, setFocusPhone] = useStateF(false);
+  const [submitting, setSubmitting] = useStateF(false);
+  const [hint, setHint] = useStateF("");
+  const digits = (data.phone || "").replace(/\D/g, "");
+  const ok = digits.length >= 10;
+
+  const go = (channel) => {
+    if (submitting) return;
+    if (!ok) { setHint(s.hint); return; }
+    if (!data.txConsent) {
+      setHint("Please check the first box so we can " + (channel === "voice" ? "call" : "text") + " you.");
+      return;
+    }
+    setSubmitting(true); buzz(14);
+    setTimeout(() => onSubmit({
+      channel,                                   // "sms" | "voice"
+      transactional_consent: !!data.txConsent,
+      marketing_consent: !!data.mkConsent,
+      transactional_consent_text: TX_LABEL + " " + TX_DISC,
+      marketing_consent_text: MK_LABEL + " " + MK_DISC,
+    }), 360);
+  };
+
+  return (
+    <div>
+      <StepHead id="contact" />
+      <div className="field">
+        <label htmlFor="phone">{s.phoneLabel}</label>
+        <div className="input-ico-wrap">
+          <Ico name={focusPhone ? "ph-lock-key" : "ph-phone"} weight={focusPhone ? "fill" : undefined} className={`input-ico${focusPhone ? " lock-lit" : ""}`} />
+          <input id="phone" type="tel" inputMode="tel" className="input has-ico" placeholder={s.phonePlaceholder} value={data.phone || ""}
+            onFocus={() => setFocusPhone(true)} onBlur={() => setFocusPhone(false)}
+            onChange={(e) => { set("phone", fmtPhone(e.target.value)); setHint(""); }} />
+        </div>
+      </div>
+
+      <label className={`consent consent-optional${data.txConsent ? " on" : ""}`}>
+        <input type="checkbox" checked={!!data.txConsent} onChange={(e) => { set("txConsent", e.target.checked); setHint(""); }} />
+        <span className="consent-box"><Ico name="ph-check" weight="bold" /></span>
+        <span className="consent-text"><strong>{TX_LABEL}</strong><span className="consent-meta">{TX_DISC}</span></span>
+      </label>
+
+      <label className={`consent consent-optional${data.mkConsent ? " on" : ""}`}>
+        <input type="checkbox" checked={!!data.mkConsent} onChange={(e) => set("mkConsent", e.target.checked)} />
+        <span className="consent-box"><Ico name="ph-check" weight="bold" /></span>
+        <span className="consent-text"><strong>{MK_LABEL}</strong><span className="consent-meta">{MK_DISC}</span></span>
+      </label>
+
+      <div className="twocta-row" style={{ display: "flex", gap: 10, marginTop: 12 }}>
+        <button className={`btn btn-gold${submitting ? " loading" : ""}`}
+          style={{ flex: "1 1 0", minWidth: 0, padding: "0 10px", fontSize: 14.5, letterSpacing: "-.01em", whiteSpace: "nowrap", gap: 7 }}
+          disabled={submitting} onClick={() => go("sms")}>
+          <Ico name="ph-chat-circle-text" weight="bold" /> Schedule by Text
+        </button>
+        <button className={`btn btn-pine${submitting ? " loading" : ""}`}
+          style={{ flex: "1 1 0", minWidth: 0, padding: "0 10px", fontSize: 14.5, letterSpacing: "-.01em", whiteSpace: "nowrap", gap: 7 }}
+          disabled={submitting} onClick={() => go("voice")}>
+          <Ico name="ph-phone-call" weight="bold" /> Schedule by Phone
+        </button>
+      </div>
+      {hint && <p className="submit-hint">{hint}</p>}
+
+      <div className="consent-links request-consent-links" style={{ marginTop: 10 }}>
+        <a href={PRIVACY_PAGE} target="_blank" rel="noreferrer">Privacy Policy</a>
+        <span>·</span>
+        <a href={TERMS_PAGE} target="_blank" rel="noreferrer">Terms of Service</a>
+      </div>
+    </div>
+  );
+}
+
 function ContinueBar({ disabled, onNext }) {
   const T = useT();
   return (
@@ -352,7 +433,8 @@ function Form({ offer, onComplete, onBackToStart }) {
     setTimeout(advance, motion ? 420 : 120);
   };
 
-  const submit = () => onComplete({ ...data, owner: data.owner || "own" });
+  const twocta = typeof window !== "undefined" && window.FUNNEL_VARIANT === "twocta";
+  const submit = (extra) => onComplete({ ...data, owner: data.owner || "own", ...(extra || {}) });
   const progress = (i + 1) / total;
   const enterClass = motion ? (dir > 0 ? " enter-right" : " enter-left") : "";
 
@@ -368,7 +450,9 @@ function Form({ offer, onComplete, onBackToStart }) {
         {meta.kind === "choice" && <ChoiceStep meta={meta} value={data[meta.id]} onPick={onPick} />}
         {meta.kind === "address" && <AddressStep data={data} set={set} onNext={advance} />}
         {meta.kind === "name" && <NameStep data={data} set={set} onNext={advance} />}
-        {meta.kind === "contact" && <ContactStep data={data} set={set} onSubmit={submit} offer={offer} />}
+        {meta.kind === "contact" && (twocta
+          ? <ContactStepTwoCta data={data} set={set} onSubmit={submit} />
+          : <ContactStep data={data} set={set} onSubmit={submit} offer={offer} />)}
 
         {meta.id === "owner" && data.owner === "rent" && (
           <button className="btn btn-pine" onClick={advance} style={{ marginTop: 16 }}>

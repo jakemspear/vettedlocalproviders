@@ -90,16 +90,22 @@ function App() {
     await window.submitLeadCheckpoint(checkpoint, data);
   };
 
+  /* "twocta" variant (/roof-inspection): same intake, but the contact step ends
+     with Schedule by Text / Phone + dual consent and jumps straight to the 60s
+     countdown — no email / loading / offer wall. Default funnel is unaffected. */
+  const twocta = typeof window !== "undefined" && window.FUNNEL_VARIANT === "twocta";
+
   const handleInitialComplete = async (nextAnswers) => {
     const leadAnswers = {
       ...nextAnswers,
       offer: resolveOfferLabel(t.offer, t.monsoon),
       offerId: t.offer,
       opportunityValue: 350,
+      ...(twocta ? { funnelVariant: "twocta" } : {}),
     };
     setAnswers(leadAnswers);
     await syncLead("initial_form", leadAnswers);
-    go("email");
+    go(twocta ? "countdown" : "email");
   };
 
   const handleEmailDone = async ({ email, emailCaptureStatus }) => {
@@ -125,6 +131,7 @@ function App() {
         {route === "form" && (
           <Form offer={offer} onBackToStart={() => go("landing")} onComplete={handleInitialComplete} />
         )}
+        {route === "countdown" && <Countdown channel={answers && answers.channel} />}
         {route === "email" && <EmailStep onDone={handleEmailDone} />}
         {route === "processing" && <Processing answers={answers} onDone={() => go("offerwall")} />}
         {route === "offerwall" && (

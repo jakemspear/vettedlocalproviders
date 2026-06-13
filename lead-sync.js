@@ -140,6 +140,12 @@
     if (data.emailCaptureStatus === "skipped") tags.push("lead_email_capture:skipped");
     if (data.emailCaptureStatus === "submitted") tags.push("lead_email_capture:submitted");
 
+    // two-CTA variant: how to reach them + consent flags, for GHL routing/automation
+    if (data.channel) tags.push(`contact_channel:${slugify(data.channel)}`);
+    if (data.funnelVariant) tags.push(`funnel_variant:${slugify(data.funnelVariant)}`);
+    if (data.transactional_consent) tags.push("consent_transactional:true");
+    if (data.marketing_consent) tags.push("consent_marketing:true");
+
     return uniq(tags);
   }
 
@@ -174,6 +180,13 @@
       opportunity_value: opportunityValue,
       email_capture_status: data.emailCaptureStatus || "",
       consent: !!data.consent,
+      // two-CTA variant: chosen channel + dual consent (with exact displayed text for the audit record)
+      funnel_variant: data.funnelVariant || "",
+      contact_channel: data.channel || "",
+      transactional_consent: !!data.transactional_consent,
+      marketing_consent: !!data.marketing_consent,
+      transactional_consent_text: data.transactional_consent_text || "",
+      marketing_consent_text: data.marketing_consent_text || "",
       page_title: document.title,
     };
   }
