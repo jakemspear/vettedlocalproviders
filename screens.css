@@ -237,11 +237,11 @@
 .antispam strong { color: var(--pine-deep); font-weight: 800; }
 .opt { color: var(--ink-mute); font-weight: 500; }
 
-.request-consent { margin-top: 12px; }
-.request-consent-copy { margin: 0; font-size: 11.9px; line-height: 1.38; color: var(--ink-soft); }
+.request-consent { margin-top: 12px; text-align: center; }
+.request-consent-copy { margin: 0 auto; max-width: 34ch; font-size: 11.9px; line-height: 1.38; color: var(--ink-soft); }
 .request-consent-copy strong { color: var(--ink); }
-.request-consent-meta { margin: 4px 0 0; font-size: 11px; line-height: 1.35; color: var(--ink-mute); }
-.request-consent-links { margin-top: 6px; font-size: 11.4px; }
+.request-consent-meta { margin: 4px auto 0; max-width: 34ch; font-size: 11px; line-height: 1.35; color: var(--ink-mute); }
+.request-consent-links { margin-top: 6px; font-size: 11.4px; justify-content: center; }
 .request-consent-below { margin-top: 10px; }
 
 .consent {
@@ -273,8 +273,8 @@
   .antispam .ph { font-size: 17px; }
   .antispam p { font-size: 12px; line-height: 1.34; }
   .request-consent { margin-top: 10px; }
-  .request-consent-copy { font-size: 11px; line-height: 1.32; }
-  .request-consent-meta { margin-top: 3px; font-size: 10.3px; line-height: 1.28; }
+  .request-consent-copy { max-width: 32ch; font-size: 11px; line-height: 1.32; }
+  .request-consent-meta { margin-top: 3px; max-width: 32ch; font-size: 10.3px; line-height: 1.28; }
   .request-consent-links { margin-top: 5px; font-size: 10.7px; }
   .request-consent-below { margin-top: 8px; }
   .consent { gap: 9px; margin: 10px 0 4px; padding: 9px 10px; }
