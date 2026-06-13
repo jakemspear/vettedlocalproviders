@@ -217,10 +217,11 @@
 .cc-widget-alt { order: 4; display: inline-flex; align-items: center; gap: 7px; justify-content: center; font-family: var(--body); font-weight: 700; font-size: 13.5px; color: var(--pine); text-decoration: none; padding-top: 2px; }
 .cc-widget-alt:hover { color: var(--pine-deep); }
 
-/* mobile sticky bar — hidden until the hero scrolls away, then two deep-link CTAs */
+/* mobile sticky bar: hidden until the hero scrolls away, then two deep-link CTAs */
 .cc-mobile-bar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 80; display: flex; gap: 10px; padding: 12px 16px calc(12px + env(safe-area-inset-bottom)); background: linear-gradient(180deg, rgba(21,44,39,0) 0%, rgba(21,44,39,.72) 38%, rgba(21,44,39,.92) 100%); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); transform: translateY(120%); opacity: 0; visibility: hidden; transition: transform .28s ease, opacity .28s ease, visibility .28s; }
 .cc-mobile-bar.show { transform: translateY(0); opacity: 1; visibility: visible; }
-.cc-mobile-bar .btn { flex: 1; min-width: 0; box-shadow: var(--shadow-gold), 0 -6px 24px rgba(8,18,16,.18); }
+.cc-mobile-bar .btn { flex: 1; min-width: 0; min-height: 50px; padding: 8px 10px; gap: 7px; font-size: 14px; line-height: 1.15; white-space: normal; box-shadow: var(--shadow-gold), 0 -6px 24px rgba(8,18,16,.18); }
+.cc-mobile-bar .btn .ph { font-size: 16px; flex: none; }
 .btn-ghost-dark { background: rgba(255,255,255,.1); color: #fff; border: 1.5px solid rgba(255,255,255,.5); box-shadow: 0 -6px 24px rgba(8,18,16,.18) !important; }
 .btn-ghost-dark:hover { background: rgba(255,255,255,.2); }
 

@@ -91,13 +91,13 @@ function Hero() {
           at your door.
         </h1>
         <p className="cc-hero-sub">
-          Casa Concierge helps with all your home needs — reminding you about household tasks,
-          finding vetted local pros, and pushing every project to done.
+          Casa Concierge helps with all your home needs. We remind you about household tasks,
+          find vetted local pros, and push every project to done.
           <strong> And it's free, forever.</strong>
         </p>
         <div className="cc-hero-cta">
-          <a className="btn btn-gold cta" href={SMS_HREF}>Text Us Now <Ico name="ph-chat-circle-dots" weight="bold" /></a>
-          <a className="btn btn-ghost-light" href={TEL_HREF}>Call Us Now <Ico name="ph-phone" weight="bold" /></a>
+          <a className="btn btn-gold cta" href={SMS_HREF}>Text Your Concierge <Ico name="ph-chat-circle-dots" weight="bold" /></a>
+          <a className="btn btn-ghost-light" href={TEL_HREF}>Call Your Concierge <Ico name="ph-phone" weight="bold" /></a>
         </div>
         <p className="cc-hero-consent">
           By texting or calling, you agree to receive messages about your request and to our{" "}
@@ -469,10 +469,10 @@ function ConciergeDock({ showBar }) {
         </button>
       </div>
 
-      {/* mobile sticky bar — two deep-link CTAs, appears after the hero scrolls away */}
+      {/* mobile sticky bar: two deep-link CTAs, appears after the hero scrolls away */}
       <div className={`cc-mobile-bar${showBar ? " show" : ""}`}>
-        <a className="btn btn-gold cta" href={SMS_HREF}>Text Us Now <Ico name="ph-chat-circle-dots" weight="bold" /></a>
-        <a className="btn btn-ghost-dark cta" href={TEL_HREF}>Call Us Now <Ico name="ph-phone" weight="bold" /></a>
+        <a className="btn btn-gold cta" href={SMS_HREF}>Text Your Concierge <Ico name="ph-chat-circle-dots" weight="bold" /></a>
+        <a className="btn btn-ghost-dark cta" href={TEL_HREF}>Call Your Concierge <Ico name="ph-phone" weight="bold" /></a>
       </div>
     </React.Fragment>
   );
