@@ -144,7 +144,7 @@ function Capabilities() {
     <section className="section band-tint cc-caps" id="does">
       <div className="cc-head">
         <div className="eyebrow">Your concierge, on call</div>
-        <h2 className="display sec-h2">One concierge. Five ways it can help.</h2>
+        <h2 className="display sec-h2">One concierge.<br /><span className="cc-mute">Five ways it can help.</span></h2>
         <p className="cc-sub">Think of it as a friend in the trades who actually knows your house, a text or call away whenever you need.</p>
       </div>
       <div className="cc-caps-grid">
@@ -219,10 +219,7 @@ function ChatDemo() {
       <div className="cc-phone">
         <div className="cc-phone-top">
           <span className="cc-phone-avatar"><Ico name="ph-house-line" weight="fill" /></span>
-          <div>
-            <div className="cc-phone-name">Home Concierge</div>
-            <div className="cc-phone-status"><span className="cc-dot" /> Active now</div>
-          </div>
+          <div className="cc-phone-name">Casa Concierge <Ico name="ph-caret-right" weight="bold" className="cc-phone-caret" /></div>
         </div>
         <div className="cc-phone-body">
           {thread.map((m, i) => (
@@ -230,7 +227,7 @@ function ChatDemo() {
           ))}
         </div>
         <div className="cc-phone-input">
-          <span>Send a message…</span>
+          <span className="cc-phone-field">iMessage</span>
           <span className="cc-send"><Ico name="ph-arrow-up" weight="bold" /></span>
         </div>
       </div>
