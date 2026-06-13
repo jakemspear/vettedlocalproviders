@@ -54,7 +54,7 @@ window.STRINGS.en = {
   form: {
     back: "Go back", continue: "Continue", continueAnyway: "Continue anyway",
     foot: "Secure and private · We never sell your info",
-    smsOptInLabel: "Yes, I consent to being contacted",
+    smsOptInLabel: "Yes, send me text updates and exclusive offers",
     steps: {
       need: { q: "What does your roof need?", why: "So we match you with a pro who does exactly this kind of work.", options: { replace: "Replace my roof", repair: "Repair a problem", inspect: "Free inspection", explore: "Just exploring" } },
       material: { q: "What kind of roof do you have?", why: "Arizona roofs are specialized, so this gets you the right specialist, not a generalist.", options: { tile: "Tile", shingle: "Shingle", foam: "Foam / Flat", metal: "Metal", unsure: "Not sure" } },
