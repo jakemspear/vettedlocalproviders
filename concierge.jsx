@@ -78,7 +78,7 @@ function Hero() {
   const micro = [
     { icon: "ph-device-mobile", t: "No app required" },
     { icon: "ph-hand-coins", t: "Free to use" },
-    { icon: "ph-clock", t: "Reply within minutes" },
+    { icon: "ph-clock", t: "Available to help 24/7" },
   ];
   return (
     <header className="cc-hero">
@@ -96,9 +96,13 @@ function Hero() {
           <strong> You just send one message.</strong>
         </p>
         <div className="cc-hero-cta">
-          <a className="btn btn-gold cta" href={SMS_HREF}>Text Your Concierge <Ico name="ph-arrow-right" weight="bold" className="cta-arrow" /></a>
-          <button className="btn btn-ghost-light" onClick={() => ccScrollTo("how")}>See how it works</button>
+          <a className="btn btn-gold cta" href={SMS_HREF}>Text Me Now <Ico name="ph-chat-circle-dots" weight="bold" /></a>
+          <a className="btn btn-ghost-light" href={TEL_HREF}>Call Me Now <Ico name="ph-phone" weight="bold" /></a>
         </div>
+        <p className="cc-hero-consent">
+          By texting or calling, you agree to receive messages about your request.
+          Msg &amp; data rates may apply · Reply STOP to opt out.
+        </p>
         <div className="cc-hero-micro">
           {micro.map((m) => <span key={m.t} className="cc-micro"><Ico name={m.icon} weight="bold" /> {m.t}</span>)}
         </div>
@@ -338,7 +342,7 @@ function CTABand() {
         <h2 className="display sec-h2">Your home deserves better <span className="cc-gold">than a search bar.</span></h2>
         <p className="cc-cta-sub">Next time something breaks, needs fixing, or needs doing, just text. We'll take it from there.</p>
         <a className="btn btn-gold cta cc-cta-btn" href={SMS_HREF}>Text Your Concierge <Ico name="ph-arrow-right" weight="bold" className="cta-arrow" /></a>
-        <div className="cc-cta-fine"><Ico name="ph-phone" weight="bold" /> {PHONE} · Reply within minutes · Free to use</div>
+        <div className="cc-cta-fine"><Ico name="ph-phone" weight="bold" /> {PHONE} · Available to help 24/7 · Free to use</div>
       </div>
     </section>
   );
@@ -423,7 +427,7 @@ function Footer() {
 }
 
 /* ── floating concierge dock (launcher + widget + mobile bar) ───── */
-function ConciergeDock() {
+function ConciergeDock({ showBar }) {
   const [open, setOpen] = useState(false);
   const [phone, setPhone] = useState("");
   const ok = phone.replace(/\D/g, "").length >= 10;
@@ -464,9 +468,10 @@ function ConciergeDock() {
         </button>
       </div>
 
-      {/* mobile sticky bar */}
-      <div className="cc-mobile-bar">
-        <a className="btn btn-gold cta" href={SMS_HREF}>Chat Now <Ico name="ph-chat-circle-dots" weight="bold" /></a>
+      {/* mobile sticky bar — two deep-link CTAs, appears after the hero scrolls away */}
+      <div className={`cc-mobile-bar${showBar ? " show" : ""}`}>
+        <a className="btn btn-gold cta" href={SMS_HREF}>Text Me Now <Ico name="ph-chat-circle-dots" weight="bold" /></a>
+        <a className="btn btn-ghost-dark cta" href={TEL_HREF}>Call Me Now <Ico name="ph-phone" weight="bold" /></a>
       </div>
     </React.Fragment>
   );
@@ -475,8 +480,14 @@ function ConciergeDock() {
 /* ── page ───────────────────────────────────────────────────────── */
 function ConciergePage() {
   const [scrolled, setScrolled] = useState(false);
+  const [showBar, setShowBar] = useState(false);
   useEffect(() => {
-    const on = () => setScrolled(window.scrollY > 24);
+    const on = () => {
+      const y = window.scrollY;
+      setScrolled(y > 24);
+      /* reveal the sticky CTA bar once the hero (with its own buttons) is mostly gone */
+      setShowBar(y > window.innerHeight * 0.7);
+    };
     on();
     window.addEventListener("scroll", on, { passive: true });
     return () => window.removeEventListener("scroll", on);
@@ -496,7 +507,7 @@ function ConciergePage() {
         <CTABand />
         <FAQ />
         <Footer />
-        <ConciergeDock />
+        <ConciergeDock showBar={showBar} />
       </div>
     </MotionCtx.Provider>
   );
