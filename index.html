@@ -15,8 +15,8 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/fill/style.css" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/duotone/style.css" />
 
-<link rel="stylesheet" href="styles.css?v=20260613s" />
-<link rel="stylesheet" href="concierge.css?v=20260613s" />
+<link rel="stylesheet" href="styles.css?v=20260613x" />
+<link rel="stylesheet" href="concierge.css?v=20260613x" />
 <style> body { background: var(--bone); } </style>
 </head>
 <body>
@@ -26,8 +26,17 @@
 <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
 
-<script type="text/babel" src="i18n.jsx?v=20260613s"></script>
-<script type="text/babel" src="ui.jsx?v=20260613s"></script>
-<script type="text/babel" src="concierge.jsx?v=20260613s"></script>
+<script>
+  /* Lead destination for the address gate — same GoHighLevel webhook the roofing
+     funnel posts to. Override by defining window.GHL_WEBHOOK_URL before this runs. */
+  window.GHL_WEBHOOK_URL = window.GHL_WEBHOOK_URL ||
+    "https://services.leadconnectorhq.com/hooks/0C22tQbVS0yHDEPGrb7Y/webhook-trigger/2e03d749-83ca-47a4-9b30-ec36b2bbc62c";
+  window.PRIMARY_SERVICE_ID = "home-concierge";
+</script>
+<script src="lead-sync.js?v=20260613x"></script>
+
+<script type="text/babel" src="i18n.jsx?v=20260613x"></script>
+<script type="text/babel" src="ui.jsx?v=20260613x"></script>
+<script type="text/babel" src="concierge.jsx?v=20260613x"></script>
 </body>
 </html>

@@ -168,6 +168,8 @@
       email: data.email || "",
       address: data.address || "",
       homeowner_status: data.owner || "",
+      home_type: data.homeType || "",
+      urgency: data.urgency || "",
       roof_need: data.need || "",
       roof_material: data.material || "",
       roof_condition: data.condition || "",

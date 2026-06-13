@@ -278,3 +278,31 @@
 .cc-gate-fine a { color: var(--pine); text-decoration: underline; text-underline-offset: 2px; }
 .cc-gate-back { display: inline-flex; align-items: center; gap: 6px; margin-top: 14px; background: none; border: none; cursor: pointer; font-family: var(--body); font-weight: 700; font-size: 13.5px; color: var(--ink-mute); }
 .cc-gate-back:hover { color: var(--pine); }
+
+/* capture form + onboarding wizard */
+.cc-gate { max-height: 92vh; overflow-y: auto; }
+.cc-gate-label { display: block; font-family: var(--display); font-weight: 700; font-size: 13px; color: var(--ink-soft); margin: 4px 0 6px; }
+.cc-gate-input { margin-bottom: 4px; }
+.cc-gate-go { width: 100%; margin-top: 16px; }
+.cc-gate-go2 { margin-top: 10px; }
+.cc-gate-steps { display: flex; gap: 6px; margin-bottom: 14px; }
+.cc-gate-dot { height: 4px; flex: 1; border-radius: 2px; background: var(--line); transition: background .2s; }
+.cc-gate-dot.on { background: var(--gold); }
+.cc-gate-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 6px; }
+.cc-gate-chip { display: inline-flex; align-items: center; gap: 6px; padding: 9px 14px; border-radius: 999px; border: 1.5px solid var(--line); background: var(--white); font-family: var(--body); font-weight: 600; font-size: 13.5px; color: var(--ink-soft); cursor: pointer; transition: border-color .15s, background .15s, color .15s; }
+.cc-gate-chip:hover { border-color: var(--sage); }
+.cc-gate-chip.on { border-color: var(--pine); background: var(--pine-tint); color: var(--pine); }
+.cc-gate-chip .ph { font-size: 14px; }
+.cc-gate-alt { display: inline-flex; align-items: center; gap: 7px; justify-content: center; width: 100%; margin-top: 12px; background: none; border: none; cursor: pointer; font-family: var(--body); font-weight: 700; font-size: 13.5px; color: var(--pine); }
+.cc-gate-alt:hover { color: var(--pine-deep); }
+
+/* onboarding method choice (wizard vs voice AI) */
+.cc-gate-option { display: flex; align-items: center; gap: 14px; width: 100%; text-align: left; padding: 15px 16px; margin-top: 12px; border-radius: var(--r-md); border: 1.5px solid var(--line); background: var(--white); cursor: pointer; transition: border-color .15s, box-shadow .2s, transform .1s; }
+.cc-gate-option:hover { border-color: var(--pine); box-shadow: var(--shadow-sm); }
+.cc-gate-option:active { transform: scale(.99); }
+.cc-gate-option-ico { width: 46px; height: 46px; flex: none; border-radius: 12px; background: var(--pine-tint); color: var(--pine); display: grid; place-items: center; font-size: 24px; }
+.cc-gate-option-ico.gold { background: #FBEFD6; color: var(--gold-deep); }
+.cc-gate-option-body { display: flex; flex-direction: column; gap: 2px; flex: 1; min-width: 0; }
+.cc-gate-option-h { font-family: var(--display); font-weight: 800; font-size: 16px; color: var(--ink); }
+.cc-gate-option-b { font-size: 13px; line-height: 1.45; color: var(--ink-mute); }
+.cc-gate-option-go { color: var(--ink-mute); font-size: 18px; flex: none; }
