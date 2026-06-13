@@ -20,7 +20,7 @@ window.STRINGS.es.svcHow = { eyebrow: "Cómo funciona", h: "Tres toques para una
 window.STRINGS.en.services = {
   roofing: {
     live: true, funnel: "Vetted Home Professionals.html", costPage: "Roofing Cost.html",
-    meta: { title: "Arizona Roofing · Vetted Local Roofers | Vetted Local Providers",
+    meta: { title: "Arizona Roofing · Vetted Local Roofers | Casa Concierge",
       desc: "Tile, foam, and shingle roofing across the Phoenix Valley. Get matched with a vetted, ROC-registered Arizona roofer. Free quotes, no spam." },
     crumbs: [{ label: "Home", href: "index.html" }, { label: "Services", href: "index.html#services" }, { label: "Roofing" }],
     hero: { eyebrow: "Arizona roofing", h: "Roofing built for Arizona roofs.", sub: "Tile, foam, and shingle. We match you with a vetted local roofer who knows monsoons, desert heat, and how to handle an insurance claim.", cta: "Get a free quote" },
@@ -50,7 +50,7 @@ window.STRINGS.en.services = {
 window.STRINGS.es.services = {
   roofing: {
     live: true, funnel: "Vetted Home Professionals.html", costPage: "Roofing Cost.html",
-    meta: { title: "Techos en Arizona · Techadores locales verificados | Vetted Local Providers",
+    meta: { title: "Techos en Arizona · Techadores locales verificados | Casa Concierge",
       desc: "Techos de teja, espuma y asfalto en el Valle del Sol. Conéctese con un techador de Arizona verificado y registrado ROC. Cotizaciones gratis, sin spam." },
     crumbs: [{ label: "Inicio", href: "index.html" }, { label: "Servicios", href: "index.html#services" }, { label: "Techos" }],
     hero: { eyebrow: "Techos en Arizona", h: "Techos hechos para el clima de Arizona.", sub: "Teja, espuma y asfalto. Lo conectamos con un techador local verificado que conoce los monzones, el calor del desierto y cómo manejar un reclamo de seguro.", cta: "Recibir cotización gratis" },

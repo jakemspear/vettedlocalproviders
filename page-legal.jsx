@@ -5,12 +5,12 @@ const LEGAL_COPY = {
     privacy: {
       title: "Privacy Policy",
       eyebrow: "Business privacy notice",
-      sub: "How Vetted Local Providers collects, uses, shares, and protects personal information across our website, quote requests, and text-message opt-in flows.",
+      sub: "How Casa Concierge collects, uses, shares, and protects personal information across our website, quote requests, and text-message opt-in flows.",
       crumbs: [{ label: "Home", href: HOMEPAGE }, { label: "Privacy Policy" }],
       summaryTitle: "Business details",
       summaryItems: [
         { label: "Legal entity", value: LEGAL_NAME },
-        { label: "DBA", value: "Vetted Local Providers" },
+        { label: "DBA", value: "Casa Concierge" },
         { label: "Mailing address", value: ADDRESS },
         { label: "Public phone", value: PHONE },
         { label: "Email", value: EMAIL },
@@ -20,8 +20,8 @@ const LEGAL_COPY = {
           id: "overview",
           h: "Who we are",
           body: [
-            "Scaling Adventures, LLC does business as Vetted Local Providers. We operate a homeowner referral and concierge service that helps people request quotes, inspections, appointments, and related follow-up from independent local service providers.",
-            "This Privacy Policy applies to information collected on vettedlocalproviders.com, on our landing pages and forms, and through related calls and text messages that you choose to receive from us."
+            "Scaling Adventures, LLC does business as Casa Concierge. We operate a homeowner referral and concierge service that helps people request quotes, inspections, appointments, and related follow-up from independent local service providers.",
+            "This Privacy Policy applies to information collected on textcasaconcierge.com, on our landing pages and forms, and through related calls and text messages that you choose to receive from us."
           ]
         },
         {
@@ -92,12 +92,12 @@ const LEGAL_COPY = {
     terms: {
       title: "Terms of Service",
       eyebrow: "Website terms",
-      sub: "Terms governing the use of Vetted Local Providers, our website, our referral service, and our text-message consent flows.",
+      sub: "Terms governing the use of Casa Concierge, our website, our referral service, and our text-message consent flows.",
       crumbs: [{ label: "Home", href: HOMEPAGE }, { label: "Terms of Service" }],
       summaryTitle: "Business details",
       summaryItems: [
         { label: "Legal entity", value: LEGAL_NAME },
-        { label: "DBA", value: "Vetted Local Providers" },
+        { label: "DBA", value: "Casa Concierge" },
         { label: "Mailing address", value: ADDRESS },
         { label: "Public phone", value: PHONE },
         { label: "Email", value: EMAIL },
@@ -114,8 +114,8 @@ const LEGAL_COPY = {
           id: "service-disclaimer",
           h: "Referral-service disclaimer",
           body: [
-            "Scaling Adventures, LLC d/b/a Vetted Local Providers is a referral and concierge service. We help connect consumers with independent local providers. We are not a licensed contractor, do not perform home-improvement work ourselves, and do not guarantee that any particular provider will be available, selected, or hired.",
-            "Any contract for services is between you and the provider you choose. Pricing, timing, workmanship, warranties, and outcomes are determined by that provider, not by Vetted Local Providers."
+            "Scaling Adventures, LLC d/b/a Casa Concierge is a referral and concierge service. We help connect consumers with independent local providers. We are not a licensed contractor, do not perform home-improvement work ourselves, and do not guarantee that any particular provider will be available, selected, or hired.",
+            "Any contract for services is between you and the provider you choose. Pricing, timing, workmanship, warranties, and outcomes are determined by that provider, not by Casa Concierge."
           ]
         },
         {
@@ -129,7 +129,7 @@ const LEGAL_COPY = {
           id: "sms-messaging",
           h: "SMS messaging terms",
           body: [
-            "Vetted Local Providers, operated by Scaling Adventures, LLC, offers an SMS program for homeowners and leads who choose to opt in. If you opt in to receive text messages from us, you agree to receive conversational, transactional, and promotional messages related to your quote request, appointment scheduling, service follow-up, requested provider coordination, and closely related updates.",
+            "Casa Concierge, operated by Scaling Adventures, LLC, offers an SMS program for homeowners and leads who choose to opt in. If you opt in to receive text messages from us, you agree to receive conversational, transactional, and promotional messages related to your quote request, appointment scheduling, service follow-up, requested provider coordination, and closely related updates.",
             "Message frequency may vary. Message and data rates may apply. To stop receiving messages, reply STOP to any text message. Reply HELP for assistance. Consent is not a condition of purchase. Carriers are not liable for delayed or undelivered messages."
           ]
         },
@@ -159,28 +159,28 @@ const LEGAL_COPY = {
           id: "intellectual-property",
           h: "Intellectual property",
           body: [
-            "All website content, design, branding, graphics, copy, and related materials are owned by or licensed to Vetted Local Providers and may not be copied, reproduced, or reused without permission except as allowed by law."
+            "All website content, design, branding, graphics, copy, and related materials are owned by or licensed to Casa Concierge and may not be copied, reproduced, or reused without permission except as allowed by law."
           ]
         },
         {
           id: "accessibility",
           h: "Accessibility",
           body: [
-            "We aim to keep the site usable and accessible. If you have trouble accessing any content or form, contact us at hello@vettedlocalproviders.com or call (520) 277-2778 and we will work to assist you."
+            "We aim to keep the site usable and accessible. If you have trouble accessing any content or form, contact us at hello@textcasaconcierge.com or call (520) 277-2778 and we will work to assist you."
           ]
         },
         {
           id: "limitation-liability",
           h: "Limitation of liability",
           body: [
-            "To the fullest extent allowed by law, Vetted Local Providers is not liable for indirect, incidental, special, consequential, or punitive damages arising from your use of the website or from services provided by third-party providers."
+            "To the fullest extent allowed by law, Casa Concierge is not liable for indirect, incidental, special, consequential, or punitive damages arising from your use of the website or from services provided by third-party providers."
           ]
         },
         {
           id: "changes-contact",
           h: "Changes and contact information",
           body: [
-            "We may update these terms from time to time by posting a revised version on this page. Questions about these terms can be sent to hello@vettedlocalproviders.com, called in to (520) 277-2778, or mailed to 30 N Gould St Ste R, Sheridan, WY 82801."
+            "We may update these terms from time to time by posting a revised version on this page. Questions about these terms can be sent to hello@textcasaconcierge.com, called in to (520) 277-2778, or mailed to 30 N Gould St Ste R, Sheridan, WY 82801."
           ]
         }
       ]
@@ -190,12 +190,12 @@ const LEGAL_COPY = {
     privacy: {
       title: "Politica de Privacidad",
       eyebrow: "Aviso de privacidad",
-      sub: "Como Vetted Local Providers recopila, usa, comparte y protege la informacion personal en nuestro sitio, formularios de cotizacion y flujos de consentimiento por mensaje de texto.",
+      sub: "Como Casa Concierge recopila, usa, comparte y protege la informacion personal en nuestro sitio, formularios de cotizacion y flujos de consentimiento por mensaje de texto.",
       crumbs: [{ label: "Inicio", href: HOMEPAGE }, { label: "Politica de Privacidad" }],
       summaryTitle: "Datos del negocio",
       summaryItems: [
         { label: "Entidad legal", value: LEGAL_NAME },
-        { label: "Nombre comercial", value: "Vetted Local Providers" },
+        { label: "Nombre comercial", value: "Casa Concierge" },
         { label: "Direccion postal", value: ADDRESS },
         { label: "Telefono publico", value: PHONE },
         { label: "Correo electronico", value: EMAIL },
@@ -205,8 +205,8 @@ const LEGAL_COPY = {
           id: "overview",
           h: "Quienes somos",
           body: [
-            "Scaling Adventures, LLC opera comercialmente como Vetted Local Providers. Operamos un servicio de referencia y concierge para propietarios que ayuda a solicitar cotizaciones, inspecciones, citas y seguimientos relacionados con proveedores locales independientes.",
-            "Esta Politica de Privacidad aplica a la informacion recopilada en vettedlocalproviders.com, en nuestras paginas de aterrizaje y formularios, y mediante llamadas y mensajes de texto relacionados que usted elija recibir."
+            "Scaling Adventures, LLC opera comercialmente como Casa Concierge. Operamos un servicio de referencia y concierge para propietarios que ayuda a solicitar cotizaciones, inspecciones, citas y seguimientos relacionados con proveedores locales independientes.",
+            "Esta Politica de Privacidad aplica a la informacion recopilada en textcasaconcierge.com, en nuestras paginas de aterrizaje y formularios, y mediante llamadas y mensajes de texto relacionados que usted elija recibir."
           ]
         },
         {
@@ -277,12 +277,12 @@ const LEGAL_COPY = {
     terms: {
       title: "Terminos de Servicio",
       eyebrow: "Terminos del sitio",
-      sub: "Terminos que rigen el uso de Vetted Local Providers, nuestro sitio web, nuestro servicio de referencia y nuestros flujos de consentimiento por mensaje de texto.",
+      sub: "Terminos que rigen el uso de Casa Concierge, nuestro sitio web, nuestro servicio de referencia y nuestros flujos de consentimiento por mensaje de texto.",
       crumbs: [{ label: "Inicio", href: HOMEPAGE }, { label: "Terminos de Servicio" }],
       summaryTitle: "Datos del negocio",
       summaryItems: [
         { label: "Entidad legal", value: LEGAL_NAME },
-        { label: "Nombre comercial", value: "Vetted Local Providers" },
+        { label: "Nombre comercial", value: "Casa Concierge" },
         { label: "Direccion postal", value: ADDRESS },
         { label: "Telefono publico", value: PHONE },
         { label: "Correo electronico", value: EMAIL },
@@ -299,8 +299,8 @@ const LEGAL_COPY = {
           id: "service-disclaimer",
           h: "Aviso sobre el servicio de referencia",
           body: [
-            "Scaling Adventures, LLC d/b/a Vetted Local Providers es un servicio de referencia y concierge. Ayudamos a conectar consumidores con proveedores locales independientes. No somos un contratista con licencia, no realizamos trabajos de mejoras del hogar nosotros mismos y no garantizamos que un proveedor especifico estara disponible, sera seleccionado o sera contratado.",
-            "Cualquier contrato por servicios se celebra entre usted y el proveedor que elija. Los precios, tiempos, mano de obra, garantias y resultados son determinados por ese proveedor, no por Vetted Local Providers."
+            "Scaling Adventures, LLC d/b/a Casa Concierge es un servicio de referencia y concierge. Ayudamos a conectar consumidores con proveedores locales independientes. No somos un contratista con licencia, no realizamos trabajos de mejoras del hogar nosotros mismos y no garantizamos que un proveedor especifico estara disponible, sera seleccionado o sera contratado.",
+            "Cualquier contrato por servicios se celebra entre usted y el proveedor que elija. Los precios, tiempos, mano de obra, garantias y resultados son determinados por ese proveedor, no por Casa Concierge."
           ]
         },
         {
@@ -314,7 +314,7 @@ const LEGAL_COPY = {
           id: "sms-messaging",
           h: "Terminos de mensajeria SMS",
           body: [
-            "Vetted Local Providers, operado por Scaling Adventures, LLC, ofrece un programa de SMS para propietarios y prospectos que decidan dar su consentimiento. Si da su consentimiento para recibir mensajes de texto, acepta recibir mensajes conversacionales, transaccionales y promocionales relacionados con su solicitud de cotizacion, programacion de citas, seguimiento del servicio, coordinacion con proveedores solicitados y actualizaciones estrechamente relacionadas.",
+            "Casa Concierge, operado por Scaling Adventures, LLC, ofrece un programa de SMS para propietarios y prospectos que decidan dar su consentimiento. Si da su consentimiento para recibir mensajes de texto, acepta recibir mensajes conversacionales, transaccionales y promocionales relacionados con su solicitud de cotizacion, programacion de citas, seguimiento del servicio, coordinacion con proveedores solicitados y actualizaciones estrechamente relacionadas.",
             "La frecuencia de mensajes puede variar. Pueden aplicarse tarifas de mensajes y datos. Para dejar de recibir mensajes, responda STOP a cualquier mensaje de texto. Responda HELP para obtener ayuda. El consentimiento no es condicion de compra. Los operadores no son responsables por mensajes demorados o no entregados."
           ]
         },
@@ -344,28 +344,28 @@ const LEGAL_COPY = {
           id: "intellectual-property",
           h: "Propiedad intelectual",
           body: [
-            "Todo el contenido del sitio, diseno, marca, graficos, textos y materiales relacionados son propiedad de Vetted Local Providers o se usan bajo licencia y no pueden copiarse, reproducirse o reutilizarse sin permiso, salvo lo permitido por la ley."
+            "Todo el contenido del sitio, diseno, marca, graficos, textos y materiales relacionados son propiedad de Casa Concierge o se usan bajo licencia y no pueden copiarse, reproducirse o reutilizarse sin permiso, salvo lo permitido por la ley."
           ]
         },
         {
           id: "accessibility",
           h: "Accesibilidad",
           body: [
-            "Buscamos mantener el sitio utilizable y accesible. Si tiene problemas para acceder a cualquier contenido o formulario, escribanos a hello@vettedlocalproviders.com o llame al (520) 277-2778 y haremos lo posible por ayudar."
+            "Buscamos mantener el sitio utilizable y accesible. Si tiene problemas para acceder a cualquier contenido o formulario, escribanos a hello@textcasaconcierge.com o llame al (520) 277-2778 y haremos lo posible por ayudar."
           ]
         },
         {
           id: "limitation-liability",
           h: "Limitacion de responsabilidad",
           body: [
-            "En la medida maxima permitida por la ley, Vetted Local Providers no sera responsable por danos indirectos, incidentales, especiales, consecuentes o punitivos derivados del uso del sitio o de servicios prestados por proveedores terceros."
+            "En la medida maxima permitida por la ley, Casa Concierge no sera responsable por danos indirectos, incidentales, especiales, consecuentes o punitivos derivados del uso del sitio o de servicios prestados por proveedores terceros."
           ]
         },
         {
           id: "changes-contact",
           h: "Cambios y contacto",
           body: [
-            "Podemos actualizar estos terminos ocasionalmente publicando una version revisada en esta pagina. Las preguntas sobre estos terminos pueden enviarse a hello@vettedlocalproviders.com, llamarse al (520) 277-2778 o enviarse por correo a 30 N Gould St Ste R, Sheridan, WY 82801."
+            "Podemos actualizar estos terminos ocasionalmente publicando una version revisada en esta pagina. Las preguntas sobre estos terminos pueden enviarse a hello@textcasaconcierge.com, llamarse al (520) 277-2778 o enviarse por correo a 30 N Gould St Ste R, Sheridan, WY 82801."
           ]
         }
       ]

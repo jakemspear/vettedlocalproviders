@@ -9,7 +9,7 @@ window.STRINGS.es = window.STRINGS.es || {};
 window.STRINGS.en.cost = {
   roofing: {
     funnel: "Vetted Home Professionals.html", servicePage: "Roofing.html",
-    meta: { title: "What Does a Roof Cost in Arizona? (2026 Guide) | Vetted Local Providers",
+    meta: { title: "What Does a Roof Cost in Arizona? (2026 Guide) | Casa Concierge",
       desc: "Honest Arizona roof cost ranges for tile, foam, and shingle, plus what drives the price and how to avoid overpaying. No pressure, no spam." },
     crumbs: [{ label: "Home", href: "index.html" }, { label: "Roofing", href: "Roofing.html" }, { label: "Cost guide" }],
     hero: { eyebrow: "Roofing cost guide", h: "What does a roof cost in Arizona?", sub: "An honest look at tile, foam, and shingle pricing in the Valley, what moves the number, and how to avoid overpaying. No pressure to buy.", cta: "Get a real quote for my home" },
@@ -51,7 +51,7 @@ window.STRINGS.en.cost = {
 window.STRINGS.es.cost = {
   roofing: {
     funnel: "Vetted Home Professionals.html", servicePage: "Roofing.html",
-    meta: { title: "¿Cuánto cuesta un techo en Arizona? (Guía 2026) | Vetted Local Providers",
+    meta: { title: "¿Cuánto cuesta un techo en Arizona? (Guía 2026) | Casa Concierge",
       desc: "Rangos honestos de precios de techos en Arizona para teja, espuma y asfalto, qué mueve el precio y cómo evitar pagar de más. Sin presión, sin spam." },
     crumbs: [{ label: "Inicio", href: "index.html" }, { label: "Techos", href: "Roofing.html" }, { label: "Guía de precios" }],
     hero: { eyebrow: "Guía de precios de techos", h: "¿Cuánto cuesta un techo en Arizona?", sub: "Una mirada honesta a los precios de teja, espuma y asfalto en el Valle, qué mueve el número y cómo evitar pagar de más. Sin presión para comprar.", cta: "Recibir una cotización real" },

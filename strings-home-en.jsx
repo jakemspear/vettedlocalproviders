@@ -5,7 +5,7 @@ window.STRINGS.en.home = {
   hero: {
     eyebrow: "Arizona home concierge",
     pill: "Now serving the Greater Phoenix Valley — and expanding fast.",
-    h: "Your Home Concierge to Find Vetted Local Providers",
+    h: "Your Home Concierge to Find Casa Concierge",
     sub: "Tell us what the house needs. We line up vetted local pros, keep the process simple, and pass along the deals our network gets first.",
     highlights: [
       "One trusted contact from quote to callback",
@@ -75,7 +75,7 @@ window.STRINGS.en.home = {
   about: {
     eyebrow: "Why we started this",
     h: "We wanted a better way to hire home pros.",
-    body: "Vetted Local Providers is a small Arizona team that got fed up watching neighbors get bounced between random callbacks and confusing quote funnels. So we built the opposite: a vetted network, one real contact, and deals you earn by being easy to work with.",
+    body: "Casa Concierge is a small Arizona team that got fed up watching neighbors get bounced between random callbacks and confusing quote funnels. So we built the opposite: a vetted network, one real contact, and deals you earn by being easy to work with.",
     cta: "Read our story",
   },
   faq: {
@@ -98,10 +98,10 @@ window.STRINGS.en.home = {
     },
     roc: "We work with independent local providers and verify eligibility requirements based on the service and market.",
     addr: "30 N Gould St Ste R, Sheridan, WY 82801",
-    fine: "We are a referral service, not a licensed contractor. We never sell or spam your information. © 2026 Vetted Local Providers.",
-    contact: "hello@vettedlocalproviders.com",
+    fine: "We are a referral service, not a licensed contractor. We never sell or spam your information. © 2026 Casa Concierge.",
+    contact: "hello@textcasaconcierge.com",
     disclaimerNote: "Important legal disclosure",
-    disclaimer: "Scaling Adventures, LLC does business as Vetted Local Providers. Vetted Local Providers is a lead-referral service that connects homeowners with independent local service providers. We are not a licensed contractor and do not perform home-improvement work ourselves. We are not affiliated with, endorsed by, or sponsored by Meta Platforms, Inc. (Facebook, Instagram), Google, or any other platform. All trademarks are the property of their respective owners. We do not sell your personal information to third parties for their own marketing. We connect you only with the providers you request. Savings, offers, and results vary and are not guaranteed. Provider availability, licensing requirements, and service areas vary by market. By submitting a request you agree to our Privacy Policy, Terms of Service, and to be contacted as described in our consent terms. © 2026 Vetted Local Providers. All rights reserved.",
-    disclaimerShort: "Vetted Local Providers is a U.S. lead-referral service connecting homeowners with independent local service providers. We are not a licensed contractor and are not affiliated with or endorsed by Meta, Google, or any other platform. All trademarks belong to their respective owners. We do not sell your personal information. Offers, availability, and results vary by market and are not guaranteed. © 2026 Vetted Local Providers. All rights reserved.",
+    disclaimer: "Scaling Adventures, LLC does business as Casa Concierge. Casa Concierge is a lead-referral service that connects homeowners with independent local service providers. We are not a licensed contractor and do not perform home-improvement work ourselves. We are not affiliated with, endorsed by, or sponsored by Meta Platforms, Inc. (Facebook, Instagram), Google, or any other platform. All trademarks are the property of their respective owners. We do not sell your personal information to third parties for their own marketing. We connect you only with the providers you request. Savings, offers, and results vary and are not guaranteed. Provider availability, licensing requirements, and service areas vary by market. By submitting a request you agree to our Privacy Policy, Terms of Service, and to be contacted as described in our consent terms. © 2026 Casa Concierge. All rights reserved.",
+    disclaimerShort: "Casa Concierge is a U.S. lead-referral service connecting homeowners with independent local service providers. We are not a licensed contractor and are not affiliated with or endorsed by Meta, Google, or any other platform. All trademarks belong to their respective owners. We do not sell your personal information. Offers, availability, and results vary by market and are not guaranteed. © 2026 Casa Concierge. All rights reserved.",
   },
 };
