@@ -54,7 +54,7 @@ window.STRINGS.es = {
   form: {
     back: "Volver", continue: "Continuar", continueAnyway: "Continuar de todos modos",
     foot: "Seguro y privado · Nunca vendemos su información",
-    smsOptInLabel: "Sí, envíenme actualizaciones y ofertas por texto",
+    smsOptInLabel: "Sí, doy mi consentimiento para ser contactado",
     steps: {
       need: { q: "¿Qué necesita su techo?", why: "Para conectarlo con un profesional que haga exactamente este tipo de trabajo.", options: { replace: "Reemplazar mi techo", repair: "Reparar un problema", inspect: "Inspección gratis", explore: "Solo explorando" } },
       material: { q: "¿Qué tipo de techo tiene?", why: "Los techos en Arizona son especializados, así que esto le consigue al especialista correcto, no a un generalista.", options: { tile: "Teja", shingle: "Asfalto (shingle)", foam: "Espuma / Plano", metal: "Metal", unsure: "No estoy seguro" } },

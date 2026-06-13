@@ -242,6 +242,7 @@
 .request-consent-copy strong { color: var(--ink); }
 .request-consent-meta { margin: 4px 0 0; font-size: 11px; line-height: 1.35; color: var(--ink-mute); }
 .request-consent-links { margin-top: 6px; font-size: 11.4px; }
+.request-consent-below { margin-top: 10px; }
 
 .consent {
   display: flex; gap: 12px; align-items: flex-start; margin: 18px 0 6px; cursor: pointer;
@@ -250,7 +251,7 @@
 }
 .consent.on { border-color: var(--pine); background: var(--pine-tint); }
 .consent input { position: absolute; opacity: 0; width: 0; height: 0; }
-.consent-optional { margin-top: 12px; padding: 10px 12px; background: #f8faf7; border-color: #cfe0d8; }
+.consent-optional { margin-top: 12px; padding: 10px 12px; background: #f8faf7; border-color: #cfe0d8; box-shadow: 0 0 0 1px rgba(31,77,69,.03), 0 10px 24px rgba(18,31,28,.05); }
 .consent-box {
   width: 26px; height: 26px; flex: none; border-radius: 7px;
   border: 1.5px solid var(--sage); background: var(--white);
@@ -275,6 +276,7 @@
   .request-consent-copy { font-size: 11px; line-height: 1.32; }
   .request-consent-meta { margin-top: 3px; font-size: 10.3px; line-height: 1.28; }
   .request-consent-links { margin-top: 5px; font-size: 10.7px; }
+  .request-consent-below { margin-top: 8px; }
   .consent { gap: 9px; margin: 10px 0 4px; padding: 9px 10px; }
   .consent-box { width: 20px; height: 20px; border-radius: 6px; font-size: 13px; }
   .consent-text { font-size: 10.8px; line-height: 1.3; }

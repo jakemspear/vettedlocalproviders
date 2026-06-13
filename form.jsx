@@ -290,7 +290,19 @@ function ContactStep({ data, set, onSubmit, offer }) {
           <p>{T.form.antispam.lead} <strong>{T.form.antispam.emphasis}</strong><br />{T.form.antispam.tail}</p>
         </div>
       </div>
-      <div className="request-consent">
+      <label className={`consent consent-optional${data.consent ? " on" : ""}`}>
+        <input type="checkbox" checked={!!data.consent} onChange={(e) => set("consent", e.target.checked)} />
+        <span className="consent-box"><Ico name="ph-check" weight="bold" /></span>
+        <span className="consent-text">
+          <strong>{T.form.smsOptInLabel}</strong>{" "}
+          <span>{consentText}</span>
+          <span className="consent-meta">{T.form.tcpaMeta}</span>
+        </span>
+      </label>
+      <button className={`btn btn-gold submit${submitting ? " loading" : ""}`} disabled={!ok || submitting} onClick={go} style={{ marginTop: 10 }}>
+        {submitting ? <span className="spin" /> : <>{submitLabel} <Ico name="ph-arrow-right" weight="bold" /></>}
+      </button>
+      <div className="request-consent request-consent-below">
         <p className="request-consent-copy">{requestConsentText}</p>
         <p className="request-consent-meta">{T.form.requestConsentMeta}</p>
         <div className="consent-links request-consent-links">
@@ -299,23 +311,6 @@ function ContactStep({ data, set, onSubmit, offer }) {
           <a href={TERMS_PAGE} target="_blank" rel="noreferrer">Terms of Service</a>
         </div>
       </div>
-      <button className={`btn btn-gold submit${submitting ? " loading" : ""}`} disabled={!ok || submitting} onClick={go} style={{ marginTop: 10 }}>
-        {submitting ? <span className="spin" /> : <>{submitLabel} <Ico name="ph-arrow-right" weight="bold" /></>}
-      </button>
-      <label className={`consent consent-optional${data.consent ? " on" : ""}`}>
-        <input type="checkbox" checked={!!data.consent} onChange={(e) => set("consent", e.target.checked)} />
-        <span className="consent-box"><Ico name="ph-check" weight="bold" /></span>
-        <span className="consent-text">
-          <strong>{T.form.smsOptInLabel}</strong>{" "}
-          <span>{consentText}</span>
-          <span className="consent-meta">{T.form.tcpaMeta}</span>
-          <span className="consent-links">
-            <a href={PRIVACY_PAGE} target="_blank" rel="noreferrer">Privacy Policy</a>
-            <span>·</span>
-            <a href={TERMS_PAGE} target="_blank" rel="noreferrer">Terms of Service</a>
-          </span>
-        </span>
-      </label>
       {!ok && <p className="submit-hint">{s.hint}</p>}
     </div>
   );
