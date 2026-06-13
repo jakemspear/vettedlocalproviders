@@ -53,7 +53,6 @@
   white-space: normal; color: var(--ink-soft); font-weight: 600; line-height: 1.25;
 }
 .trustbar .chip .ph { color: var(--pine); width: 24px; font-size: 19px; text-align: center; display: block; line-height: 1; }
-.trustbar .chip.spam .ph { transform: translateX(-2px); }
 .trustbar .lbl-full { display: none; }
 .trustbar .lbl-short { display: inline; }
 

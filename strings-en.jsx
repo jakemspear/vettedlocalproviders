@@ -74,9 +74,9 @@ window.STRINGS.en = {
   processing: { title: "Setting up your callback", items: { match: "Matching you with a vetted Arizona specialist", confirm: "Confirming a pro covers {city}", reserve: "Reserving your 2-minute callback" }, foot: "Finding pros near you in the Valley" },
   ty: {
     qualify: "Good news, your roof likely qualifies", youreIn: "You're in",
-    h: "We'll call you within the next 2 minutes.", callfrom: "From {phone}. Keep your phone close.", ringLabel: "until we call",
+    h: "We'll call you now.", callfrom: "From {phone}. Keep your phone close.", ringLabel: "until we call",
     expiredH: "Our team may be on another call. Go ahead and call us now.", callNow: "Call us now",
-    narrEyebrow: "Before our call",
+    narrEyebrow: "Last step before we call you",
     narrTitle: "Explore Exclusive Offers By Our Vetted Local Providers",
     narrSub: "In the Phoenix area",
     narrSubDetail: "Select any additional offers you'd like to learn about when you speak to your home concierge.",

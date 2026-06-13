@@ -74,9 +74,9 @@ window.STRINGS.es = {
   processing: { title: "Preparando su llamada", items: { match: "Conectándolo con un especialista verificado de Arizona", confirm: "Confirmando que un profesional cubre {city}", reserve: "Reservando su llamada de 2 minutos" }, foot: "Buscando profesionales cerca de usted en el Valle" },
   ty: {
     qualify: "Buenas noticias, es probable que su techo califique", youreIn: "Ya quedó",
-    h: "Le llamaremos dentro de los próximos 2 minutos.", callfrom: "Desde {phone}. Tenga su teléfono a la mano.", ringLabel: "para su llamada",
+    h: "Le llamaremos ahora.", callfrom: "Desde {phone}. Tenga su teléfono a la mano.", ringLabel: "para su llamada",
     expiredH: "Puede que nuestro equipo esté en otra llamada. Mejor llámenos usted ahora.", callNow: "Llámenos ahora",
-    narrEyebrow: "Antes de nuestra llamada",
+    narrEyebrow: "Último paso antes de llamarle",
     narrTitle: "Explore ofertas exclusivas de nuestros proveedores locales verificados",
     narrSub: "En el area de Phoenix",
     narrSubDetail: "Seleccione cualquier oferta adicional sobre la que quiera recibir informacion en nuestra llamada.",
