@@ -13,6 +13,84 @@ function ccScrollTo(id) {
   window.scrollTo({ top: y, behavior: "smooth" });
 }
 
+/* ── service-area gate (address buffer shown before any text/call) ─ */
+const METRO_ZIP3 = new Set(["850", "851", "852", "853", "855"]);
+const METRO_CITIES = ["phoenix", "mesa", "tempe", "chandler", "gilbert", "scottsdale", "glendale", "peoria", "surprise", "goodyear", "avondale", "queen creek", "buckeye", "fountain hills", "paradise valley", "apache junction", "maricopa", "sun city", "cave creek", "litchfield", "el mirage", "tolleson", "ahwatukee"];
+function ccFindZip(s) { const m = (s || "").match(/\b(\d{5})\b/); return m ? m[1] : null; }
+function ccInArea(s) {
+  const zip = ccFindZip(s);
+  if (zip) return METRO_ZIP3.has(zip.slice(0, 3));
+  const t = (s || "").toLowerCase();
+  return METRO_CITIES.some((c) => t.includes(c));
+}
+function ccSmsWithAddress(addr) {
+  const body = encodeURIComponent(`Hi Casa Concierge! My home is at ${addr}. I need help with `);
+  return `sms:${PHONE_TEL}?&body=${body}`;
+}
+
+/* context lets any CTA open the gate without threading props through every section */
+const GateCtx = React.createContext(() => {});
+function useGate() { return React.useContext(GateCtx); }
+
+function AddressGate({ mode, onClose }) {
+  const [addr, setAddr] = useState("");
+  const [stage, setStage] = useState("ask");   // ask | out
+  const [bad, setBad] = useState(false);
+  const verb = mode === "call" ? "call" : "text";
+  const submit = () => {
+    if (!addr.trim()) { setBad(true); return; }
+    if (ccInArea(addr)) {
+      window.location.href = mode === "call" ? TEL_HREF : ccSmsWithAddress(addr.trim());
+      onClose();
+    } else {
+      setStage("out");
+    }
+  };
+  return (
+    <div className="cc-gate-veil" onClick={onClose}>
+      <div className="cc-gate" role="dialog" aria-modal="true" onClick={(e) => e.stopPropagation()}>
+        {stage === "ask" ? (
+          <React.Fragment>
+            <div className="cc-gate-top">
+              <span className="cc-gate-ico"><Ico name="ph-map-pin" weight="duotone" /></span>
+              <button className="cc-gate-x" onClick={onClose} aria-label="Close"><Ico name="ph-x" weight="bold" /></button>
+            </div>
+            <div className="cc-gate-h">First, where's your home?</div>
+            <p className="cc-gate-sub">We're serving Greater Phoenix right now. Drop your address or ZIP and we'll start the {verb} with it already in hand.</p>
+            <input
+              className={`input cc-gate-input${bad ? " bad" : ""}`}
+              type="text"
+              autoFocus
+              placeholder="Home address or ZIP"
+              value={addr}
+              onChange={(e) => { setAddr(e.target.value); setBad(false); }}
+              onKeyDown={(e) => { if (e.key === "Enter") submit(); }}
+            />
+            <button className="btn btn-gold cta cc-gate-go" onClick={submit}>
+              {mode === "call" ? "Call Your Concierge" : "Text Your Concierge"} <Ico name={mode === "call" ? "ph-phone" : "ph-chat-circle-dots"} weight="bold" />
+            </button>
+            <p className="cc-gate-fine">
+              By continuing you agree to receive messages about your request and to our{" "}
+              <a href={TERMS_PAGE}>Terms</a> and <a href={PRIVACY_PAGE}>Privacy Policy</a>. Msg &amp; data rates may apply · Reply STOP to opt out.
+            </p>
+          </React.Fragment>
+        ) : (
+          <React.Fragment>
+            <div className="cc-gate-top">
+              <span className="cc-gate-ico"><Ico name="ph-hourglass-medium" weight="duotone" /></span>
+              <button className="cc-gate-x" onClick={onClose} aria-label="Close"><Ico name="ph-x" weight="bold" /></button>
+            </div>
+            <div className="cc-gate-h">We're not in your area yet</div>
+            <p className="cc-gate-sub">Casa Concierge is live across Greater Phoenix and expanding fast. Join the waitlist and you'll be first to know the day we reach your neighborhood.</p>
+            <a className="btn btn-gold cta cc-gate-go" href="join-the-waitlist.html">Join the waitlist <Ico name="ph-arrow-right" weight="bold" /></a>
+            <button className="cc-gate-back" onClick={() => setStage("ask")}><Ico name="ph-arrow-left" weight="bold" /> Try a different address</button>
+          </React.Fragment>
+        )}
+      </div>
+    </div>
+  );
+}
+
 /* ── rotating hero word ─────────────────────────────────────────── */
 const ROTATE = ["cleaner", "plumber", "roofer", "electrician", "handyman", "HVAC tech", "landscaper", "pest pro", "painter", "pool tech"];
 
@@ -37,6 +115,7 @@ function RotatingWord() {
 /* ── header ─────────────────────────────────────────────────────── */
 function Header({ scrolled }) {
   const [open, setOpen] = useState(false);
+  const openGate = useGate();
   const nav = [
     { label: "How it works", to: "how" },
     { label: "What it does", to: "does" },
@@ -56,7 +135,7 @@ function Header({ scrolled }) {
           {nav.map((n) => <button key={n.to} className="cc-nav-link" onClick={() => go(n.to)}>{n.label}</button>)}
         </nav>
         <div className="cc-header-actions">
-          <a className="btn btn-gold cta cc-header-cta" href={SMS_HREF}>Chat Now <Ico name="ph-chat-circle-dots" weight="bold" /></a>
+          <a className="btn btn-gold cta cc-header-cta" href={SMS_HREF} onClick={(e) => { e.preventDefault(); openGate("text"); }}>Chat Now <Ico name="ph-chat-circle-dots" weight="bold" /></a>
           <button className="cc-burger" onClick={() => setOpen(!open)} aria-label="Menu">
             <Ico name={open ? "ph-x" : "ph-list"} weight="bold" />
           </button>
@@ -65,7 +144,7 @@ function Header({ scrolled }) {
       {open && (
         <div className="cc-mobile-menu">
           {nav.map((n) => <button key={n.to} className="cc-mobile-link" onClick={() => go(n.to)}>{n.label}</button>)}
-          <a className="btn btn-gold cta" href={SMS_HREF}>Chat Now <Ico name="ph-chat-circle-dots" weight="bold" /></a>
+          <a className="btn btn-gold cta" href={SMS_HREF} onClick={(e) => { e.preventDefault(); setOpen(false); openGate("text"); }}>Chat Now <Ico name="ph-chat-circle-dots" weight="bold" /></a>
         </div>
       )}
     </header>
@@ -75,6 +154,7 @@ function Header({ scrolled }) {
 /* ── hero ───────────────────────────────────────────────────────── */
 function Hero() {
   const motion = useMotion();
+  const openGate = useGate();
   return (
     <header className="cc-hero">
       <div className="cc-hero-bg" aria-hidden="true" />
@@ -91,8 +171,8 @@ function Hero() {
           <strong> And it's free, forever.</strong>
         </p>
         <div className="cc-hero-cta">
-          <a className="btn btn-gold cta" href={SMS_HREF}>Text Your Concierge <Ico name="ph-chat-circle-dots" weight="bold" /></a>
-          <a className="btn btn-ghost-light" href={TEL_HREF}>Call Your Concierge <Ico name="ph-phone" weight="bold" /></a>
+          <a className="btn btn-gold cta" href={SMS_HREF} onClick={(e) => { e.preventDefault(); openGate("text"); }}>Text Your Concierge <Ico name="ph-chat-circle-dots" weight="bold" /></a>
+          <a className="btn btn-ghost-light" href={TEL_HREF} onClick={(e) => { e.preventDefault(); openGate("call"); }}>Call Your Concierge <Ico name="ph-phone" weight="bold" /></a>
         </div>
         <p className="cc-hero-consent">
           By texting or calling, you agree to receive messages about your request and to our{" "}
@@ -133,6 +213,7 @@ function Problem() {
 
 /* ── what the concierge does (the 5 capabilities) ───────────────── */
 function Capabilities() {
+  const openGate = useGate();
   const caps = [
     { icon: "ph-bell-ringing", h: "Reminds you what the house needs", b: "Seasonal nudges and maintenance reminders to change the filter, flush the heater, and prep for monsoon, so small things never become expensive ones." },
     { icon: "ph-seal-check", h: "Connects you to vetted local professionals", b: "One text and we match you with a screened, licensed local provider for the exact job. No bidding wars, no selling your number." },
@@ -157,7 +238,7 @@ function Capabilities() {
             </div>
           </div>
         ))}
-        <a className="cc-cap cc-cap-cta" href={SMS_HREF}>
+        <a className="cc-cap cc-cap-cta" href={SMS_HREF} onClick={(e) => { e.preventDefault(); openGate("text"); }}>
           <div className="cc-cap-ico gold"><Ico name="ph-chat-circle-dots" weight="fill" /></div>
           <div className="cc-cap-body">
             <div className="cc-cap-h">Try it. Text us anything</div>
@@ -201,6 +282,7 @@ function HowItWorks() {
 
 /* ── chat demo (dark band) ──────────────────────────────────────── */
 function ChatDemo() {
+  const openGate = useGate();
   const thread = [
     { from: "them", t: "My water heater is leaking all over the garage 😩" },
     { from: "us", t: "On it. I've got James, a licensed, insured plumber near you, open 2–4pm today. Want me to book him?" },
@@ -232,7 +314,7 @@ function ChatDemo() {
         </div>
       </div>
       <div className="cc-demo-cta">
-        <a className="btn btn-gold cta" href={SMS_HREF}>Start your own chat <Ico name="ph-arrow-right" weight="bold" className="cta-arrow" /></a>
+        <a className="btn btn-gold cta" href={SMS_HREF} onClick={(e) => { e.preventDefault(); openGate("text"); }}>Start your own chat <Ico name="ph-arrow-right" weight="bold" className="cta-arrow" /></a>
       </div>
     </section>
   );
@@ -331,12 +413,13 @@ function Testimonials() {
 
 /* ── final CTA band ─────────────────────────────────────────────── */
 function CTABand() {
+  const openGate = useGate();
   return (
     <section className="section band-pine cc-cta">
       <div className="cc-cta-in">
         <h2 className="display sec-h2">Your home deserves better <span className="cc-gold">than a search bar.</span></h2>
         <p className="cc-cta-sub">Next time something breaks, needs fixing, or needs doing, just text. We'll take it from there.</p>
-        <a className="btn btn-gold cta cc-cta-btn" href={SMS_HREF}>Text Your Concierge <Ico name="ph-arrow-right" weight="bold" className="cta-arrow" /></a>
+        <a className="btn btn-gold cta cc-cta-btn" href={SMS_HREF} onClick={(e) => { e.preventDefault(); openGate("text"); }}>Text Your Concierge <Ico name="ph-arrow-right" weight="bold" className="cta-arrow" /></a>
         <div className="cc-cta-fine"><Ico name="ph-phone" weight="bold" /> {PHONE} · Available to help 24/7 · Free to use</div>
       </div>
     </section>
@@ -376,6 +459,7 @@ function FAQ() {
 
 /* ── footer ─────────────────────────────────────────────────────── */
 function Footer() {
+  const openGate = useGate();
   return (
     <footer className="cc-footer">
       <div className="cc-footer-in">
@@ -385,7 +469,7 @@ function Footer() {
             <span className="cc-logo-txt" style={{ color: "#fff" }}>Casa Concierge</span>
           </div>
           <p className="cc-footer-tag">Your personal Home Concierge. One trusted text for the whole house.</p>
-          <a className="btn btn-gold cta cc-footer-cta" href={SMS_HREF}>Chat Now <Ico name="ph-chat-circle-dots" weight="bold" /></a>
+          <a className="btn btn-gold cta cc-footer-cta" href={SMS_HREF} onClick={(e) => { e.preventDefault(); openGate("text"); }}>Chat Now <Ico name="ph-chat-circle-dots" weight="bold" /></a>
         </div>
         <div className="cc-footer-cols">
           <div className="cc-footer-col">
@@ -423,50 +507,21 @@ function Footer() {
 
 /* ── floating concierge dock (launcher + widget + mobile bar) ───── */
 function ConciergeDock({ showBar }) {
-  const [open, setOpen] = useState(false);
-  const [phone, setPhone] = useState("");
-  const ok = phone.replace(/\D/g, "").length >= 10;
+  const openGate = useGate();
   return (
     <React.Fragment>
-      {/* desktop floating widget */}
+      {/* desktop floating launcher → opens the address gate */}
       <div className="cc-dock">
-        {open && (
-          <div className="cc-widget" role="dialog" aria-label="Meet your Home Concierge">
-            <div className="cc-widget-head">
-              <span className="cc-phone-avatar"><Ico name="ph-house-line" weight="fill" /></span>
-              <div>
-                <div className="cc-widget-name">Meet your Concierge</div>
-                <div className="cc-widget-status"><span className="cc-dot" /> Typically replies in minutes</div>
-              </div>
-              <button className="cc-widget-x" onClick={() => setOpen(false)} aria-label="Close"><Ico name="ph-x" weight="bold" /></button>
-            </div>
-            <div className="cc-widget-body">
-              <p className="cc-widget-msg">👋 Hi! Tell us what your home needs and we'll text you right back. What's your mobile number?</p>
-              <a className="btn btn-gold cta cc-widget-go" href={ok ? `${SMS_HREF}` : SMS_HREF}>
-                Chat Now <Ico name="ph-arrow-right" weight="bold" className="cta-arrow" />
-              </a>
-              <input
-                className="input cc-widget-input"
-                type="tel"
-                inputMode="tel"
-                placeholder="Your mobile number"
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
-              />
-              <a className="cc-widget-alt" href={TEL_HREF}><Ico name="ph-phone" weight="bold" /> Or call {PHONE}</a>
-            </div>
-          </div>
-        )}
-        <button className="cc-launcher" onClick={() => setOpen(!open)} aria-label={open ? "Close concierge" : "Chat with your concierge"}>
-          <Ico name={open ? "ph-x" : "ph-chat-circle-dots"} weight="fill" />
-          {!open && <span className="cc-launcher-txt">Chat Now</span>}
+        <button className="cc-launcher" onClick={() => openGate("text")} aria-label="Chat with your concierge">
+          <Ico name="ph-chat-circle-dots" weight="fill" />
+          <span className="cc-launcher-txt">Chat Now</span>
         </button>
       </div>
 
-      {/* mobile sticky bar: two deep-link CTAs, appears after the hero scrolls away */}
+      {/* mobile sticky bar: appears after the hero scrolls away */}
       <div className={`cc-mobile-bar${showBar ? " show" : ""}`}>
-        <a className="btn btn-gold cta" href={SMS_HREF}>Text Your Concierge <Ico name="ph-chat-circle-dots" weight="bold" /></a>
-        <a className="btn btn-ghost cta" href={TEL_HREF}>Call Your Concierge <Ico name="ph-phone" weight="bold" /></a>
+        <a className="btn btn-gold cta" href={SMS_HREF} onClick={(e) => { e.preventDefault(); openGate("text"); }}>Text Your Concierge <Ico name="ph-chat-circle-dots" weight="bold" /></a>
+        <a className="btn btn-ghost cta" href={TEL_HREF} onClick={(e) => { e.preventDefault(); openGate("call"); }}>Call Your Concierge <Ico name="ph-phone" weight="bold" /></a>
       </div>
     </React.Fragment>
   );
@@ -476,6 +531,7 @@ function ConciergeDock({ showBar }) {
 function ConciergePage() {
   const [scrolled, setScrolled] = useState(false);
   const [showBar, setShowBar] = useState(false);
+  const [gate, setGate] = useState(null);   // null | 'text' | 'call'
   useEffect(() => {
     const on = () => {
       const y = window.scrollY;
@@ -489,21 +545,24 @@ function ConciergePage() {
   }, []);
   return (
     <MotionCtx.Provider value={true}>
-      <div className="cc-page">
-        <Header scrolled={scrolled} />
-        <Hero />
-        <Problem />
-        <Capabilities />
-        <HowItWorks />
-        <ChatDemo />
-        <Services />
-        <Benefits />
-        <Testimonials />
-        <CTABand />
-        <FAQ />
-        <Footer />
-        <ConciergeDock showBar={showBar} />
-      </div>
+      <GateCtx.Provider value={(mode) => setGate(mode || "text")}>
+        <div className="cc-page">
+          <Header scrolled={scrolled} />
+          <Hero />
+          <Problem />
+          <Capabilities />
+          <HowItWorks />
+          <ChatDemo />
+          <Services />
+          <Benefits />
+          <Testimonials />
+          <CTABand />
+          <FAQ />
+          <Footer />
+          <ConciergeDock showBar={showBar} />
+          {gate && <AddressGate mode={gate} onClose={() => setGate(null)} />}
+        </div>
+      </GateCtx.Provider>
     </MotionCtx.Provider>
   );
 }
