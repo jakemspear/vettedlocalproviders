@@ -75,11 +75,6 @@ function Header({ scrolled }) {
 /* ── hero ───────────────────────────────────────────────────────── */
 function Hero() {
   const motion = useMotion();
-  const micro = [
-    { icon: "ph-device-mobile", t: "No app required" },
-    { icon: "ph-hand-coins", t: "Free to use" },
-    { icon: "ph-clock", t: "Available to help 24/7" },
-  ];
   return (
     <header className="cc-hero">
       <div className="cc-hero-bg" aria-hidden="true" />
@@ -104,9 +99,6 @@ function Hero() {
           <a href={TERMS_PAGE}>Terms of Service</a> and <a href={PRIVACY_PAGE}>Privacy Policy</a>.
           Msg &amp; data rates may apply · Reply STOP to opt out.
         </p>
-        <div className="cc-hero-micro">
-          {micro.map((m) => <span key={m.t} className="cc-micro"><Ico name={m.icon} weight="bold" /> {m.t}</span>)}
-        </div>
       </div>
     </header>
   );
@@ -115,16 +107,16 @@ function Hero() {
 /* ── problem ────────────────────────────────────────────────────── */
 function Problem() {
   const pains = [
-    { icon: "ph-magnifying-glass", h: "Endless searching", b: "Hours lost reading reviews, comparing quotes, and hoping you picked the right one." },
-    { icon: "ph-phone-x", h: "Phone tag & callbacks", b: "Leaving voicemails, waiting days, only to start the whole process over again." },
-    { icon: "ph-calendar-x", h: "No-shows & surprises", b: "Unreliable pros who don't show up, run late, or pad the bill once they're there." },
-    { icon: "ph-hourglass-high", h: "Coordinating everything", b: "Playing middleman between schedules, follow-ups, and the parts that never arrive." },
+    { icon: "ph-list-checks", h: "It all falls on you", b: "Every filter, warranty, and seasonal task lives in your head. Forget one and a small fix quietly turns into a big repair." },
+    { icon: "ph-coins", h: "The wrong pro is costly", b: "Hire the wrong contractor and you pay twice: once for the rushed job, again to undo it. Real vetting takes hours most people skip." },
+    { icon: "ph-warning-octagon", h: "Quality is a gamble", b: "Five-star reviews, then a no-show, a cut corner, or a surprise upcharge. You don't find out until the work is already done." },
+    { icon: "ph-clock-countdown", h: "You're the project manager", b: "Quotes, scheduling, follow-ups, and parts that never arrive, all landing on you on top of everything else." },
   ];
   return (
     <section className="section cc-problem">
       <div className="cc-head">
-        <div className="eyebrow">The old way</div>
-        <h2 className="display sec-h2">Finding reliable home help <span className="cc-mute">shouldn't be this hard.</span></h2>
+        <div className="eyebrow">Going it alone</div>
+        <h2 className="display sec-h2">Owning a home is a part-time job <span className="cc-mute">you never applied for.</span></h2>
       </div>
       <div className="cc-pain-grid">
         {pains.map((p) => (
@@ -152,8 +144,8 @@ function Capabilities() {
     <section className="section band-tint cc-caps" id="does">
       <div className="cc-head">
         <div className="eyebrow">Your concierge, on call</div>
-        <h2 className="display sec-h2">One concierge. Five ways it shows up.</h2>
-        <p className="cc-sub">Think of it as a friend in the trades who happens to know your house, reachable by a single text.</p>
+        <h2 className="display sec-h2">One concierge. Five ways it can help.</h2>
+        <p className="cc-sub">Think of it as a friend in the trades who actually knows your house, a text or call away whenever you need.</p>
       </div>
       <div className="cc-caps-grid">
         {caps.map((c, i) => (
@@ -181,17 +173,17 @@ function Capabilities() {
 /* ── how it works ───────────────────────────────────────────────── */
 function HowItWorks() {
   const steps = [
-    { icon: "ph-chat-text", h: "Text your concierge", b: "Describe what your home needs in plain language. A leak, a tune-up, a remodel, you name it." },
-    { icon: "ph-users-three", h: "We find the right pro", b: "We match you with a vetted, licensed local provider who does exactly that kind of work." },
-    { icon: "ph-calendar-check", h: "We handle coordination", b: "Scheduling, confirmations, follow-ups, and reminders, so the back-and-forth isn't yours." },
-    { icon: "ph-flag-checkered", h: "Job done, stress gone", b: "You stay in one thread. We keep it moving until the work is finished and you're happy." },
+    { icon: "ph-house-line", h: "We learn your home", b: "A quick onboarding covers your home's age, systems, and what's coming up, so every answer fits your house, not a script." },
+    { icon: "ph-chats-circle", h: "Text or call, anytime", b: "A quick question, an emergency, or a full remodel. Reach a real concierge the way you want, in one ongoing thread." },
+    { icon: "ph-seal-check", h: "We line up the right pro", b: "Matched to a vetted, licensed local provider for the exact job, with scheduling and confirmations handled for you." },
+    { icon: "ph-flag-checkered", h: "We push it to done", b: "Follow-ups and reminders until the work is finished and you're happy, then we watch for what your home needs next." },
   ];
   return (
     <section className="section cc-how" id="how">
       <div className="cc-head">
         <div className="eyebrow">How it works</div>
-        <h2 className="display sec-h2">Four steps. Zero hassle.</h2>
-        <p className="cc-sub">From "I need help" to "it's handled," we coordinate everything in between.</p>
+        <h2 className="display sec-h2">Less a service. <span className="cc-mute">More a relationship.</span></h2>
+        <p className="cc-sub">Most home help vanishes the moment a job ends. Your concierge stays, learns your home, and stays a text or call away.</p>
       </div>
       <div className="cc-steps">
         {steps.map((s, i) => (
@@ -283,18 +275,18 @@ function Services() {
 /* ── benefits ───────────────────────────────────────────────────── */
 function Benefits() {
   const b = [
-    { icon: "ph-seal-check", h: "Vetted local pros", t: "Every provider is licensed, insured, reviewed, and known to stand behind their work." },
-    { icon: "ph-lightning", h: "Fast response", t: "Text any time. We reply quickly and act faster, with no waiting on a callback that never comes." },
-    { icon: "ph-user-focus", h: "One point of contact", t: "No apps, no accounts, no phone trees. Just one thread with someone who knows your home." },
-    { icon: "ph-tag", h: "Exclusive deals", t: "Seasonal offers and off-season rates our network extends to homeowners first." },
-    { icon: "ph-shield-check", h: "Your info stays yours", t: "We never auction your number. You hear from us, and only the pros you ask for." },
-    { icon: "ph-hand-coins", h: "Free to use", t: "The concierge costs you nothing. You only ever pay the pro for the work you approve." },
+    { icon: "ph-house-line", h: "Knows your home", t: "We onboard your home once, so every recommendation fits your house instead of a generic checklist." },
+    { icon: "ph-bell-ringing", h: "Stays ahead of problems", t: "Proactive reminders for filters, roofs, warranties, and monsoon prep, so small things never become emergencies." },
+    { icon: "ph-phone-call", h: "Call or text a real person", t: "Reach a concierge the way you want, any hour. No app, no phone tree, no bot runaround." },
+    { icon: "ph-seal-check", h: "Vetted local pros only", t: "Every provider is licensed, insured, and proven. We carry the vetting so you're never gambling." },
+    { icon: "ph-flag-checkered", h: "We see it through", t: "No hand-off and vanish. We coordinate and follow up until the project is actually finished." },
+    { icon: "ph-shield-check", h: "Free, and yours stays yours", t: "The concierge costs nothing, and we never sell or spam your number. You only pay the pro for work you approve." },
   ];
   return (
     <section className="section band-tint cc-benefits">
       <div className="cc-head">
-        <div className="eyebrow">Why homeowners switch</div>
-        <h2 className="display sec-h2">Built for homeowners <span className="cc-mute">who value their time.</span></h2>
+        <div className="eyebrow">More than a referral</div>
+        <h2 className="display sec-h2">Not a lead service. <span className="cc-mute">A concierge that sticks around.</span></h2>
       </div>
       <div className="cc-ben-grid">
         {b.map((x) => (
