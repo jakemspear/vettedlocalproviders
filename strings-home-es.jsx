@@ -75,7 +75,7 @@ window.STRINGS.es.home = {
   about: {
     eyebrow: "Por qué empezamos esto",
     h: "Queríamos una mejor forma de contratar profesionales del hogar.",
-    body: "Vetted Local Providers es un pequeño equipo de Arizona que se hartó de ver a sus vecinos atrapados entre devoluciones de llamada al azar y cotizaciones confusas. Así que construimos lo contrario: una red verificada, un solo contacto real y ofertas que se ganan siendo fácil de tratar.",
+    body: "Casa Concierge es un pequeño equipo de Arizona que se hartó de ver a sus vecinos atrapados entre devoluciones de llamada al azar y cotizaciones confusas. Así que construimos lo contrario: una red verificada, un solo contacto real y ofertas que se ganan siendo fácil de tratar.",
     cta: "Lea nuestra historia",
   },
   faq: {
@@ -98,10 +98,10 @@ window.STRINGS.es.home = {
     },
     roc: "Trabajamos con proveedores locales e independientes y verificamos los requisitos aplicables según el servicio y el mercado.",
     addr: "30 N Gould St Ste R, Sheridan, WY 82801",
-    fine: "Somos un servicio de referencia, no un contratista con licencia. Nunca vendemos ni enviamos spam con su información. © 2026 Vetted Local Providers.",
-    contact: "hello@vettedlocalproviders.com",
+    fine: "Somos un servicio de referencia, no un contratista con licencia. Nunca vendemos ni enviamos spam con su información. © 2026 Casa Concierge.",
+    contact: "hello@textcasaconcierge.com",
     disclaimerNote: "Divulgación legal importante",
-    disclaimer: "Scaling Adventures, LLC opera comercialmente como Vetted Local Providers. Vetted Local Providers es un servicio de referencia que conecta a propietarios con proveedores de servicios locales e independientes. No somos un contratista con licencia y no realizamos trabajos de mejoras para el hogar nosotros mismos. No estamos afiliados, ni respaldados ni patrocinados por Meta Platforms, Inc. (Facebook, Instagram), Google ni ninguna otra plataforma. Todas las marcas son propiedad de sus respectivos dueños. No vendemos su información personal a terceros para su propio marketing. Lo conectamos únicamente con los proveedores que solicita. Los ahorros, ofertas y resultados varían y no están garantizados. La disponibilidad de proveedores, los requisitos de licencia y las áreas de servicio varían según el mercado. Al enviar una solicitud acepta nuestra Política de Privacidad, Términos de Servicio y ser contactado según se describe en nuestros términos de consentimiento. © 2026 Vetted Local Providers. Todos los derechos reservados.",
-    disclaimerShort: "Vetted Local Providers es un servicio de referencia en Estados Unidos que conecta a propietarios con proveedores de servicios locales e independientes. No somos un contratista con licencia y no estamos afiliados ni respaldados por Meta, Google ni ninguna otra plataforma. Todas las marcas pertenecen a sus respectivos dueños. No vendemos su información personal. Las ofertas, la disponibilidad y los resultados varían según el mercado y no están garantizados. © 2026 Vetted Local Providers. Todos los derechos reservados.",
+    disclaimer: "Scaling Adventures, LLC opera comercialmente como Casa Concierge. Casa Concierge es un servicio de referencia que conecta a propietarios con proveedores de servicios locales e independientes. No somos un contratista con licencia y no realizamos trabajos de mejoras para el hogar nosotros mismos. No estamos afiliados, ni respaldados ni patrocinados por Meta Platforms, Inc. (Facebook, Instagram), Google ni ninguna otra plataforma. Todas las marcas son propiedad de sus respectivos dueños. No vendemos su información personal a terceros para su propio marketing. Lo conectamos únicamente con los proveedores que solicita. Los ahorros, ofertas y resultados varían y no están garantizados. La disponibilidad de proveedores, los requisitos de licencia y las áreas de servicio varían según el mercado. Al enviar una solicitud acepta nuestra Política de Privacidad, Términos de Servicio y ser contactado según se describe en nuestros términos de consentimiento. © 2026 Casa Concierge. Todos los derechos reservados.",
+    disclaimerShort: "Casa Concierge es un servicio de referencia en Estados Unidos que conecta a propietarios con proveedores de servicios locales e independientes. No somos un contratista con licencia y no estamos afiliados ni respaldados por Meta, Google ni ninguna otra plataforma. Todas las marcas pertenecen a sus respectivos dueños. No vendemos su información personal. Las ofertas, la disponibilidad y los resultados varían según el mercado y no están garantizados. © 2026 Casa Concierge. Todos los derechos reservados.",
   },
 };

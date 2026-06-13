@@ -8,8 +8,8 @@ const PROS_PAGE = "For Pros.html";
 
 function saveVCardSite() {
   const a = document.createElement("a");
-  a.href = "vetted-local-providers.vcf";
-  a.download = "vetted-local-providers.vcf";
+  a.href = "casa-concierge.vcf";
+  a.download = "casa-concierge.vcf";
   document.body.appendChild(a);
   a.click();
   a.remove();
@@ -35,7 +35,7 @@ function SiteHeader({ ctaHref, ctaLabel }) {
       <div className="hp-header-in">
         <a className="hp-logo" href={HOMEPAGE}>
           <span className="hp-logo-mark"><Ico name="ph-house-line" weight="fill" /></span>
-          <span className="hp-logo-txt">Vetted Local Providers</span>
+          <span className="hp-logo-txt">Casa Concierge</span>
         </a>
         <nav className="hp-nav">
           {nav.map((n) => <a key={n.k} className="hp-nav-link" href={n.href}>{H.nav[n.k]}</a>)}
@@ -66,7 +66,7 @@ function SiteFooter() {
     <footer className="sp-footer">
       <div className="sp-footer-in">
         <div className="sp-footer-top">
-          <a className="sp-footer-brand" href={HOMEPAGE}>Vetted Local Providers</a>
+          <a className="sp-footer-brand" href={HOMEPAGE}>Casa Concierge</a>
           <nav className="sp-footer-links">
             <a href={`${HOMEPAGE}#about`}>{L.about}</a>
             <a href={PROS_PAGE}>{H.nav.forPros || "For pros"}</a>

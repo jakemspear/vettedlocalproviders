@@ -2,12 +2,12 @@
    Shared structural META (icons, ids, values) stays language-neutral;
    all human copy lives in STRINGS.en / STRINGS.es keyed by id. */
 
-const BRAND = "Vetted Local Providers";
+const BRAND = "Casa Concierge";
 const LEGAL_NAME = "Scaling Adventures, LLC";
-const LEGAL_DBA = "Scaling Adventures, LLC d/b/a Vetted Local Providers";
+const LEGAL_DBA = "Scaling Adventures, LLC d/b/a Casa Concierge";
 const PHONE = "(520) 277-2778";
 const PHONE_TEL = "+15202772778";
-const EMAIL = "hello@vettedlocalproviders.com";
+const EMAIL = "hello@textcasaconcierge.com";
 const ADDRESS = "30 N Gould St Ste R, Sheridan, WY 82801";
 const ADDRESS_VCARD = "30 N Gould St Ste R;Sheridan;WY;82801;United States";
 const PRIVACY_PAGE = "privacy-policy.html";

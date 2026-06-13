@@ -4,7 +4,7 @@ window.STRINGS.en = window.STRINGS.en || {};
 window.STRINGS.es = window.STRINGS.es || {};
 
 window.STRINGS.en.pros = {
-  meta: { title: "For Arizona Pros · Join the Vetted Network | Vetted Local Providers",
+  meta: { title: "For Arizona Pros · Join the Vetted Network | Casa Concierge",
     desc: "Get matched to vetted Arizona homeowners who asked for your service. No bidding wars, no auctioned leads. Apply to join the vetted pro network." },
   crumbs: [{ label: "Home", href: "index.html" }, { label: "For pros" }],
   hero: { eyebrow: "For Arizona pros", h: "Get matched to homeowners who actually show up.",
@@ -36,7 +36,7 @@ window.STRINGS.en.pros = {
     trades: "Trades / services offered", cities: "Cities served", insurance: "Insurance status", years: "Years in business", website: "Website",
     insuranceOpts: ["Active general liability", "GL + trade coverage", "Working on it"],
     tradesPlaceholder: "Roofing, solar, HVAC...", citiesPlaceholder: "Mesa, Gilbert, Chandler...", optional: "(optional)",
-    consent: "I confirm the information above is accurate and authorize Vetted Local Providers to verify my license, insurance, and references. I agree to be contacted about my application.",
+    consent: "I confirm the information above is accurate and authorize Casa Concierge to verify my license, insurance, and references. I agree to be contacted about my application.",
     submit: "Submit application", hint: "Complete the required fields to submit.",
     doneH: "Application received.", doneB: "Thanks. A real person will verify your details and follow up. We do not publicly display the license number you submitted." },
   faq: { eyebrow: "Pro FAQ", h: "Questions from pros.", items: [
@@ -50,7 +50,7 @@ window.STRINGS.en.pros = {
 };
 
 window.STRINGS.es.pros = {
-  meta: { title: "Para profesionales de Arizona · Únase a la red verificada | Vetted Local Providers",
+  meta: { title: "Para profesionales de Arizona · Únase a la red verificada | Casa Concierge",
     desc: "Conéctese con propietarios verificados de Arizona que pidieron su servicio. Sin guerras de ofertas ni contactos subastados. Solicite unirse a la red." },
   crumbs: [{ label: "Inicio", href: "index.html" }, { label: "Para profesionales" }],
   hero: { eyebrow: "Para profesionales de Arizona", h: "Conéctese con clientes que de verdad están listos.",
@@ -82,7 +82,7 @@ window.STRINGS.es.pros = {
     trades: "Oficios / servicios ofrecidos", cities: "Ciudades que atiende", insurance: "Estado del seguro", years: "Años en el negocio", website: "Sitio web",
     insuranceOpts: ["Responsabilidad civil activa", "RC + cobertura del oficio", "En proceso"],
     tradesPlaceholder: "Techos, solar, aire acondicionado...", citiesPlaceholder: "Mesa, Gilbert, Chandler...", optional: "(opcional)",
-    consent: "Confirmo que la información es correcta y autorizo a Vetted Local Providers a verificar mi licencia, seguro y referencias. Acepto ser contactado sobre mi solicitud.",
+    consent: "Confirmo que la información es correcta y autorizo a Casa Concierge a verificar mi licencia, seguro y referencias. Acepto ser contactado sobre mi solicitud.",
     submit: "Enviar solicitud", hint: "Complete los campos requeridos para enviar.",
     doneH: "Solicitud recibida.", doneB: "Gracias. Una persona real verificará sus datos y le dará seguimiento. No mostramos públicamente el número de licencia que envió." },
   faq: { eyebrow: "Preguntas de profesionales", h: "Preguntas de profesionales.", items: [

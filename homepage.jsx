@@ -23,8 +23,8 @@ function homepageServiceHref(service, lang) {
 
 function saveVCardHome() {
   const a = document.createElement("a");
-  a.href = "vetted-local-providers.vcf";
-  a.download = "vetted-local-providers.vcf";
+  a.href = "casa-concierge.vcf";
+  a.download = "casa-concierge.vcf";
   document.body.appendChild(a);
   a.click();
   a.remove();
@@ -44,7 +44,7 @@ function Header({ scrolled }) {
       <div className="hp-header-in">
         <a className="hp-logo" href="#" onClick={(e) => { e.preventDefault(); window.scrollTo(0, 0); }}>
           <span className="hp-logo-mark"><Ico name="ph-house-line" weight="fill" /></span>
-          <span className="hp-logo-txt">Vetted Local Providers</span>
+          <span className="hp-logo-txt">Casa Concierge</span>
         </a>
         <nav className="hp-nav">
           {nav.map((n) => <button key={n.k} className="hp-nav-link" onClick={() => go(n.to)}>{H.nav[n.k]}</button>)}
@@ -300,7 +300,7 @@ function Footer() {
     <footer className="hp-footer">
       <div className="hp-footer-in">
         <div className="hp-footer-brand">
-          <div className="hp-logo-txt" style={{ color: "#fff" }}>Vetted Local Providers</div>
+          <div className="hp-logo-txt" style={{ color: "#fff" }}>Casa Concierge</div>
           <p className="hp-footer-dba">{LEGAL_DBA}</p>
           <p className="hp-footer-tag">{f.tagline}</p>
           <div className="hp-footer-roc"><Ico name="ph-seal-check" weight="fill" /> {f.roc}</div>
