@@ -100,7 +100,8 @@ function Hero() {
           <a className="btn btn-ghost-light" href={TEL_HREF}>Call Me Now <Ico name="ph-phone" weight="bold" /></a>
         </div>
         <p className="cc-hero-consent">
-          By texting or calling, you agree to receive messages about your request.
+          By texting or calling, you agree to receive messages about your request and to our{" "}
+          <a href={TERMS_PAGE}>Terms of Service</a> and <a href={PRIVACY_PAGE}>Privacy Policy</a>.
           Msg &amp; data rates may apply · Reply STOP to opt out.
         </p>
         <div className="cc-hero-micro">

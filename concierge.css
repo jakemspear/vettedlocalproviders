@@ -61,6 +61,8 @@
 .btn-ghost-light { background: rgba(255,255,255,.08); color: #fff; border: 1.5px solid rgba(255,255,255,.42); box-shadow: none; }
 .btn-ghost-light:hover { background: rgba(255,255,255,.18); }
 .cc-hero-consent { font-size: 12px; line-height: 1.5; color: rgba(255,255,255,.62); margin: 12px 0 0; max-width: 42ch; }
+.cc-hero-consent a { color: rgba(255,255,255,.86); text-decoration: underline; text-underline-offset: 2px; }
+.cc-hero-consent a:hover { color: #fff; }
 .cc-hero-micro { display: flex; flex-wrap: wrap; gap: 12px 22px; margin-top: 16px; }
 .cc-micro { display: inline-flex; align-items: center; gap: 8px; font-size: 13.5px; font-weight: 600; color: rgba(255,255,255,.82); }
 .cc-micro .ph { color: var(--gold); font-size: 17px; }
