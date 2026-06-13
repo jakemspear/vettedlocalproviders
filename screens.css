@@ -309,6 +309,13 @@
 .proc-foot { text-align: center; font-size: 13px; color: var(--ink-mute); margin-top: 18px; display: flex; gap: 7px; align-items: center; justify-content: center; }
 .proc-foot .ph { color: var(--sage); }
 
+/* twocta call countdown — full-screen green (ring already styled for dark bg) */
+.countdown-green { background: var(--pine-deep, #163A34); }
+.countdown-green .proc-title { color: #fff; }
+.countdown-green .proc-foot { color: rgba(255,255,255,.72); }
+.countdown-green .proc-foot .ph { color: var(--gold, #E0A23B); }
+.countdown-green .proc-brand { background: rgba(255,255,255,.12); color: #fff; }
+
 /* ================= THANK YOU ================= */
 .ty {
   width: 100%;

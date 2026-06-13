@@ -105,7 +105,20 @@ function App() {
     };
     setAnswers(leadAnswers);
     await syncLead("initial_form", leadAnswers);
-    go(twocta ? "countdown" : "email");
+    if (twocta) {
+      if (nextAnswers.channel === "voice") {
+        go("countdown");                         // call: show the "Calling you now…" countdown
+      } else {
+        // text: drop them straight into the SMS conversation with a prefilled message
+        const addr = nextAnswers.address ? ` My home is at ${nextAnswers.address}.` : "";
+        const body = encodeURIComponent(
+          `Hi Casa Concierge! I just submitted my info for a free roof inspection.${addr} Can you schedule one of your vetted roofers to come out?`
+        );
+        window.location.href = `sms:${PHONE_TEL}?&body=${body}`;
+      }
+      return;
+    }
+    go("email");
   };
 
   const handleEmailDone = async ({ email, emailCaptureStatus }) => {
