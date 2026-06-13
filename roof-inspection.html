@@ -4,19 +4,21 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <meta name="theme-color" content="#163A34" />
-<title>Get Casa Concierge by text</title>
-<meta name="description" content="Enter your mobile number to get home help by text from Casa Concierge (Scaling Adventures, LLC)." />
+<title>Casa Concierge · Free AZ Roof Inspection</title>
+<meta name="description" content="Book a free roof inspection in under 2 minutes. Enter your number and schedule by text or phone with Casa Concierge (Scaling Adventures, LLC)." />
 <meta name="robots" content="noindex" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@600;700;800&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
 <!-- =========================================================================
-     SELF-CONTAINED SMS OPT-IN FORM — Casa Concierge (Scaling Adventures, LLC)
-     - Two optional consent checkboxes (transactional + marketing). Neither is
-       required; the form submits whether or not either is checked.
-     - On submit, POSTs an audit JSON record to a configurable webhook with the
-       EXACT consent text strings that were displayed (read from the DOM).
+     ROOF INSPECTION — two-CTA capture — Casa Concierge (Scaling Adventures, LLC)
+     - We initiate contact (outbound): user picks "Schedule by Text" or
+       "Schedule by Phone"; backend fires the SMS or voice-AI call.
+     - Transactional consent is REQUIRED before either button fires (outbound
+       contact); marketing consent stays optional.
+     - On submit, POSTs an audit JSON record to the webhook with the channel
+       (sms | voice) and the EXACT consent text strings displayed (read from DOM).
      - Brand reads exactly "Casa Concierge (Scaling Adventures, LLC)".
      ========================================================================= -->
 <style>
@@ -142,8 +144,8 @@
         </span>
         Casa Concierge
       </div>
-      <h1>Get home help now.</h1>
-      <p class="sub">Free roof inspection — booked in under 2 minutes. Enter your number and pick how you’d like to schedule.</p>
+      <h1>Your free roof inspection.</h1>
+      <p class="sub">Booked in under 2 minutes by a vetted local roofer. Enter your number and pick how you’d like to schedule.</p>
 
       <div class="field">
         <label for="phone">Mobile number</label>
@@ -200,11 +202,18 @@
   </main>
 
 <script>
+  /* Lead destination — same GoHighLevel webhook the full roofing funnel posts to.
+     Override by defining window.SMS_OPTIN_WEBHOOK_URL before this script runs. */
+  window.GHL_WEBHOOK_URL = window.GHL_WEBHOOK_URL ||
+    "https://services.leadconnectorhq.com/hooks/0C22tQbVS0yHDEPGrb7Y/webhook-trigger/2e03d749-83ca-47a4-9b30-ec36b2bbc62c";
+</script>
+<script>
 (function () {
   "use strict";
 
-  /* ---- CONFIG: set your opt-in webhook here, or define window.SMS_OPTIN_WEBHOOK_URL ---- */
-  var WEBHOOK_URL = (typeof window !== "undefined" && window.SMS_OPTIN_WEBHOOK_URL) || "";
+  /* ---- CONFIG: posts to the GHL webhook by default; SMS_OPTIN_WEBHOOK_URL wins if set ---- */
+  var WEBHOOK_URL = (typeof window !== "undefined" &&
+    (window.SMS_OPTIN_WEBHOOK_URL || window.GHL_WEBHOOK_URL)) || "";
 
   var form    = document.getElementById("optin");
   var phone   = document.getElementById("phone");
@@ -256,6 +265,8 @@
     return {
       phone: toE164(),                          // E.164
       channel: channel,                         // "sms" or "voice" — which outbound contact they requested
+      source: "roof-inspection-2cta",           // distinguishes this funnel in GHL routing
+      offer: "free roof inspection",
       timestamp: new Date().toISOString(),
       page_url: window.location.href,
       transactional_consent: !!tx.checked,

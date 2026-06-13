@@ -104,8 +104,8 @@ function WaitlistPage() {
   const params = new URLSearchParams(window.location.search);
   const content = getWaitlistContent(lang, params.get("service"));
   const browseLabel = lang === "es" ? "Ver más servicios" : "Browse more services";
-  const dealsHref = lang === "es" ? "index.html?lang=es#deals" : "index.html#deals";
-  const servicesHref = lang === "es" ? "index.html?lang=es#services" : "index.html#services";
+  const dealsHref = lang === "es" ? "home2.html?lang=es#deals" : "home2.html#deals";
+  const servicesHref = lang === "es" ? "home2.html?lang=es#services" : "home2.html#services";
 
   return (
     <>
@@ -116,7 +116,7 @@ function WaitlistPage() {
         ctaLabel={content.primary}
         ctaHref={dealsHref}
         crumbs={[
-          { label: lang === "es" ? "Inicio" : "Home", href: lang === "es" ? "index.html?lang=es" : "index.html" },
+          { label: lang === "es" ? "Inicio" : "Home", href: lang === "es" ? "home2.html?lang=es" : "home2.html" },
           { label: content.serviceName },
         ]}
         secondaryLabel={content.secondary}
@@ -147,7 +147,7 @@ function WaitlistPage() {
 function WaitlistApp() {
   const lang0 = detectLang();
   const home = (window.STRINGS[lang0] || window.STRINGS.en).home;
-  const ctaHref = lang0 === "es" ? "index.html?lang=es#deals" : "index.html#deals";
+  const ctaHref = lang0 === "es" ? "home2.html?lang=es#deals" : "home2.html#deals";
   return <SitePage ctaHref={ctaHref} ctaLabel={home?.deals?.btn || "Join the deals list"}><WaitlistPage /></SitePage>;
 }
 

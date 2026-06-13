@@ -6,7 +6,7 @@ window.STRINGS.es = window.STRINGS.es || {};
 window.STRINGS.en.pros = {
   meta: { title: "For Arizona Pros · Join the Vetted Network | Casa Concierge",
     desc: "Get matched to vetted Arizona homeowners who asked for your service. No bidding wars, no auctioned leads. Apply to join the vetted pro network." },
-  crumbs: [{ label: "Home", href: "index.html" }, { label: "For pros" }],
+  crumbs: [{ label: "Home", href: "home2.html" }, { label: "For pros" }],
   hero: { eyebrow: "For Arizona pros", h: "Get matched to homeowners who actually show up.",
     sub: "We send you vetted homeowners who asked for your service. No bidding wars, no auctioned leads, no tire-kickers.", cta: "Apply to join", secondary: "See our standards" },
   why: { eyebrow: "Why join", h: "Built to respect your time.", items: [
@@ -52,7 +52,7 @@ window.STRINGS.en.pros = {
 window.STRINGS.es.pros = {
   meta: { title: "Para profesionales de Arizona · Únase a la red verificada | Casa Concierge",
     desc: "Conéctese con propietarios verificados de Arizona que pidieron su servicio. Sin guerras de ofertas ni contactos subastados. Solicite unirse a la red." },
-  crumbs: [{ label: "Inicio", href: "index.html" }, { label: "Para profesionales" }],
+  crumbs: [{ label: "Inicio", href: "home2.html" }, { label: "Para profesionales" }],
   hero: { eyebrow: "Para profesionales de Arizona", h: "Conéctese con clientes que de verdad están listos.",
     sub: "Le enviamos propietarios verificados que pidieron su servicio. Sin guerras de ofertas, sin contactos subastados, sin curiosos.", cta: "Solicitar unirse", secondary: "Ver nuestros estándares" },
   why: { eyebrow: "Por qué unirse", h: "Hecho para respetar su tiempo.", items: [

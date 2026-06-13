@@ -2,7 +2,7 @@
    blocks for the brand-hub / SEO pages. Loads after ui.jsx + strings-home. */
 const { useState: useStateC, useEffect: useEffectC } = React;
 
-const HOMEPAGE = "index.html";
+const HOMEPAGE = "home2.html";
 const FUNNEL = "roofing-inspection.html";
 const PROS_PAGE = "For Pros.html";
 

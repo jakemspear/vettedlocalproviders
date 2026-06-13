@@ -398,7 +398,7 @@ function Footer() {
           </div>
           <div className="cc-footer-col">
             <div className="cc-footer-h">Company</div>
-            <a href="index.html">Home</a>
+            <a href="home2.html">Home</a>
             <a href="For Pros.html">For pros</a>
             <a href={`mailto:${EMAIL}`}>Contact</a>
           </div>
