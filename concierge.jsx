@@ -27,63 +27,46 @@ function ccInArea(s) {
 const GateCtx = React.createContext(() => {});
 function useGate() { return React.useContext(GateCtx); }
 
-const SERVICE_OPTS = ["AC / HVAC", "Plumbing", "Roofing", "Electrical", "Pool", "Landscaping", "Cleaning", "Handyman", "Something else"];
-const HOME_OPTS = ["Single-family", "Condo", "Townhome", "Other"];
-const URGENCY_OPTS = ["Just planning ahead", "In the next few weeks", "It's urgent"];
-
-/* Capture-first "Get Started" flow: stores the lead up front, then a short
-   browser onboarding. A checkpoint is posted at every step so a partial lead is
-   never lost, even if they drop off. Out-of-area visitors route to the waitlist. */
+/* One-question-at-a-time "Get Started" flow: address -> name -> number, then we
+   place the voice-AI onboarding call. The lead is stored on submit (and the backend
+   can trigger the Vapi call). Out-of-area visitors route to the waitlist. */
 function GetStartedFlow({ mode, onClose }) {
-  const [step, setStep] = useState("contact");   // contact | out | choose | home | needs | done
-  const [d, setD] = useState({ first: "", phone: "", address: "", owner: "", homeType: "", services: [], urgency: "" });
+  const [step, setStep] = useState("address");   // address | name | phone | calling | out
+  const [d, setD] = useState({ name: "", phone: "", address: "" });
   const [err, setErr] = useState({});
   const set = (k, v) => { setD((p) => ({ ...p, [k]: v })); setErr((e) => ({ ...e, [k]: false })); };
-  const toggleSvc = (s) => setD((p) => ({ ...p, services: p.services.includes(s) ? p.services.filter((x) => x !== s) : [...p.services, s] }));
   const phoneOk = d.phone.replace(/\D/g, "").length >= 10;
+  const firstName = (d.name || "").trim().split(/\s+/)[0];
 
   const send = (checkpoint) => {
     if (typeof window.submitLeadCheckpoint === "function") {
+      const parts = (d.name || "").trim().split(/\s+/);
       window.submitLeadCheckpoint(checkpoint, {
-        first: d.first, phone: d.phone, address: d.address,
-        owner: d.owner, homeType: d.homeType, urgency: d.urgency,
-        additionalServices: d.services, need: d.services[0] || "", consent: true,
+        name: d.name, first: parts[0] || "", last: parts.slice(1).join(" "),
+        phone: d.phone, address: d.address, consent: true,
       });
     }
   };
-  const smsHref = () => `sms:${PHONE_TEL}?&body=${encodeURIComponent(`Hi Casa Concierge, it's ${d.first || "a new homeowner"} at ${d.address}. I'd like help with ${d.services.join(", ") || "my home"}.`)}`;
 
-  const submitContact = () => {
-    const e = {};
-    if (!d.first.trim()) e.first = true;
-    if (!phoneOk) e.phone = true;
-    if (!d.address.trim()) e.address = true;
-    if (Object.keys(e).length) { setErr(e); return; }
+  const nextFromAddress = () => { if (!d.address.trim()) { setErr({ address: true }); return; } setStep("name"); };
+  const nextFromName = () => { if (!d.name.trim()) { setErr({ name: true }); return; } setStep("phone"); };
+  const submitPhone = () => {
+    if (!phoneOk) { setErr({ phone: true }); return; }
     const inArea = ccInArea(d.address);
+    /* concierge_started carries phone + consent so the backend can place the Vapi call */
     send(inArea ? "concierge_started" : "concierge_out_of_area");
-    setStep(inArea ? "choose" : "out");
+    setStep(inArea ? "calling" : "out");
   };
-  const finishOnboarding = () => { send("concierge_onboarding_complete"); setStep("done"); };
-  const finishByCall = () => { send("concierge_onboarding_call"); window.location.href = TEL_HREF; };
 
-  const progress = step === "home" ? 2 : step === "needs" ? 3 : step === "done" ? 4 : 1;
+  const STEP_ICON = { address: "ph-map-pin", name: "ph-user", phone: "ph-phone", calling: "ph-phone-call", out: "ph-hourglass-medium" };
+  const BACK_TO = { name: "address", phone: "name" };
+  const backTo = BACK_TO[step];
+  const progress = step === "address" ? 1 : step === "name" ? 2 : step === "phone" ? 3 : 0;
   const Steps = () => (
     <div className="cc-gate-steps">
       {[1, 2, 3].map((n) => <span key={n} className={`cc-gate-dot${progress >= n ? " on" : ""}`} />)}
     </div>
   );
-  const Chips = ({ opts, value, onPick, multi }) => (
-    <div className="cc-gate-chips">
-      {opts.map((o) => {
-        const on = multi ? value.includes(o) : value === o;
-        return <button key={o} type="button" className={`cc-gate-chip${on ? " on" : ""}`} onClick={() => onPick(o)}>{on && <Ico name="ph-check" weight="bold" />}{o}</button>;
-      })}
-    </div>
-  );
-
-  const STEP_ICON = { contact: "ph-house-line", out: "ph-hourglass-medium", choose: "ph-sparkle", home: "ph-house-line", needs: "ph-wrench", done: "ph-check-circle" };
-  const BACK_TO = { choose: "contact", home: "choose", needs: "home", out: "contact" };
-  const backTo = BACK_TO[step];
 
   return (
     <div className="cc-flow" role="dialog" aria-modal="true">
@@ -97,88 +80,54 @@ function GetStartedFlow({ mode, onClose }) {
         <div className="cc-flow-inner">
           <div className="cc-flow-ico"><Ico name={STEP_ICON[step]} weight="duotone" /></div>
 
-        {step === "contact" && (
+        {step === "address" && (
           <React.Fragment>
-            <div className="cc-gate-h">Get started free</div>
-            <p className="cc-gate-sub">Tell us who you are and where home is. Your concierge is free, and you only ever pay the pro for work you approve.</p>
-            <label className="cc-gate-label">First name</label>
-            <input className={`input cc-gate-input${err.first ? " bad" : ""}`} type="text" autoFocus placeholder="Jordan" value={d.first} onChange={(e) => set("first", e.target.value)} />
-            <label className="cc-gate-label">Mobile number</label>
-            <input className={`input cc-gate-input${err.phone ? " bad" : ""}`} type="tel" inputMode="tel" placeholder="(480) 555-0199" value={d.phone} onChange={(e) => set("phone", e.target.value)} />
-            <label className="cc-gate-label">Home address</label>
-            <input className={`input cc-gate-input${err.address ? " bad" : ""}`} type="text" placeholder="Street, city or ZIP" value={d.address} onChange={(e) => set("address", e.target.value)} onKeyDown={(e) => { if (e.key === "Enter") submitContact(); }} />
-            <button className="btn btn-gold cta cc-gate-go" onClick={submitContact}>Continue <Ico name="ph-arrow-right" weight="bold" /></button>
+            <Steps />
+            <div className="cc-gate-h">Let's start with your address.</div>
+            <p className="cc-gate-sub">So we can confirm we're in your area and your concierge knows your home.</p>
+            <input className={`input cc-gate-input${err.address ? " bad" : ""}`} type="text" autoFocus placeholder="Street, city or ZIP" value={d.address} onChange={(e) => set("address", e.target.value)} onKeyDown={(e) => { if (e.key === "Enter") nextFromAddress(); }} />
+            <button className="btn btn-gold cta cc-gate-go" onClick={nextFromAddress}>Continue <Ico name="ph-arrow-right" weight="bold" /></button>
+          </React.Fragment>
+        )}
+
+        {step === "name" && (
+          <React.Fragment>
+            <Steps />
+            <div className="cc-gate-h">And what's your full name?</div>
+            <p className="cc-gate-sub">So your concierge knows who they're helping.</p>
+            <input className={`input cc-gate-input${err.name ? " bad" : ""}`} type="text" autoFocus placeholder="Jordan Rivera" value={d.name} onChange={(e) => set("name", e.target.value)} onKeyDown={(e) => { if (e.key === "Enter") nextFromName(); }} />
+            <button className="btn btn-gold cta cc-gate-go" onClick={nextFromName}>Continue <Ico name="ph-arrow-right" weight="bold" /></button>
+          </React.Fragment>
+        )}
+
+        {step === "phone" && (
+          <React.Fragment>
+            <Steps />
+            <div className="cc-gate-h">What number should your concierge call?</div>
+            <p className="cc-gate-sub">We'll call you in the next minute or two to get your home set up, then you can text us anytime.</p>
+            <input className={`input cc-gate-input${err.phone ? " bad" : ""}`} type="tel" inputMode="tel" autoFocus placeholder="(480) 555-0199" value={d.phone} onChange={(e) => set("phone", e.target.value)} onKeyDown={(e) => { if (e.key === "Enter") submitPhone(); }} />
+            <button className="btn btn-gold cta cc-gate-go" onClick={submitPhone}>Call me now <Ico name="ph-phone" weight="bold" /></button>
             <p className="cc-gate-fine">
-              By continuing you agree to receive calls and texts about your request and to our{" "}
-              <a href={TERMS_PAGE}>Terms</a> and <a href={PRIVACY_PAGE}>Privacy Policy</a>. Msg &amp; data rates may apply · Reply STOP to opt out.
+              By tapping Call me now you agree to receive an automated call and texts from Casa Concierge about your request, and to our{" "}
+              <a href={TERMS_PAGE}>Terms</a> and <a href={PRIVACY_PAGE}>Privacy Policy</a>. Consent isn't a condition of purchase. Msg &amp; data rates may apply · reply STOP to opt out.
             </p>
+          </React.Fragment>
+        )}
+
+        {step === "calling" && (
+          <React.Fragment>
+            <div className="cc-gate-h">Calling you now{firstName ? `, ${firstName}` : ""} 📞</div>
+            <p className="cc-gate-sub">Your concierge is dialing {d.phone}. Pick up and we'll get your home set up in a few minutes. We'll text you there too.</p>
+            <a className="btn btn-ghost cta cc-gate-go" href={TEL_HREF}>Don't want to wait? Tap to call now <Ico name="ph-phone" weight="bold" /></a>
+            <button className="cc-gate-alt" onClick={onClose}>Close</button>
           </React.Fragment>
         )}
 
         {step === "out" && (
           <React.Fragment>
             <div className="cc-gate-h">We're not in your area yet</div>
-            <p className="cc-gate-sub">Casa Concierge is live across Greater Phoenix and expanding fast. You're on our radar, {d.first || "friend"}. Join the waitlist and you'll be first to know the day we reach you.</p>
+            <p className="cc-gate-sub">Casa Concierge is live across Greater Phoenix and expanding fast. You're on our radar{firstName ? `, ${firstName}` : ""}. Join the waitlist and you'll be first to know the day we reach you.</p>
             <a className="btn btn-gold cta cc-gate-go" href="join-the-waitlist.html">Join the waitlist <Ico name="ph-arrow-right" weight="bold" /></a>
-          </React.Fragment>
-        )}
-
-        {step === "choose" && (
-          <React.Fragment>
-            <div className="cc-gate-h">You're in, {d.first || "welcome"} 🎉</div>
-            <p className="cc-gate-sub">We serve your area. Last step is getting to know your home. Pick whichever's easier.</p>
-            <button className="cc-gate-option" onClick={() => setStep("home")}>
-              <span className="cc-gate-option-ico"><Ico name="ph-list-checks" weight="duotone" /></span>
-              <span className="cc-gate-option-body">
-                <span className="cc-gate-option-h">Quick onboarding</span>
-                <span className="cc-gate-option-b">Answer a few questions here. About a minute.</span>
-              </span>
-              <Ico name="ph-arrow-right" weight="bold" className="cc-gate-option-go" />
-            </button>
-            <button className="cc-gate-option" onClick={finishByCall}>
-              <span className="cc-gate-option-ico gold"><Ico name="ph-phone-call" weight="duotone" /></span>
-              <span className="cc-gate-option-body">
-                <span className="cc-gate-option-h">Onboard by phone</span>
-                <span className="cc-gate-option-b">Talk it through with your concierge on a quick call instead.</span>
-              </span>
-              <Ico name="ph-arrow-right" weight="bold" className="cc-gate-option-go" />
-            </button>
-          </React.Fragment>
-        )}
-
-        {step === "home" && (
-          <React.Fragment>
-            <Steps />
-            <div className="cc-gate-h">Tell us about your home</div>
-            <p className="cc-gate-sub">A quick onboarding so your concierge actually knows your house. Takes about a minute.</p>
-            <label className="cc-gate-label">Do you own or rent?</label>
-            <Chips opts={["I own it", "I rent"]} value={d.owner} onPick={(v) => set("owner", v)} />
-            <label className="cc-gate-label">What kind of home?</label>
-            <Chips opts={HOME_OPTS} value={d.homeType} onPick={(v) => set("homeType", v)} />
-            <button className="btn btn-gold cta cc-gate-go" onClick={() => setStep("needs")}>Continue <Ico name="ph-arrow-right" weight="bold" /></button>
-            <button className="cc-gate-alt" onClick={finishByCall}><Ico name="ph-phone" weight="bold" /> Rather finish this on a call? Call your concierge</button>
-          </React.Fragment>
-        )}
-
-        {step === "needs" && (
-          <React.Fragment>
-            <Steps />
-            <div className="cc-gate-h">What can we help with first?</div>
-            <p className="cc-gate-sub">Pick anything on your mind. You can always text us for the rest later.</p>
-            <Chips opts={SERVICE_OPTS} value={d.services} onPick={toggleSvc} multi />
-            <label className="cc-gate-label">How soon?</label>
-            <Chips opts={URGENCY_OPTS} value={d.urgency} onPick={(v) => set("urgency", v)} />
-            <button className="btn btn-gold cta cc-gate-go" onClick={finishOnboarding}>Finish setup <Ico name="ph-check" weight="bold" /></button>
-            <button className="cc-gate-alt" onClick={finishByCall}><Ico name="ph-phone" weight="bold" /> Rather finish this on a call? Call your concierge</button>
-          </React.Fragment>
-        )}
-
-        {step === "done" && (
-          <React.Fragment>
-            <div className="cc-gate-h">You're all set, {d.first || "welcome"} 🎉</div>
-            <p className="cc-gate-sub">Your concierge has your home on file. Reach out any time, day or night, or we'll follow up shortly.</p>
-            <a className="btn btn-gold cta cc-gate-go" href={smsHref()}>Text Your Concierge <Ico name="ph-chat-circle-dots" weight="bold" /></a>
-            <a className="btn btn-ghost cta cc-gate-go cc-gate-go2" href={TEL_HREF}>Call Your Concierge <Ico name="ph-phone" weight="bold" /></a>
           </React.Fragment>
         )}
         </div>
@@ -231,7 +180,7 @@ function Header({ scrolled }) {
           {nav.map((n) => <button key={n.to} className="cc-nav-link" onClick={() => go(n.to)}>{n.label}</button>)}
         </nav>
         <div className="cc-header-actions">
-          <button className="btn btn-gold cta cc-header-cta" onClick={() => openGate("start")}>Get Started Free <Ico name="ph-arrow-right" weight="bold" /></button>
+          <button className="btn btn-gold cta cc-header-cta" onClick={() => openGate("call")}>Call Your Concierge <Ico name="ph-phone" weight="bold" /></button>
           <button className="cc-burger" onClick={() => setOpen(!open)} aria-label="Menu">
             <Ico name={open ? "ph-x" : "ph-list"} weight="bold" />
           </button>
@@ -252,27 +201,18 @@ function Hero() {
   const motion = useMotion();
   const openGate = useGate();
   return (
-    <header className="cc-hero">
-      <div className="cc-hero-bg" aria-hidden="true" />
+    <header className="cc-hero cc-hero-photo">
+      <div className="cc-hero-photo-img" aria-hidden="true" />
+      <div className="cc-hero-scrim" aria-hidden="true" />
       <div className={`cc-hero-in${motion ? " anim" : ""}`}>
-        <div className="eyebrow on-dark">Your personal Home Concierge</div>
-        <h1 className="display cc-hero-h">
-          One call or text.<br />
-          A vetted <RotatingWord /><br />
-          at your door.
-        </h1>
-        <p className="cc-hero-sub">
-          Casa Concierge helps with all your home needs. We remind you about household tasks,
-          find vetted local pros, and push every project to done.
-          <strong> And it's free, forever.</strong>
-        </p>
+        <div className="eyebrow on-dark">Your home concierge · Greater Phoenix</div>
+        <h1 className="display cc-hero-h">One call, and your whole home is handled.</h1>
+        <p className="cc-hero-sub">Free for Phoenix homeowners. We get to know your house, line up vetted local pros, and push every project to done.</p>
         <div className="cc-hero-cta">
-          <button className="btn btn-gold cta" onClick={() => openGate("start")}>Get Started Free <Ico name="ph-arrow-right" weight="bold" className="cta-arrow" /></button>
-          <button className="btn btn-ghost-light" onClick={() => ccScrollTo("how")}>See how it works</button>
+          <button className="btn btn-gold cta" onClick={() => openGate("call")}>Call Your Concierge <Ico name="ph-phone" weight="bold" /></button>
         </div>
         <p className="cc-hero-consent">
-          Free to use, serving Greater Phoenix. Takes a minute to set up, then your concierge
-          is one text away. <a href={TERMS_PAGE}>Terms</a> · <a href={PRIVACY_PAGE}>Privacy</a>.
+          Free to use · Serving Greater Phoenix · <a href={TERMS_PAGE}>Terms</a> · <a href={PRIVACY_PAGE}>Privacy</a>
         </p>
       </div>
     </header>
@@ -514,7 +454,7 @@ function CTABand() {
       <div className="cc-cta-in">
         <h2 className="display sec-h2">Your home deserves better <span className="cc-gold">than a search bar.</span></h2>
         <p className="cc-cta-sub">Next time something breaks, needs fixing, or needs doing, just text. We'll take it from there.</p>
-        <button className="btn btn-gold cta cc-cta-btn" onClick={() => openGate("start")}>Get Started Free <Ico name="ph-arrow-right" weight="bold" className="cta-arrow" /></button>
+        <button className="btn btn-gold cta cc-cta-btn" onClick={() => openGate("call")}>Call Your Concierge <Ico name="ph-phone" weight="bold" className="cta-arrow" /></button>
         <div className="cc-cta-fine"><Ico name="ph-phone" weight="bold" /> {PHONE} · Available to help 24/7 · Free to use</div>
       </div>
     </section>
@@ -607,15 +547,15 @@ function ConciergeDock({ showBar }) {
     <React.Fragment>
       {/* desktop floating launcher → opens the address gate */}
       <div className="cc-dock">
-        <button className="cc-launcher" onClick={() => openGate("text")} aria-label="Chat with your concierge">
-          <Ico name="ph-chat-circle-dots" weight="fill" />
-          <span className="cc-launcher-txt">Chat Now</span>
+        <button className="cc-launcher" onClick={() => openGate("call")} aria-label="Call your concierge">
+          <Ico name="ph-phone" weight="fill" />
+          <span className="cc-launcher-txt">Call Now</span>
         </button>
       </div>
 
       {/* mobile sticky bar: appears after the hero scrolls away */}
       <div className={`cc-mobile-bar${showBar ? " show" : ""}`}>
-        <button className="btn btn-gold cta" onClick={() => openGate("start")}>Get Started Free <Ico name="ph-arrow-right" weight="bold" /></button>
+        <button className="btn btn-gold cta" onClick={() => openGate("call")}>Call Your Concierge <Ico name="ph-phone" weight="bold" /></button>
       </div>
     </React.Fragment>
   );

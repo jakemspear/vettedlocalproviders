@@ -52,6 +52,16 @@
   background-image: radial-gradient(rgba(255,255,255,.05) 1px, transparent 1.4px);
   background-size: 22px 22px; opacity: .6;
 }
+/* photo hero variant (homepage) */
+.cc-hero-photo .cc-hero-bg { display: none; }
+.cc-hero-photo-img { position: absolute; inset: 0; z-index: -2; background-image: url("uploads/homepage-hero-az.png?v=1"); background-size: cover; background-position: 72% center; }
+.cc-hero-scrim { position: absolute; inset: 0; z-index: -1; background:
+  linear-gradient(90deg, rgba(16,40,34,.86) 0%, rgba(16,40,34,.58) 40%, rgba(16,40,34,.16) 70%, rgba(16,40,34,0) 100%),
+  linear-gradient(180deg, rgba(16,40,34,.3) 0%, transparent 28%, rgba(16,40,34,.5) 100%); }
+@media (max-width: 760px) {
+  .cc-hero-photo-img { background-position: 66% center; }
+  .cc-hero-scrim { background: linear-gradient(180deg, rgba(16,40,34,.52) 0%, rgba(16,40,34,.42) 34%, rgba(16,40,34,.72) 100%); }
+}
 .cc-hero-in { position: relative; width: 100%; max-width: 1200px; margin: 0 auto; padding: 120px 24px 92px; display: flex; flex-direction: column; gap: 18px; color: #fff; }
 .cc-hero-h { font-size: clamp(38px, 9vw, 78px); line-height: 1.0; color: #fff; letter-spacing: -.03em; }
 .cc-hero-sub { font-size: clamp(16px, 2.6vw, 20px); line-height: 1.55; color: rgba(255,255,255,.86); margin: 6px 0 0; max-width: 46ch; }
