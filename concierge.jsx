@@ -304,21 +304,26 @@ function Testimonials() {
     { quote: "I texted at 9pm about a leak and woke up to an appointment already booked. I didn't make a single call. This is how it should work.", name: "Jennifer M.", city: "Gilbert, AZ" },
     { quote: "They sent me a $14 part and a video instead of selling me a service call. Saved me a few hundred bucks. That's when I trusted them.", name: "David & Lisa P.", city: "Mesa, AZ" },
     { quote: "I used to dread coordinating contractors. Now I just text one person and it gets handled. Genuinely the easiest part of owning a home.", name: "Michael T.", city: "Chandler, AZ" },
+    { quote: "They reminded me to swap my AC filter before summer and booked the tune-up for me. Feels like having a friend who actually keeps track of my house.", name: "Priya & Sam R.", city: "Scottsdale, AZ" },
   ];
+  /* duplicated track so the marquee loops seamlessly */
+  const loop = [...t, ...t];
   return (
     <section className="section cc-reviews" id="reviews">
       <div className="cc-head cc-head-center">
         <div className="eyebrow">Homeowners love it</div>
         <h2 className="display sec-h2">One text away from done.</h2>
       </div>
-      <div className="cc-rev-grid">
-        {t.map((x) => (
-          <figure key={x.name} className="cc-rev">
-            <Stars n={5} />
-            <blockquote>{x.quote}</blockquote>
-            <figcaption><span className="cc-rev-name">{x.name}</span><span className="cc-rev-city">{x.city}</span></figcaption>
-          </figure>
-        ))}
+      <div className="cc-rev-marquee">
+        <div className="cc-rev-track">
+          {loop.map((x, i) => (
+            <figure key={i} className="cc-rev" aria-hidden={i >= t.length ? "true" : undefined}>
+              <Stars n={5} />
+              <blockquote>{x.quote}</blockquote>
+              <figcaption><span className="cc-rev-name">{x.name}</span><span className="cc-rev-city">{x.city}</span></figcaption>
+            </figure>
+          ))}
+        </div>
       </div>
     </section>
   );
