@@ -50,7 +50,8 @@ function OfferWall({ t, answers, onContinue }) {
       <section className="section ty-narr ow-top">
         <div className="eyebrow">{T.ty.narrEyebrow}</div>
         <h2 className="display sec-h2">{T.ty.narrTitle}</h2>
-        <p className="ty-narr-body">{T.ty.narrSub}</p>
+        <span className="ty-narr-loc"><Ico name="ph-map-pin" weight="fill" /> {T.ty.narrSub}</span>
+        <p className="ty-narr-body">{T.ty.narrSubDetail}</p>
       </section>
 
       <section className="section tight ty-wall-sec">
